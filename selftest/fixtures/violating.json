@@ -1,0 +1,6 @@
+[
+  {"id": "muted caption",    "fg": "#999999", "bg": "#ffffff", "font_px": 13, "kind": "text"},
+  {"id": "orange CTA text",  "fg": "#f47b20", "bg": "#ffffff", "font_px": 16, "kind": "text"},
+  {"id": "ghost border",     "fg": "#e8e8e8", "bg": "#ffffff", "kind": "nontext"},
+  {"id": "no size given",    "fg": "#767676", "bg": "#ffffff", "kind": "text"}
+]

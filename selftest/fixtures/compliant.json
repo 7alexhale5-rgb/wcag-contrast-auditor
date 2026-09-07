@@ -1,0 +1,6 @@
+[
+  {"id": "body copy",        "fg": "#1a1a1a", "bg": "#ffffff", "font_px": 16, "kind": "text"},
+  {"id": "h1",               "fg": "#0d4a6b", "bg": "#ffffff", "font_px": 40, "bold": true, "kind": "text"},
+  {"id": "primary button",   "fg": "#ffffff", "bg": "#0d4a6b", "font_px": 16, "kind": "text"},
+  {"id": "input border",     "fg": "#5a5a5a", "bg": "#ffffff", "kind": "nontext"}
+]
