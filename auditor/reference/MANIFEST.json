@@ -1,22 +1,40 @@
 {
   "source": "https://www.w3.org/TR/WCAG21/",
-  "fetched_utc": "2026-09-07",
+  "status": "W3C Recommendation 06 May 2025",
+  "fetched_utc": "2026-09-08",
   "source_sha256": "233ac31974ce8575c08932ee1bd71c93879cf9b8426b2bc9b961b3ea8afb8ab6",
   "criteria": {
     "1.4.3": {
       "section_id": "contrast-minimum",
       "file": "wcag21-1.4.3.md",
-      "sha256": "d35b95008ba1de6b728b05857d8525000a6986877305e6ad148e04380df1a257"
+      "sha256": "ed074b4430868e9edd973447703cd507400c53f47f3a86671b05f31737eecf6f"
     },
     "1.4.11": {
       "section_id": "non-text-contrast",
       "file": "wcag21-1.4.11.md",
-      "sha256": "9d6a646184d190ae7ce138d42fd6509e16743c52cdc3ec7f1086ada40848028d"
+      "sha256": "678e067ae347efb675ea0f7a13f10c933645da53e2028c0a27b8fe73a03eaac7"
     },
     "1.4.6": {
       "section_id": "contrast-enhanced",
       "file": "wcag21-1.4.6.md",
-      "sha256": "64cad211365fdb51184b01a57ce30660331de04ceb9f50b33807f14e429d3c7e"
+      "sha256": "310f93dae5d429f6f11bf8494454ec65f155afff1abe12d461f8d0fd2aba37eb"
+    }
+  },
+  "definitions": {
+    "contrast-ratio": {
+      "dfn_id": "dfn-contrast-ratio",
+      "file": "wcag21-glossary-contrast-ratio.md",
+      "sha256": "8089dad8f1d6da62ecaa4e0f9f8925ad5d21b9425c3c9af3922247d99a297be2"
+    },
+    "relative-luminance": {
+      "dfn_id": "dfn-relative-luminance",
+      "file": "wcag21-glossary-relative-luminance.md",
+      "sha256": "50d3584102f55186136e708b01bc72ff8d50a2f44c009c1df475335479c92535"
+    },
+    "large-scale-text": {
+      "dfn_id": "dfn-large-scale",
+      "file": "wcag21-glossary-large-scale-text.md",
+      "sha256": "8d42425f40c95baedc94dccd3fe31d34a614a7d9ba35b667b4cf40f865701f6c"
     }
   }
 }

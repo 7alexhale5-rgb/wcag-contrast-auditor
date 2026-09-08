@@ -121,19 +121,30 @@ for src in ["auditor/checker/contrast.py", "auditor/checker/audit.py"]:
     check(f"{src} imports nothing that reaches out", not bad, f"found {bad}")
 
 # The reference copy must be present and dated, or a clean report is unfalsifiable.
-print("\n[6] PROVENANCE: the cited standard is in the repo and carries a date")
+print("\n[6] PROVENANCE: the cited standard is in the repo, dated, hashed, with its status")
 man = ROOT / "auditor/reference/MANIFEST.json"
-check("reference/MANIFEST.json exists", man.exists())
+check("auditor/reference/MANIFEST.json exists", man.exists())
 if man.exists():
     m = json.loads(man.read_text())
     check("manifest records the retrieval date", bool(m.get("fetched_utc")))
     check("manifest pins a hash of the source document", len(m.get("source_sha256", "")) == 64)
+    check("manifest records the document status", "Recommendation" in m.get("status", ""), m.get("status", ""))
+    listed = {**{k: v["file"] for k, v in m.get("criteria", {}).items()},
+              **{k: v["file"] for k, v in m.get("definitions", {}).items()}}
+    for key, fname in sorted(listed.items()):
+        f = ROOT / "auditor/reference" / fname
+        check(f"{key}: {fname} exists on disk", f.exists())
+        if f.exists():
+            body = f.read_text()
+            check(f"{key}: file carries the W3C status line", "Status: W3C Recommendation" in body)
+            check(f"{key}: file hash matches the manifest",
+                  __import__("hashlib").sha256(body.encode()).hexdigest() == m["criteria" if key in m.get("criteria", {}) else "definitions"][key]["sha256"])
     cited = {x.provision_file for el in
              [{"id": "x", "fg": "#777", "bg": "#fff", "font_px": 16, "kind": "text"},
               {"id": "y", "fg": "#777", "bg": "#fff", "kind": "nontext"}]
              for x in audit.check_element(el)}
     for f in sorted(cited):
-        check(f"cited provision {f} exists on disk", (ROOT / "auditor/reference" / f).exists())
+        check(f"cited provision {f} is listed in the manifest", f in listed.values())
 
 print("\n" + "=" * 62)
 if FAILS:
