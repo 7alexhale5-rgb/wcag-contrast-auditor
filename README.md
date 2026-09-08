@@ -35,7 +35,9 @@ python3 check.py examples/findings-broken.md
 
 It names the line and the check that caught it, and exits non-zero. Every gate
 has also been shown red on purpose, one sabotage at a time, in
-`receipts/DEVIATIONS.md`.
+`receipts/DEVIATIONS.md`. The same command runs on every push on three operating
+systems and two Python versions; the check-run is on the Actions tab and its
+first result is pasted in `receipts/CLEAN_CLONE.md`.
 
 ## The four things this is judged on, and where to check each
 
