@@ -106,17 +106,17 @@ def main():
                 "source_sha256": page_sha, "criteria": {}, "definitions": {}}
     for sid, num in WANTED.items():
         doc = header(f"WCAG 2.1 Success Criterion {num}", sid, status, notice) + tidy(p.sections[sid]) + "\n"
-        out = HERE / f"wcag21-{num}.md"; out.write_text(doc)
+        out = HERE / f"wcag21-{num}.md"; out.write_bytes(doc.encode("utf-8"))
         manifest["criteria"][num] = {"section_id": sid, "file": out.name,
-                                     "sha256": hashlib.sha256(doc.encode()).hexdigest()}
+                                     "sha256": hashlib.sha256(out.read_bytes()).hexdigest()}
         print(f"wrote {out.name}")
     for did, name in DFNS.items():
         doc = header(f"WCAG 2.1 Glossary: {name.replace('-', ' ')}", did, status, notice) + tidy(p.dfns[did]) + "\n"
-        out = HERE / f"wcag21-glossary-{name}.md"; out.write_text(doc)
+        out = HERE / f"wcag21-glossary-{name}.md"; out.write_bytes(doc.encode("utf-8"))
         manifest["definitions"][name] = {"dfn_id": did, "file": out.name,
-                                         "sha256": hashlib.sha256(doc.encode()).hexdigest()}
+                                         "sha256": hashlib.sha256(out.read_bytes()).hexdigest()}
         print(f"wrote {out.name}")
-    (HERE / "MANIFEST.json").write_text(json.dumps(manifest, indent=2) + "\n")
+    (HERE / "MANIFEST.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(f"wrote MANIFEST.json  (status: {status}; page sha256 {page_sha[:16]}...)")
     return 0
 

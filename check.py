@@ -59,7 +59,7 @@ def gate_provenance():
     man = REF / "MANIFEST.json"
     check("auditor/reference/MANIFEST.json exists", man.exists())
     if not man.exists(): return
-    m = json.loads(man.read_text())
+    m = json.loads(man.read_text(encoding="utf-8"))
     check("manifest records the retrieval date", bool(m.get("fetched_utc")))
     check("manifest pins a hash of the source document", len(m.get("source_sha256", "")) == 64)
     check("manifest records the document status", "Recommendation" in m.get("status", ""), m.get("status", ""))
@@ -71,10 +71,11 @@ def gate_provenance():
         f = REF / fname
         check(f"{key}: {fname} exists on disk", f.exists())
         if f.exists():
-            body = f.read_text()
+            raw = f.read_bytes()
+            body = raw.decode("utf-8")
             check(f"{key}: carries the W3C status line", "Status: W3C Recommendation" in body)
             check(f"{key}: carries the W3C licence notice", "W3C Document License" in body)
-            check(f"{key}: file hash matches the manifest", hashlib.sha256(body.encode()).hexdigest() == sha)
+            check(f"{key}: file hash matches the manifest", hashlib.sha256(raw).hexdigest() == sha)
     used = {t.provision_file for t in (contrast.AA_NORMAL, contrast.AA_LARGE, contrast.AA_NONTEXT,
                                        contrast.AAA_NORMAL, contrast.AAA_LARGE)}
     used |= {v[1] for kind in contrast.EXEMPTIONS.values() for v in kind.values()}
@@ -85,7 +86,7 @@ def gate_provenance():
                                                     contrast.AAA_NORMAL, contrast.AAA_LARGE)]
     quotes += [v for kind in contrast.EXEMPTIONS.values() for v in kind.values()]
     for q, f in sorted(set(quotes)):
-        body = findings.normalize((REF / f).read_text()) if (REF / f).exists() else ""
+        body = findings.normalize((REF / f).read_text(encoding="utf-8")) if (REF / f).exists() else ""
         check(f"quote is verbatim in {f}: \"{q[:48]}...\"", findings.normalize(q) in body)
 
 # --------------------------------------------------------------- ANCHOR
@@ -160,11 +161,11 @@ def gate_mutation():
 # -------------------------------------------------------------- SILENCE
 def gate_silence():
     gate("SILENCE: compliant input must produce no AA failures, and passes are reported")
-    rep = audit.audit(json.loads((ROOT / "fixtures/clean.json").read_text()))
+    rep = audit.audit(json.loads((ROOT / "fixtures/clean.json").read_text(encoding="utf-8")))
     check("clean fixture returns verdict PASS", rep["verdict"] == "PASS", rep["verdict"])
     check("clean fixture invents zero failures", rep["summary"]["aa_fail"] == 0, str(rep["summary"]))
     check("clean fixture reports every pass", rep["summary"]["aa_pass"] == rep["summary"]["elements"])
-    rep2 = audit.audit(json.loads((ROOT / "fixtures/violating.json").read_text()))
+    rep2 = audit.audit(json.loads((ROOT / "fixtures/violating.json").read_text(encoding="utf-8")))
     check("violating fixture returns verdict FAIL", rep2["verdict"] == "FAIL", rep2["verdict"])
     rendered = audit.render(rep2)
     check("an AAA miss is never printed as [FAIL]",
@@ -196,7 +197,7 @@ BANNED = {"requests", "urllib", "httpx", "socket", "http", "openai", "anthropic"
 def gate_purity():
     gate("PURITY: the deterministic layer reaches nothing outside itself")
     for src in ["auditor/checker/contrast.py", "auditor/checker/audit.py", "auditor/checker/findings.py"]:
-        tree = ast.parse((ROOT / src).read_text())
+        tree = ast.parse((ROOT / src).read_text(encoding="utf-8"))
         found, dyn = set(), False
         for node in ast.walk(tree):
             if isinstance(node, ast.Import):
@@ -211,12 +212,12 @@ def gate_purity():
 # ------------------------------------------------------------- CITATION
 def gate_citation():
     gate("CITATION: every finding names a real provision, quotes it verbatim, and recomputes")
-    own = audit.render(audit.audit(json.loads((ROOT / "fixtures/violating.json").read_text())))
+    own = audit.render(audit.audit(json.loads((ROOT / "fixtures/violating.json").read_text(encoding="utf-8"))))
     parsed = findings.parse_findings(own)
     check("the checker's own output parses back", len(parsed) == 6, str(len(parsed)))
     rejected = [(f["location"], findings.citation_gate(f)) for f in parsed if findings.citation_gate(f)]
     check("the checker's own output passes its own gate", not rejected, str(rejected))
-    broken = (ROOT / "examples/findings-broken.md").read_text()
+    broken = (ROOT / "examples/findings-broken.md").read_text(encoding="utf-8")
     results = {f["location"]: findings.citation_gate(f) for f in findings.parse_findings(broken)}
     check("examples/findings-broken.md parses to four findings", len(results) == 4, str(len(results)))
     check("the valid finding holds", results.get("muted caption") == [], str(results.get("muted caption")))
@@ -259,11 +260,11 @@ def gate_citation():
 FENCE = re.compile(r"```text (excerpt )?fixture=(\S+)\n(.*?)\n```", re.S)
 def gate_examples():
     gate("EXAMPLES: every pasted output in examples.md is a live run of the checker")
-    text = (AUDITOR / "examples.md").read_text()
+    text = (AUDITOR / "examples.md").read_text(encoding="utf-8")
     blocks = FENCE.findall(text)
     check("examples.md carries at least three tagged output blocks", len(blocks) >= 3, str(len(blocks)))
     for excerpt, fixture, body in blocks:
-        rep = audit.render(audit.audit(json.loads((ROOT / fixture).read_text())))
+        rep = audit.render(audit.audit(json.loads((ROOT / fixture).read_text(encoding="utf-8"))))
         if excerpt:
             check(f"excerpt of {fixture} appears verbatim in a live run", body.strip() in rep)
         else:
@@ -291,14 +292,14 @@ def gate_territory():
     exp_path = ROOT / "receipts/EXPECTED-brands.json"
     check("receipts/EXPECTED-brands.json exists", exp_path.exists())
     if not exp_path.exists(): return
-    expected = json.loads(exp_path.read_text())
+    expected = json.loads(exp_path.read_text(encoding="utf-8"))
     files = sorted((ROOT / "fixtures/brands").glob("*.json"))
     check("at least 40 brand fixtures on disk", len(files) >= 40, str(len(files)))
     check("every fixture has a committed expectation", {f.stem for f in files} == set(expected["brands"]),
           str({f.stem for f in files} ^ set(expected["brands"])))
     drift, verdicts, undecided = [], {}, 0
     for f in files:
-        fx = json.loads(f.read_text())
+        fx = json.loads(f.read_text(encoding="utf-8"))
         check_prov = ("VoltAgent" in fx.get("source", "") and fx.get("upstream_commit")
                       and fx.get("upstream_sha256") and fx.get("upstream_colors_match_local") is True)
         if not check_prov: drift.append(f"{f.stem}: no provenance")
@@ -328,7 +329,7 @@ def gate_differential():
     files = sorted((ROOT / "fixtures/brands").glob("*.json"))
     pairs, disagreements, missing_xref = 0, [], 0
     for f in files:
-        for el in json.loads(f.read_text())["elements"]:
+        for el in json.loads(f.read_text(encoding="utf-8"))["elements"]:
             if not (re.fullmatch(r"#[0-9a-fA-F]{6}", el["fg"]) and re.fullmatch(r"#[0-9a-fA-F]{6}", el["bg"])):
                 continue
             pairs += 1
@@ -343,7 +344,7 @@ def gate_differential():
 
 # -------------------------------------------------------------- runner
 def verify_reference() -> int:
-    m = json.loads((REF / "MANIFEST.json").read_text())
+    m = json.loads((REF / "MANIFEST.json").read_text(encoding="utf-8"))
     print(f"source:  {m['source']}\nstatus:  {m['status']}\nfetched: {m['fetched_utc']}\npage sha256: {m['source_sha256']}\n")
     for group in ("criteria", "definitions"):
         for key, v in m[group].items():

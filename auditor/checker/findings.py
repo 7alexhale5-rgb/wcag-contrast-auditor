@@ -75,12 +75,12 @@ def verify_reference(ref_dir: Path = REF) -> list[str]:
     A verbatim quote from a forged provision file is still a forgery, so this
     runs before any citation is judged."""
     import hashlib
-    m = json.loads((ref_dir / "MANIFEST.json").read_text())
+    m = json.loads((ref_dir / "MANIFEST.json").read_text(encoding="utf-8"))
     bad = []
     for group in ("criteria", "definitions"):
         for key, v in m.get(group, {}).items():
             f = ref_dir / v["file"]
-            if not f.exists() or hashlib.sha256(f.read_text().encode()).hexdigest() != v["sha256"]:
+            if not f.exists() or hashlib.sha256(f.read_bytes()).hexdigest() != v["sha256"]:
                 bad.append(f"0_REFERENCE_TAMPERED: reference/{v['file']} does not match MANIFEST.json")
     return bad
 
@@ -91,7 +91,7 @@ def _level_of(provision_text: str) -> str | None:
 def citation_gate(f: dict, ref_dir: Path = REF, manifest: dict | None = None) -> list[str]:
     """Return the list of failure codes for one finding. Empty list = citation holds."""
     if manifest is None:
-        manifest = json.loads((ref_dir / "MANIFEST.json").read_text())
+        manifest = json.loads((ref_dir / "MANIFEST.json").read_text(encoding="utf-8"))
     codes = list(f.get("errors", []))
     if f.get("verdict") == "?":
         codes.append(f"H_UNKNOWN_MARK: [{f.get('mark')}] is not a mark the checker prints")
@@ -109,7 +109,7 @@ def citation_gate(f: dict, ref_dir: Path = REF, manifest: dict | None = None) ->
     if entry is not None and entry["file"] != prov:
         codes.append(f"B_FILE_MISMATCH: SC {crit} lives in reference/{entry['file']}, not reference/{prov}")
     pf = ref_dir / prov
-    text = pf.read_text()
+    text = pf.read_text(encoding="utf-8")
     body = normalize(text)
     if not f.get("quote") or normalize(f["quote"]) not in body:
         codes.append(f"C_QUOTE_NOT_VERBATIM: quote is not in reference/{prov}")
@@ -139,7 +139,7 @@ def citation_gate(f: dict, ref_dir: Path = REF, manifest: dict | None = None) ->
 def main() -> int:
     if len(sys.argv) != 2:
         print("usage: findings.py <report.txt or .md>", file=sys.stderr); return 2
-    text = Path(sys.argv[1]).read_text()
+    text = Path(sys.argv[1]).read_text(encoding="utf-8")
     tampered = verify_reference()
     for c in tampered: print(f"REJECTED reference/  {c}")
     if tampered:

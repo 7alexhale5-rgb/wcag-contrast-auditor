@@ -4,6 +4,7 @@ jobs:
   gate:
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
         python: ["3.10", "3.13"]
@@ -12,6 +13,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
+      - name: standard-library regression tests, offline
+        run: python3 -m unittest discover -s tests -v
       - name: every gate, offline, standard library only
         run: python3 check.py
       - name: the drop-in still refuses to pass its own broken example
@@ -19,4 +22,5 @@ jobs:
         run: |
           set +e
           python3 check.py examples/findings-broken.md
-          test $? -ne 0
+          status=$?
+          test "$status" -eq 1

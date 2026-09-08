@@ -207,7 +207,7 @@ def main() -> int:
     p.add_argument("--json", action="store_true", help="emit the full report as JSON")
     a = p.parse_args()
     try:
-        data = json.loads(Path(a.input).read_text())
+        data = json.loads(Path(a.input).read_text(encoding="utf-8"))
         # Accept a bare list of elements, or an object carrying "elements" plus provenance.
         elements = data["elements"] if isinstance(data, dict) else data
         if not isinstance(elements, list): raise ValueError("input is not a list of elements")

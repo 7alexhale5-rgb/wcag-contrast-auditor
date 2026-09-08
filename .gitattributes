@@ -1,0 +1,2 @@
+# Keep committed text byte-identical on Windows, macOS, and Linux.
+* text=auto eol=lf
