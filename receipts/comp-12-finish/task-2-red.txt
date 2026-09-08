@@ -1,0 +1,1635 @@
+COMMAND: /opt/homebrew/opt/python@3.14/bin/python3.14 -m unittest discover -s tests -p test_inputs.py -v
+EXIT: 1
+STDOUT:
+
+STDERR:
+test_alpha_requires_exactly_one (test_inputs.ColorTests.test_alpha_requires_exactly_one) ... 
+  test_alpha_requires_exactly_one (test_inputs.ColorTests.test_alpha_requires_exactly_one) (alpha='0.999') ... FAIL
+  test_alpha_requires_exactly_one (test_inputs.ColorTests.test_alpha_requires_exactly_one) (alpha='0.9999999999999999') ... FAIL
+  test_alpha_requires_exactly_one (test_inputs.ColorTests.test_alpha_requires_exactly_one) (alpha='99.99%') ... FAIL
+  test_alpha_requires_exactly_one (test_inputs.ColorTests.test_alpha_requires_exactly_one) (alpha='1..0') ... ERROR
+  test_alpha_requires_exactly_one (test_inputs.ColorTests.test_alpha_requires_exactly_one) (alpha='%') ... ERROR
+test_fractional_channels_are_preserved (test_inputs.ColorTests.test_fractional_channels_are_preserved) ... 
+  test_fractional_channels_are_preserved (test_inputs.ColorTests.test_fractional_channels_are_preserved) (color='rgb(1.25, 2.5, 3.75)') ... FAIL
+  test_fractional_channels_are_preserved (test_inputs.ColorTests.test_fractional_channels_are_preserved) (color='rgb(1.25 2.5 3.75)') ... FAIL
+  test_fractional_channels_are_preserved (test_inputs.ColorTests.test_fractional_channels_are_preserved) (color='rgba(1.25, 2.5, 3.75, 1)') ... FAIL
+  test_fractional_channels_are_preserved (test_inputs.ColorTests.test_fractional_channels_are_preserved) (color='rgb(1.25 2.5 3.75 / 100%)') ... FAIL
+test_fractional_rgb_verdicts_around_both_aa_thresholds (test_inputs.ColorTests.test_fractional_rgb_verdicts_around_both_aa_thresholds) ... 
+  test_fractional_rgb_verdicts_around_both_aa_thresholds (test_inputs.ColorTests.test_fractional_rgb_verdicts_around_both_aa_thresholds) (threshold=4.5, ratio=4.499999) ... FAIL
+  test_fractional_rgb_verdicts_around_both_aa_thresholds (test_inputs.ColorTests.test_fractional_rgb_verdicts_around_both_aa_thresholds) (threshold=4.5, ratio=4.500001) ... FAIL
+  test_fractional_rgb_verdicts_around_both_aa_thresholds (test_inputs.ColorTests.test_fractional_rgb_verdicts_around_both_aa_thresholds) (threshold=3.0, ratio=2.999999) ... FAIL
+  test_fractional_rgb_verdicts_around_both_aa_thresholds (test_inputs.ColorTests.test_fractional_rgb_verdicts_around_both_aa_thresholds) (threshold=3.0, ratio=3.000001) ... FAIL
+test_malformed_or_out_of_range_channels_raise_named_error (test_inputs.ColorTests.test_malformed_or_out_of_range_channels_raise_named_error) ... 
+  test_malformed_or_out_of_range_channels_raise_named_error (test_inputs.ColorTests.test_malformed_or_out_of_range_channels_raise_named_error) (value='rgb(1..2,0,0)') ... ERROR
+  test_malformed_or_out_of_range_channels_raise_named_error (test_inputs.ColorTests.test_malformed_or_out_of_range_channels_raise_named_error) (value='rgb(.,0,0)') ... ERROR
+  test_malformed_or_out_of_range_channels_raise_named_error (test_inputs.ColorTests.test_malformed_or_out_of_range_channels_raise_named_error) (value='rgb(255.1,0,0)') ... FAIL
+  test_malformed_or_out_of_range_channels_raise_named_error (test_inputs.ColorTests.test_malformed_or_out_of_range_channels_raise_named_error) (value='rgb(0,,0,0)') ... FAIL
+  test_malformed_or_out_of_range_channels_raise_named_error (test_inputs.ColorTests.test_malformed_or_out_of_range_channels_raise_named_error) (value='rgb(0,0 0)') ... FAIL
+test_nonstring_colors_raise_named_error (test_inputs.ColorTests.test_nonstring_colors_raise_named_error) ... 
+  test_nonstring_colors_raise_named_error (test_inputs.ColorTests.test_nonstring_colors_raise_named_error) (value=42) ... ERROR
+  test_nonstring_colors_raise_named_error (test_inputs.ColorTests.test_nonstring_colors_raise_named_error) (value=True) ... ERROR
+  test_nonstring_colors_raise_named_error (test_inputs.ColorTests.test_nonstring_colors_raise_named_error) (value=[]) ... ERROR
+  test_nonstring_colors_raise_named_error (test_inputs.ColorTests.test_nonstring_colors_raise_named_error) (value={}) ... ERROR
+  test_nonstring_colors_raise_named_error (test_inputs.ColorTests.test_nonstring_colors_raise_named_error) (value=(0, 0, 0)) ... ERROR
+test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) ... 
+  test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) (value='false') ... FAIL
+  test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) (value='true') ... FAIL
+  test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) (value=0) ... FAIL
+  test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) (value=1) ... FAIL
+  test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) (value=None) ... FAIL
+  test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) (value=[]) ... FAIL
+  test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) (value={}) ... FAIL
+test_cli_mixed_elements_and_aaa_exit_semantics (test_inputs.InputTests.test_cli_mixed_elements_and_aaa_exit_semantics) ... ok
+test_dual_sizes_agree_or_are_rejected (test_inputs.InputTests.test_dual_sizes_agree_or_are_rejected) ... FAIL
+test_dual_weight_declarations_must_agree (test_inputs.InputTests.test_dual_weight_declarations_must_agree) ... 
+  test_dual_weight_declarations_must_agree (test_inputs.InputTests.test_dual_weight_declarations_must_agree) (bold=False, weight=700) ... FAIL
+  test_dual_weight_declarations_must_agree (test_inputs.InputTests.test_dual_weight_declarations_must_agree) (bold=True, weight=600) ... FAIL
+  test_dual_weight_declarations_must_agree (test_inputs.InputTests.test_dual_weight_declarations_must_agree) (bold=True, weight='lighter') ... FAIL
+  test_dual_weight_declarations_must_agree (test_inputs.InputTests.test_dual_weight_declarations_must_agree) (bold=False, weight='bolder') ... FAIL
+  test_dual_weight_declarations_must_agree (test_inputs.InputTests.test_dual_weight_declarations_must_agree) (bold=True, weight=inf) ... FAIL
+test_exact_large_text_boundaries_in_points_and_pixels (test_inputs.InputTests.test_exact_large_text_boundaries_in_points_and_pixels) ... 
+  test_exact_large_text_boundaries_in_points_and_pixels (test_inputs.InputTests.test_exact_large_text_boundaries_in_points_and_pixels) (pt=13.999999999999998, bold=True) ... FAIL
+test_exact_large_text_boundaries_in_points_and_pixels (test_inputs.InputTests.test_exact_large_text_boundaries_in_points_and_pixels) ... FAIL
+test_invalid_elements_are_retained_alongside_valid_elements (test_inputs.InputTests.test_invalid_elements_are_retained_alongside_valid_elements) ... FAIL
+test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) ... 
+  test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) (value=0.999) ... FAIL
+  test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) (value=0.9999999999999999) ... FAIL
+  test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) (value=1.001) ... FAIL
+  test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) (value=inf) ... FAIL
+  test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) (value=nan) ... FAIL
+  test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) (value=None) ... FAIL
+  test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) (value='1px') ... FAIL
+test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) ... 
+  test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_px', value=0) ... FAIL
+  test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_px', value=-1) ... FAIL
+  test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_px', value=nan) ... FAIL
+  test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_px', value=inf) ... FAIL
+  test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_px', value=-inf) ... FAIL
+  test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_px', value=None) ... FAIL
+  test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_px', value='nan') ... FAIL
+  test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_px', value='inf') ... FAIL
+  test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_px', value='0px') ... FAIL
+  test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_px', value='-1px') ... FAIL
+  test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_px', value=10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) ... FAIL
+  test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value=0) ... FAIL
+  test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value=-1) ... FAIL
+  test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value=nan) ... FAIL
+  test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value=inf) ... FAIL
+  test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value=-inf) ... FAIL
+  test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value=True) ... FAIL
+  test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value=False) ... FAIL
+  test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value=None) ... FAIL
+  test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value='nan') ... FAIL
+  test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value='inf') ... FAIL
+  test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value='0px') ... FAIL
+  test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value='-1px') ... FAIL
+  test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value=[]) ... FAIL
+  test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value={}) ... FAIL
+  test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value=10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) ... FAIL
+  test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_px', value='18pt') ... FAIL
+  test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value='24px') ... FAIL
+test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) ... 
+  test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) (value='bolder') ... FAIL
+  test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) (value='lighter') ... FAIL
+  test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) (value=inf) ... FAIL
+  test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) (value=-inf) ... FAIL
+  test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) (value=nan) ... FAIL
+  test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) (value=0) ... FAIL
+  test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) (value=-1) ... FAIL
+  test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) (value=1001) ... FAIL
+  test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) (value=None) ... FAIL
+  test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) (value=10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000) ... FAIL
+
+======================================================================
+ERROR: test_alpha_requires_exactly_one (test_inputs.ColorTests.test_alpha_requires_exactly_one) (alpha='1..0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 143, in test_alpha_requires_exactly_one
+    contrast.parse_color(f"rgba(0,0,0,{alpha})")
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/contrast.py", line 46, in parse_color
+    alpha = float(a[:-1]) / 100 if a.endswith("%") else float(a)
+                                                        ~~~~~^^^
+ValueError: could not convert string to float: '1..0'
+
+======================================================================
+ERROR: test_alpha_requires_exactly_one (test_inputs.ColorTests.test_alpha_requires_exactly_one) (alpha='%')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 143, in test_alpha_requires_exactly_one
+    contrast.parse_color(f"rgba(0,0,0,{alpha})")
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/contrast.py", line 46, in parse_color
+    alpha = float(a[:-1]) / 100 if a.endswith("%") else float(a)
+            ~~~~~^^^^^^^^
+ValueError: could not convert string to float: ''
+
+======================================================================
+ERROR: test_malformed_or_out_of_range_channels_raise_named_error (test_inputs.ColorTests.test_malformed_or_out_of_range_channels_raise_named_error) (value='rgb(1..2,0,0)')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 137, in test_malformed_or_out_of_range_channels_raise_named_error
+    contrast.parse_color(value)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/contrast.py", line 43, in parse_color
+    r, g, b = (int(round(float(m.group(i)))) for i in (1, 2, 3))
+    ^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/contrast.py", line 43, in <genexpr>
+    r, g, b = (int(round(float(m.group(i)))) for i in (1, 2, 3))
+                         ~~~~~^^^^^^^^^^^^
+ValueError: could not convert string to float: '1..2'
+
+======================================================================
+ERROR: test_malformed_or_out_of_range_channels_raise_named_error (test_inputs.ColorTests.test_malformed_or_out_of_range_channels_raise_named_error) (value='rgb(.,0,0)')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 137, in test_malformed_or_out_of_range_channels_raise_named_error
+    contrast.parse_color(value)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/contrast.py", line 43, in parse_color
+    r, g, b = (int(round(float(m.group(i)))) for i in (1, 2, 3))
+    ^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/contrast.py", line 43, in <genexpr>
+    r, g, b = (int(round(float(m.group(i)))) for i in (1, 2, 3))
+                         ~~~~~^^^^^^^^^^^^
+ValueError: could not convert string to float: '.'
+
+======================================================================
+ERROR: test_nonstring_colors_raise_named_error (test_inputs.ColorTests.test_nonstring_colors_raise_named_error) (value=42)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 124, in test_nonstring_colors_raise_named_error
+    contrast.parse_color(value)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/contrast.py", line 29, in parse_color
+    v = value.strip().lower()
+        ^^^^^^^^^^^
+AttributeError: 'int' object has no attribute 'strip'
+
+======================================================================
+ERROR: test_nonstring_colors_raise_named_error (test_inputs.ColorTests.test_nonstring_colors_raise_named_error) (value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 124, in test_nonstring_colors_raise_named_error
+    contrast.parse_color(value)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/contrast.py", line 29, in parse_color
+    v = value.strip().lower()
+        ^^^^^^^^^^^
+AttributeError: 'bool' object has no attribute 'strip'
+
+======================================================================
+ERROR: test_nonstring_colors_raise_named_error (test_inputs.ColorTests.test_nonstring_colors_raise_named_error) (value=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 124, in test_nonstring_colors_raise_named_error
+    contrast.parse_color(value)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/contrast.py", line 29, in parse_color
+    v = value.strip().lower()
+        ^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'strip'
+
+======================================================================
+ERROR: test_nonstring_colors_raise_named_error (test_inputs.ColorTests.test_nonstring_colors_raise_named_error) (value={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 124, in test_nonstring_colors_raise_named_error
+    contrast.parse_color(value)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/contrast.py", line 29, in parse_color
+    v = value.strip().lower()
+        ^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'strip'
+
+======================================================================
+ERROR: test_nonstring_colors_raise_named_error (test_inputs.ColorTests.test_nonstring_colors_raise_named_error) (value=(0, 0, 0))
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 124, in test_nonstring_colors_raise_named_error
+    contrast.parse_color(value)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/contrast.py", line 29, in parse_color
+    v = value.strip().lower()
+        ^^^^^^^^^^^
+AttributeError: 'tuple' object has no attribute 'strip'
+
+======================================================================
+FAIL: test_alpha_requires_exactly_one (test_inputs.ColorTests.test_alpha_requires_exactly_one) (alpha='0.999')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 142, in test_alpha_requires_exactly_one
+    with self.subTest(alpha=alpha), self.assertRaises(contrast.ColorError):
+                                    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ColorError not raised
+
+======================================================================
+FAIL: test_alpha_requires_exactly_one (test_inputs.ColorTests.test_alpha_requires_exactly_one) (alpha='0.9999999999999999')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 142, in test_alpha_requires_exactly_one
+    with self.subTest(alpha=alpha), self.assertRaises(contrast.ColorError):
+                                    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ColorError not raised
+
+======================================================================
+FAIL: test_alpha_requires_exactly_one (test_inputs.ColorTests.test_alpha_requires_exactly_one) (alpha='99.99%')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 142, in test_alpha_requires_exactly_one
+    with self.subTest(alpha=alpha), self.assertRaises(contrast.ColorError):
+                                    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ColorError not raised
+
+======================================================================
+FAIL: test_fractional_channels_are_preserved (test_inputs.ColorTests.test_fractional_channels_are_preserved) (color='rgb(1.25, 2.5, 3.75)')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 130, in test_fractional_channels_are_preserved
+    self.assertEqual(contrast.parse_color(color), (1.25, 2.5, 3.75))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (1, 2, 4) != (1.25, 2.5, 3.75)
+
+First differing element 0:
+1
+1.25
+
+- (1, 2, 4)
++ (1.25, 2.5, 3.75)
+
+======================================================================
+FAIL: test_fractional_channels_are_preserved (test_inputs.ColorTests.test_fractional_channels_are_preserved) (color='rgb(1.25 2.5 3.75)')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 130, in test_fractional_channels_are_preserved
+    self.assertEqual(contrast.parse_color(color), (1.25, 2.5, 3.75))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (1, 2, 4) != (1.25, 2.5, 3.75)
+
+First differing element 0:
+1
+1.25
+
+- (1, 2, 4)
++ (1.25, 2.5, 3.75)
+
+======================================================================
+FAIL: test_fractional_channels_are_preserved (test_inputs.ColorTests.test_fractional_channels_are_preserved) (color='rgba(1.25, 2.5, 3.75, 1)')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 130, in test_fractional_channels_are_preserved
+    self.assertEqual(contrast.parse_color(color), (1.25, 2.5, 3.75))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (1, 2, 4) != (1.25, 2.5, 3.75)
+
+First differing element 0:
+1
+1.25
+
+- (1, 2, 4)
++ (1.25, 2.5, 3.75)
+
+======================================================================
+FAIL: test_fractional_channels_are_preserved (test_inputs.ColorTests.test_fractional_channels_are_preserved) (color='rgb(1.25 2.5 3.75 / 100%)')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 130, in test_fractional_channels_are_preserved
+    self.assertEqual(contrast.parse_color(color), (1.25, 2.5, 3.75))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Tuples differ: (1, 2, 4) != (1.25, 2.5, 3.75)
+
+First differing element 0:
+1
+1.25
+
+- (1, 2, 4)
++ (1.25, 2.5, 3.75)
+
+======================================================================
+FAIL: test_fractional_rgb_verdicts_around_both_aa_thresholds (test_inputs.ColorTests.test_fractional_rgb_verdicts_around_both_aa_thresholds) (threshold=4.5, ratio=4.499999)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 157, in test_fractional_rgb_verdicts_around_both_aa_thresholds
+    self.assertAlmostEqual(contrast.contrast_ratio(color, "#fff"), ratio, places=10)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 4.478089453577214 != 4.499999 within 10 places (0.021909546422786086 difference)
+
+======================================================================
+FAIL: test_fractional_rgb_verdicts_around_both_aa_thresholds (test_inputs.ColorTests.test_fractional_rgb_verdicts_around_both_aa_thresholds) (threshold=4.5, ratio=4.500001)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 157, in test_fractional_rgb_verdicts_around_both_aa_thresholds
+    self.assertAlmostEqual(contrast.contrast_ratio(color, "#fff"), ratio, places=10)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 4.478089453577214 != 4.500001 within 10 places (0.021911546422786365 difference)
+
+======================================================================
+FAIL: test_fractional_rgb_verdicts_around_both_aa_thresholds (test_inputs.ColorTests.test_fractional_rgb_verdicts_around_both_aa_thresholds) (threshold=3.0, ratio=2.999999)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 157, in test_fractional_rgb_verdicts_around_both_aa_thresholds
+    self.assertAlmostEqual(contrast.contrast_ratio(color, "#fff"), ratio, places=10)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2.9953461357088114 != 2.999999 within 10 places (0.0046528642911884965 difference)
+
+======================================================================
+FAIL: test_fractional_rgb_verdicts_around_both_aa_thresholds (test_inputs.ColorTests.test_fractional_rgb_verdicts_around_both_aa_thresholds) (threshold=3.0, ratio=3.000001)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 157, in test_fractional_rgb_verdicts_around_both_aa_thresholds
+    self.assertAlmostEqual(contrast.contrast_ratio(color, "#fff"), ratio, places=10)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2.9953461357088114 != 3.000001 within 10 places (0.004654864291188776 difference)
+
+======================================================================
+FAIL: test_malformed_or_out_of_range_channels_raise_named_error (test_inputs.ColorTests.test_malformed_or_out_of_range_channels_raise_named_error) (value='rgb(255.1,0,0)')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 136, in test_malformed_or_out_of_range_channels_raise_named_error
+    with self.subTest(value=value), self.assertRaises(contrast.ColorError):
+                                    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ColorError not raised
+
+======================================================================
+FAIL: test_malformed_or_out_of_range_channels_raise_named_error (test_inputs.ColorTests.test_malformed_or_out_of_range_channels_raise_named_error) (value='rgb(0,,0,0)')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 136, in test_malformed_or_out_of_range_channels_raise_named_error
+    with self.subTest(value=value), self.assertRaises(contrast.ColorError):
+                                    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ColorError not raised
+
+======================================================================
+FAIL: test_malformed_or_out_of_range_channels_raise_named_error (test_inputs.ColorTests.test_malformed_or_out_of_range_channels_raise_named_error) (value='rgb(0,0 0)')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 136, in test_malformed_or_out_of_range_channels_raise_named_error
+    with self.subTest(value=value), self.assertRaises(contrast.ColorError):
+                                    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ColorError not raised
+
+======================================================================
+FAIL: test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) (value='false')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 28, in test_bold_requires_boolean
+    self.assert_unknown({"bold": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) (value='true')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 28, in test_bold_requires_boolean
+    self.assert_unknown({"bold": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) (value=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 28, in test_bold_requires_boolean
+    self.assert_unknown({"bold": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) (value=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 28, in test_bold_requires_boolean
+    self.assert_unknown({"bold": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) (value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 28, in test_bold_requires_boolean
+    self.assert_unknown({"bold": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) (value=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 28, in test_bold_requires_boolean
+    self.assert_unknown({"bold": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) (value={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 28, in test_bold_requires_boolean
+    self.assert_unknown({"bold": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_dual_sizes_agree_or_are_rejected (test_inputs.InputTests.test_dual_sizes_agree_or_are_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 51, in test_dual_sizes_agree_or_are_rejected
+    self.assert_unknown({"font_px": 24, "font_pt": 12})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_dual_weight_declarations_must_agree (test_inputs.InputTests.test_dual_weight_declarations_must_agree) (bold=False, weight=700)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 69, in test_dual_weight_declarations_must_agree
+    self.assert_unknown({"bold": bold, "font_weight": weight})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_dual_weight_declarations_must_agree (test_inputs.InputTests.test_dual_weight_declarations_must_agree) (bold=True, weight=600)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 69, in test_dual_weight_declarations_must_agree
+    self.assert_unknown({"bold": bold, "font_weight": weight})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_dual_weight_declarations_must_agree (test_inputs.InputTests.test_dual_weight_declarations_must_agree) (bold=True, weight='lighter')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 69, in test_dual_weight_declarations_must_agree
+    self.assert_unknown({"bold": bold, "font_weight": weight})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_dual_weight_declarations_must_agree (test_inputs.InputTests.test_dual_weight_declarations_must_agree) (bold=False, weight='bolder')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 69, in test_dual_weight_declarations_must_agree
+    self.assert_unknown({"bold": bold, "font_weight": weight})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_dual_weight_declarations_must_agree (test_inputs.InputTests.test_dual_weight_declarations_must_agree) (bold=True, weight=inf)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 69, in test_dual_weight_declarations_must_agree
+    self.assert_unknown({"bold": bold, "font_weight": weight})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_exact_large_text_boundaries_in_points_and_pixels (test_inputs.InputTests.test_exact_large_text_boundaries_in_points_and_pixels) (pt=13.999999999999998, bold=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 79, in test_exact_large_text_boundaries_in_points_and_pixels
+    self.assertEqual(finding.required, required)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 3.0 != 4.5
+
+======================================================================
+FAIL: test_exact_large_text_boundaries_in_points_and_pixels (test_inputs.InputTests.test_exact_large_text_boundaries_in_points_and_pixels)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 82, in test_exact_large_text_boundaries_in_points_and_pixels
+    self.assertEqual(contrast.is_large_text(size, bold), expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True != False
+
+======================================================================
+FAIL: test_invalid_elements_are_retained_alongside_valid_elements (test_inputs.InputTests.test_invalid_elements_are_retained_alongside_valid_elements)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 94, in test_invalid_elements_are_retained_alongside_valid_elements
+    self.assertEqual(audit.check_element(raw)[0].input, raw)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'kind': 'text'} != {'id': 'sample', 'fg': '#000', 'bg': '#fff', 'font_px': 'big', 'bold': 'false'}
+- {'kind': 'text'}
++ {'bg': '#fff', 'bold': 'false', 'fg': '#000', 'font_px': 'big', 'id': 'sample'}
+
+======================================================================
+FAIL: test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) (value=0.999)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 88, in test_opacity_is_finite_in_range_and_exactly_opaque
+    self.assert_unknown({"opacity": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) (value=0.9999999999999999)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 88, in test_opacity_is_finite_in_range_and_exactly_opaque
+    self.assert_unknown({"opacity": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) (value=1.001)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 88, in test_opacity_is_finite_in_range_and_exactly_opaque
+    self.assert_unknown({"opacity": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) (value=inf)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 88, in test_opacity_is_finite_in_range_and_exactly_opaque
+    self.assert_unknown({"opacity": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) (value=nan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 88, in test_opacity_is_finite_in_range_and_exactly_opaque
+    self.assert_unknown({"opacity": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) (value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 88, in test_opacity_is_finite_in_range_and_exactly_opaque
+    self.assert_unknown({"opacity": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) (value='1px')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 88, in test_opacity_is_finite_in_range_and_exactly_opaque
+    self.assert_unknown({"opacity": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_px', value=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 38, in test_sizes_require_finite_positive_values_and_matching_units
+    self.assert_unknown({key: value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_px', value=-1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 38, in test_sizes_require_finite_positive_values_and_matching_units
+    self.assert_unknown({key: value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_px', value=nan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 38, in test_sizes_require_finite_positive_values_and_matching_units
+    self.assert_unknown({key: value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_px', value=inf)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 38, in test_sizes_require_finite_positive_values_and_matching_units
+    self.assert_unknown({key: value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_px', value=-inf)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 38, in test_sizes_require_finite_positive_values_and_matching_units
+    self.assert_unknown({key: value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_px', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 38, in test_sizes_require_finite_positive_values_and_matching_units
+    self.assert_unknown({key: value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 23, in assert_unknown
+    self.assertIsNone(findings[0].measured)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 21.0 is not None
+
+======================================================================
+FAIL: test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_px', value='nan')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 38, in test_sizes_require_finite_positive_values_and_matching_units
+    self.assert_unknown({key: value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_px', value='inf')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 38, in test_sizes_require_finite_positive_values_and_matching_units
+    self.assert_unknown({key: value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_px', value='0px')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 38, in test_sizes_require_finite_positive_values_and_matching_units
+    self.assert_unknown({key: value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_px', value='-1px')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 38, in test_sizes_require_finite_positive_values_and_matching_units
+    self.assert_unknown({key: value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_px', value=10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 38, in test_sizes_require_finite_positive_values_and_matching_units
+    self.assert_unknown({key: value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 38, in test_sizes_require_finite_positive_values_and_matching_units
+    self.assert_unknown({key: value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value=-1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 38, in test_sizes_require_finite_positive_values_and_matching_units
+    self.assert_unknown({key: value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value=nan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 38, in test_sizes_require_finite_positive_values_and_matching_units
+    self.assert_unknown({key: value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value=inf)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 38, in test_sizes_require_finite_positive_values_and_matching_units
+    self.assert_unknown({key: value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value=-inf)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 38, in test_sizes_require_finite_positive_values_and_matching_units
+    self.assert_unknown({key: value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 38, in test_sizes_require_finite_positive_values_and_matching_units
+    self.assert_unknown({key: value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 38, in test_sizes_require_finite_positive_values_and_matching_units
+    self.assert_unknown({key: value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 38, in test_sizes_require_finite_positive_values_and_matching_units
+    self.assert_unknown({key: value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value='nan')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 38, in test_sizes_require_finite_positive_values_and_matching_units
+    self.assert_unknown({key: value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value='inf')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 38, in test_sizes_require_finite_positive_values_and_matching_units
+    self.assert_unknown({key: value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value='0px')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 38, in test_sizes_require_finite_positive_values_and_matching_units
+    self.assert_unknown({key: value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value='-1px')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 38, in test_sizes_require_finite_positive_values_and_matching_units
+    self.assert_unknown({key: value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 38, in test_sizes_require_finite_positive_values_and_matching_units
+    self.assert_unknown({key: value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 38, in test_sizes_require_finite_positive_values_and_matching_units
+    self.assert_unknown({key: value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value=10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 38, in test_sizes_require_finite_positive_values_and_matching_units
+    self.assert_unknown({key: value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_px', value='18pt')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 42, in test_sizes_require_finite_positive_values_and_matching_units
+    self.assert_unknown({key: value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) (key='font_pt', value='24px')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 42, in test_sizes_require_finite_positive_values_and_matching_units
+    self.assert_unknown({key: value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) (value='bolder')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 58, in test_weight_bounds_and_relative_context
+    self.assert_unknown({"font_weight": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) (value='lighter')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 58, in test_weight_bounds_and_relative_context
+    self.assert_unknown({"font_weight": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) (value=inf)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 58, in test_weight_bounds_and_relative_context
+    self.assert_unknown({"font_weight": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) (value=-inf)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 58, in test_weight_bounds_and_relative_context
+    self.assert_unknown({"font_weight": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) (value=nan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 58, in test_weight_bounds_and_relative_context
+    self.assert_unknown({"font_weight": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) (value=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 58, in test_weight_bounds_and_relative_context
+    self.assert_unknown({"font_weight": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) (value=-1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 58, in test_weight_bounds_and_relative_context
+    self.assert_unknown({"font_weight": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) (value=1001)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 58, in test_weight_bounds_and_relative_context
+    self.assert_unknown({"font_weight": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) (value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 58, in test_weight_bounds_and_relative_context
+    self.assert_unknown({"font_weight": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) (value=10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 58, in test_weight_bounds_and_relative_context
+    self.assert_unknown({"font_weight": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+----------------------------------------------------------------------
+Ran 14 tests in 1.853s
+
+FAILED (failures=75, errors=9)
+
+Additional decimal-precision and extreme-exponent regressions before follow-up fixes:
+COMMAND: /opt/homebrew/opt/python@3.14/bin/python3.14 -m unittest discover -s tests -p test_inputs.py -v
+EXIT: 1
+STDOUT:
+
+STDERR:
+test_alpha_requires_exactly_one (test_inputs.ColorTests.test_alpha_requires_exactly_one) ... 
+  test_alpha_requires_exactly_one (test_inputs.ColorTests.test_alpha_requires_exactly_one) (alpha='1e99999999999999999999') ... ERROR
+test_fractional_channels_are_preserved (test_inputs.ColorTests.test_fractional_channels_are_preserved) ... ok
+test_fractional_rgb_verdicts_around_both_aa_thresholds (test_inputs.ColorTests.test_fractional_rgb_verdicts_around_both_aa_thresholds) ... ok
+test_malformed_or_out_of_range_channels_raise_named_error (test_inputs.ColorTests.test_malformed_or_out_of_range_channels_raise_named_error) ... 
+  test_malformed_or_out_of_range_channels_raise_named_error (test_inputs.ColorTests.test_malformed_or_out_of_range_channels_raise_named_error) (value='rgb(1e99999999999999999999,0,0)') ... ERROR
+test_nonstring_colors_raise_named_error (test_inputs.ColorTests.test_nonstring_colors_raise_named_error) ... ok
+test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) ... ok
+test_cli_mixed_elements_and_aaa_exit_semantics (test_inputs.InputTests.test_cli_mixed_elements_and_aaa_exit_semantics) ... ok
+test_dual_sizes_agree_or_are_rejected (test_inputs.InputTests.test_dual_sizes_agree_or_are_rejected) ... ok
+test_dual_weight_declarations_must_agree (test_inputs.InputTests.test_dual_weight_declarations_must_agree) ... ok
+test_exact_large_text_boundaries_in_points_and_pixels (test_inputs.InputTests.test_exact_large_text_boundaries_in_points_and_pixels) ... ok
+test_invalid_elements_are_retained_alongside_valid_elements (test_inputs.InputTests.test_invalid_elements_are_retained_alongside_valid_elements) ... ok
+test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) ... 
+  test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) (value='0.999999999999999999999') ... FAIL
+  test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) (value='1.000000000000000000001') ... FAIL
+test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) ... ok
+test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) ... ok
+
+======================================================================
+ERROR: test_alpha_requires_exactly_one (test_inputs.ColorTests.test_alpha_requires_exactly_one) (alpha='1e99999999999999999999')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 147, in test_alpha_requires_exactly_one
+    contrast.parse_color(f"rgba(0,0,0,{alpha})")
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/contrast.py", line 62, in parse_color
+    alpha = Decimal(a[:-1]) if a.endswith("%") else Decimal(a)
+                                                    ~~~~~~~^^^
+decimal.InvalidOperation: [<class 'decimal.InvalidOperation'>]
+
+======================================================================
+ERROR: test_malformed_or_out_of_range_channels_raise_named_error (test_inputs.ColorTests.test_malformed_or_out_of_range_channels_raise_named_error) (value='rgb(1e99999999999999999999,0,0)')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 139, in test_malformed_or_out_of_range_channels_raise_named_error
+    contrast.parse_color(value)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/contrast.py", line 55, in parse_color
+    channels = tuple(Decimal(m.group(i)) for i in (1, 2, 3))
+               ^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/contrast.py", line 55, in <genexpr>
+    channels = tuple(Decimal(m.group(i)) for i in (1, 2, 3))
+                     ~~~~~~~^^^^^^^^^^^^
+decimal.InvalidOperation: [<class 'decimal.InvalidOperation'>]
+
+======================================================================
+FAIL: test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) (value='0.999999999999999999999')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 89, in test_opacity_is_finite_in_range_and_exactly_opaque
+    self.assert_unknown({"opacity": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) (value='1.000000000000000000001')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 89, in test_opacity_is_finite_in_range_and_exactly_opaque
+    self.assert_unknown({"opacity": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.297s
+
+FAILED (failures=2, errors=2)
+
+Additional weight precision and tiny-opacity exponent regression before fixes:
+COMMAND: /opt/homebrew/opt/python@3.14/bin/python3.14 -m unittest discover -s tests -p test_inputs.py -v
+EXIT: 1
+STDOUT:
+
+STDERR:
+test_alpha_requires_exactly_one (test_inputs.ColorTests.test_alpha_requires_exactly_one) ... ok
+test_fractional_channels_are_preserved (test_inputs.ColorTests.test_fractional_channels_are_preserved) ... ok
+test_fractional_rgb_verdicts_around_both_aa_thresholds (test_inputs.ColorTests.test_fractional_rgb_verdicts_around_both_aa_thresholds) ... ok
+test_malformed_or_out_of_range_channels_raise_named_error (test_inputs.ColorTests.test_malformed_or_out_of_range_channels_raise_named_error) ... ok
+test_nonstring_colors_raise_named_error (test_inputs.ColorTests.test_nonstring_colors_raise_named_error) ... ok
+test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) ... ok
+test_cli_mixed_elements_and_aaa_exit_semantics (test_inputs.InputTests.test_cli_mixed_elements_and_aaa_exit_semantics) ... ok
+test_dual_sizes_agree_or_are_rejected (test_inputs.InputTests.test_dual_sizes_agree_or_are_rejected) ... ok
+test_dual_weight_declarations_must_agree (test_inputs.InputTests.test_dual_weight_declarations_must_agree) ... ok
+test_exact_large_text_boundaries_in_points_and_pixels (test_inputs.InputTests.test_exact_large_text_boundaries_in_points_and_pixels) ... ok
+test_invalid_elements_are_retained_alongside_valid_elements (test_inputs.InputTests.test_invalid_elements_are_retained_alongside_valid_elements) ... ok
+test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) ... 
+  test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) (value='1e-999999999999999999999') ... ERROR
+test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) ... ok
+test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) ... 
+  test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) (value='1000.000000000000000000001') ... FAIL
+  test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) (value='0.999999999999999999999') ... FAIL
+test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) ... FAIL
+
+======================================================================
+ERROR: test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) (value='1e-999999999999999999999')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 92, in test_opacity_is_finite_in_range_and_exactly_opaque
+    self.assert_unknown({"opacity": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 20, in assert_unknown
+    findings = audit.check_element({**BASE, **changes})
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/audit.py", line 108, in check_element
+    el = normalise(raw)
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/audit.py", line 97, in normalise
+    if "opacity" in el: out["opacity"] = _num(el["opacity"], "opacity")
+                                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/audit.py", line 64, in _num
+    exact = Decimal(s)
+decimal.InvalidOperation: [<class 'decimal.InvalidOperation'>]
+
+======================================================================
+FAIL: test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) (value='1000.000000000000000000001')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 59, in test_weight_bounds_and_relative_context
+    self.assert_unknown({"font_weight": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) (value='0.999999999999999999999')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 59, in test_weight_bounds_and_relative_context
+    self.assert_unknown({"font_weight": value})
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 21, in assert_unknown
+    self.assertEqual(len(findings), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+======================================================================
+FAIL: test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 65, in test_weight_bounds_and_relative_context
+    self.assertEqual(contrast.is_bold(value), expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True != False
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.621s
+
+FAILED (failures=3, errors=1)
+
+REVIEW ROUND 1: exact size precision regression BEFORE fix:
+COMMAND: /opt/homebrew/opt/python@3.14/bin/python3.14 -m unittest discover -s tests -p test_inputs.py -v
+EXIT: 1
+STDOUT:
+
+STDERR:
+test_alpha_requires_exactly_one (test_inputs.ColorTests.test_alpha_requires_exactly_one) ... ok
+test_fractional_channels_are_preserved (test_inputs.ColorTests.test_fractional_channels_are_preserved) ... ok
+test_fractional_rgb_verdicts_around_both_aa_thresholds (test_inputs.ColorTests.test_fractional_rgb_verdicts_around_both_aa_thresholds) ... ok
+test_malformed_or_out_of_range_channels_raise_named_error (test_inputs.ColorTests.test_malformed_or_out_of_range_channels_raise_named_error) ... ok
+test_nonstring_colors_raise_named_error (test_inputs.ColorTests.test_nonstring_colors_raise_named_error) ... ok
+test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) ... ok
+test_cli_mixed_elements_and_aaa_exit_semantics (test_inputs.InputTests.test_cli_mixed_elements_and_aaa_exit_semantics) ... ok
+test_dual_sizes_agree_or_are_rejected (test_inputs.InputTests.test_dual_sizes_agree_or_are_rejected) ... ok
+test_dual_weight_declarations_must_agree (test_inputs.InputTests.test_dual_weight_declarations_must_agree) ... ok
+test_exact_large_text_boundaries_in_points_and_pixels (test_inputs.InputTests.test_exact_large_text_boundaries_in_points_and_pixels) ... ok
+test_invalid_elements_are_retained_alongside_valid_elements (test_inputs.InputTests.test_invalid_elements_are_retained_alongside_valid_elements) ... ok
+test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) ... ok
+test_size_precision_cannot_promote_threshold_or_hide_conflict (test_inputs.InputTests.test_size_precision_cannot_promote_threshold_or_hide_conflict) ... 
+  test_size_precision_cannot_promote_threshold_or_hide_conflict (test_inputs.InputTests.test_size_precision_cannot_promote_threshold_or_hide_conflict) (fields={'font_pt': '13.999999999999999999999', 'bold': True}) ... FAIL
+  test_size_precision_cannot_promote_threshold_or_hide_conflict (test_inputs.InputTests.test_size_precision_cannot_promote_threshold_or_hide_conflict) (fields={'font_pt': '17.999999999999999999999'}) ... FAIL
+  test_size_precision_cannot_promote_threshold_or_hide_conflict (test_inputs.InputTests.test_size_precision_cannot_promote_threshold_or_hide_conflict) (fields={'font_px': '23.999999999999999999999'}) ... FAIL
+  test_size_precision_cannot_promote_threshold_or_hide_conflict (test_inputs.InputTests.test_size_precision_cannot_promote_threshold_or_hide_conflict) (fields={'font_px': '24.000000000000000000001', 'font_pt': 18}) ... FAIL
+test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) ... ok
+test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) ... ok
+
+======================================================================
+FAIL: test_size_precision_cannot_promote_threshold_or_hide_conflict (test_inputs.InputTests.test_size_precision_cannot_promote_threshold_or_hide_conflict) (fields={'font_pt': '13.999999999999999999999', 'bold': True})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 98, in test_size_precision_cannot_promote_threshold_or_hide_conflict
+    self.assertEqual(finding["verdict"], "UNDECIDABLE")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'PASS' != 'UNDECIDABLE'
+- PASS
++ UNDECIDABLE
+
+
+======================================================================
+FAIL: test_size_precision_cannot_promote_threshold_or_hide_conflict (test_inputs.InputTests.test_size_precision_cannot_promote_threshold_or_hide_conflict) (fields={'font_pt': '17.999999999999999999999'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 98, in test_size_precision_cannot_promote_threshold_or_hide_conflict
+    self.assertEqual(finding["verdict"], "UNDECIDABLE")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'PASS' != 'UNDECIDABLE'
+- PASS
++ UNDECIDABLE
+
+
+======================================================================
+FAIL: test_size_precision_cannot_promote_threshold_or_hide_conflict (test_inputs.InputTests.test_size_precision_cannot_promote_threshold_or_hide_conflict) (fields={'font_px': '23.999999999999999999999'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 98, in test_size_precision_cannot_promote_threshold_or_hide_conflict
+    self.assertEqual(finding["verdict"], "UNDECIDABLE")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'PASS' != 'UNDECIDABLE'
+- PASS
++ UNDECIDABLE
+
+
+======================================================================
+FAIL: test_size_precision_cannot_promote_threshold_or_hide_conflict (test_inputs.InputTests.test_size_precision_cannot_promote_threshold_or_hide_conflict) (fields={'font_px': '24.000000000000000000001', 'font_pt': 18})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 98, in test_size_precision_cannot_promote_threshold_or_hide_conflict
+    self.assertEqual(finding["verdict"], "UNDECIDABLE")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'PASS' != 'UNDECIDABLE'
+- PASS
++ UNDECIDABLE
+
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.411s
+
+FAILED (failures=4)
+
+REVIEW ROUND 1 FINAL RULING: valid exact sizes must FAIL, not be refused; before exact comparison fix:
+COMMAND: /opt/homebrew/opt/python@3.14/bin/python3.14 -m unittest discover -s tests -p test_inputs.py -v
+EXIT: 1
+STDOUT:
+
+STDERR:
+test_alpha_requires_exactly_one (test_inputs.ColorTests.test_alpha_requires_exactly_one) ... ok
+test_fractional_channels_are_preserved (test_inputs.ColorTests.test_fractional_channels_are_preserved) ... ok
+test_fractional_rgb_verdicts_around_both_aa_thresholds (test_inputs.ColorTests.test_fractional_rgb_verdicts_around_both_aa_thresholds) ... ok
+test_malformed_or_out_of_range_channels_raise_named_error (test_inputs.ColorTests.test_malformed_or_out_of_range_channels_raise_named_error) ... ok
+test_nonstring_colors_raise_named_error (test_inputs.ColorTests.test_nonstring_colors_raise_named_error) ... ok
+test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) ... ok
+test_cli_mixed_elements_and_aaa_exit_semantics (test_inputs.InputTests.test_cli_mixed_elements_and_aaa_exit_semantics) ... ok
+test_dual_sizes_agree_or_are_rejected (test_inputs.InputTests.test_dual_sizes_agree_or_are_rejected) ... ok
+test_dual_weight_declarations_must_agree (test_inputs.InputTests.test_dual_weight_declarations_must_agree) ... ok
+test_exact_large_text_boundaries_in_points_and_pixels (test_inputs.InputTests.test_exact_large_text_boundaries_in_points_and_pixels) ... ok
+test_invalid_elements_are_retained_alongside_valid_elements (test_inputs.InputTests.test_invalid_elements_are_retained_alongside_valid_elements) ... ok
+test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) ... ok
+test_size_precision_cannot_promote_threshold_or_hide_conflict (test_inputs.InputTests.test_size_precision_cannot_promote_threshold_or_hide_conflict) ... 
+  test_size_precision_cannot_promote_threshold_or_hide_conflict (test_inputs.InputTests.test_size_precision_cannot_promote_threshold_or_hide_conflict) (fields={'font_pt': '13.999999999999999999999', 'bold': True}) ... FAIL
+  test_size_precision_cannot_promote_threshold_or_hide_conflict (test_inputs.InputTests.test_size_precision_cannot_promote_threshold_or_hide_conflict) (fields={'font_pt': '17.999999999999999999999'}) ... FAIL
+  test_size_precision_cannot_promote_threshold_or_hide_conflict (test_inputs.InputTests.test_size_precision_cannot_promote_threshold_or_hide_conflict) (fields={'font_px': '23.999999999999999999999'}) ... FAIL
+test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) ... ok
+test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) ... ok
+
+======================================================================
+FAIL: test_size_precision_cannot_promote_threshold_or_hide_conflict (test_inputs.InputTests.test_size_precision_cannot_promote_threshold_or_hide_conflict) (fields={'font_pt': '13.999999999999999999999', 'bold': True})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 103, in test_size_precision_cannot_promote_threshold_or_hide_conflict
+    self.assertEqual(finding["verdict"], "FAIL")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'UNDECIDABLE' != 'FAIL'
+- UNDECIDABLE
++ FAIL
+
+
+======================================================================
+FAIL: test_size_precision_cannot_promote_threshold_or_hide_conflict (test_inputs.InputTests.test_size_precision_cannot_promote_threshold_or_hide_conflict) (fields={'font_pt': '17.999999999999999999999'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 103, in test_size_precision_cannot_promote_threshold_or_hide_conflict
+    self.assertEqual(finding["verdict"], "FAIL")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'UNDECIDABLE' != 'FAIL'
+- UNDECIDABLE
++ FAIL
+
+
+======================================================================
+FAIL: test_size_precision_cannot_promote_threshold_or_hide_conflict (test_inputs.InputTests.test_size_precision_cannot_promote_threshold_or_hide_conflict) (fields={'font_px': '23.999999999999999999999'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 103, in test_size_precision_cannot_promote_threshold_or_hide_conflict
+    self.assertEqual(finding["verdict"], "FAIL")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'UNDECIDABLE' != 'FAIL'
+- UNDECIDABLE
++ FAIL
+
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.497s
+
+FAILED (failures=3)
+
+REVIEW ROUND 2: oversized finite exact-size strings before named-error fix:
+COMMAND: /opt/homebrew/opt/python@3.14/bin/python3.14 -m unittest discover -s tests -p test_inputs.py -v
+EXIT: 1
+STDOUT:
+
+STDERR:
+test_alpha_requires_exactly_one (test_inputs.ColorTests.test_alpha_requires_exactly_one) ... ok
+test_fractional_channels_are_preserved (test_inputs.ColorTests.test_fractional_channels_are_preserved) ... ok
+test_fractional_rgb_verdicts_around_both_aa_thresholds (test_inputs.ColorTests.test_fractional_rgb_verdicts_around_both_aa_thresholds) ... ok
+test_malformed_or_out_of_range_channels_raise_named_error (test_inputs.ColorTests.test_malformed_or_out_of_range_channels_raise_named_error) ... ok
+test_nonstring_colors_raise_named_error (test_inputs.ColorTests.test_nonstring_colors_raise_named_error) ... ok
+test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) ... ok
+test_cli_mixed_elements_and_aaa_exit_semantics (test_inputs.InputTests.test_cli_mixed_elements_and_aaa_exit_semantics) ... ok
+test_dual_sizes_agree_or_are_rejected (test_inputs.InputTests.test_dual_sizes_agree_or_are_rejected) ... ok
+test_dual_weight_declarations_must_agree (test_inputs.InputTests.test_dual_weight_declarations_must_agree) ... ok
+test_exact_large_text_boundaries_in_points_and_pixels (test_inputs.InputTests.test_exact_large_text_boundaries_in_points_and_pixels) ... ok
+test_invalid_elements_are_retained_alongside_valid_elements (test_inputs.InputTests.test_invalid_elements_are_retained_alongside_valid_elements) ... ok
+test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) ... ok
+test_oversized_size_does_not_hide_mixed_aa_failure_exit (test_inputs.InputTests.test_oversized_size_does_not_hide_mixed_aa_failure_exit) ... 
+  test_oversized_size_does_not_hide_mixed_aa_failure_exit (test_inputs.InputTests.test_oversized_size_does_not_hide_mixed_aa_failure_exit) (form='trailing zeros') ... FAIL
+  test_oversized_size_does_not_hide_mixed_aa_failure_exit (test_inputs.InputTests.test_oversized_size_does_not_hide_mixed_aa_failure_exit) (form='leading zeros') ... FAIL
+test_oversized_size_numbers_have_named_errors_and_unknown_findings (test_inputs.InputTests.test_oversized_size_numbers_have_named_errors_and_unknown_findings) ... 
+  test_oversized_size_numbers_have_named_errors_and_unknown_findings (test_inputs.InputTests.test_oversized_size_numbers_have_named_errors_and_unknown_findings) (form='trailing zeros', keys=['font_px'], operation='normalise') ... FAIL
+  test_oversized_size_numbers_have_named_errors_and_unknown_findings (test_inputs.InputTests.test_oversized_size_numbers_have_named_errors_and_unknown_findings) (form='trailing zeros', keys=['font_px'], operation='check_element') ... ERROR
+  test_oversized_size_numbers_have_named_errors_and_unknown_findings (test_inputs.InputTests.test_oversized_size_numbers_have_named_errors_and_unknown_findings) (form='trailing zeros', keys=['font_pt'], operation='normalise') ... FAIL
+  test_oversized_size_numbers_have_named_errors_and_unknown_findings (test_inputs.InputTests.test_oversized_size_numbers_have_named_errors_and_unknown_findings) (form='trailing zeros', keys=['font_pt'], operation='check_element') ... ERROR
+  test_oversized_size_numbers_have_named_errors_and_unknown_findings (test_inputs.InputTests.test_oversized_size_numbers_have_named_errors_and_unknown_findings) (form='trailing zeros', keys=['font_px', 'font_pt'], operation='normalise') ... ERROR
+  test_oversized_size_numbers_have_named_errors_and_unknown_findings (test_inputs.InputTests.test_oversized_size_numbers_have_named_errors_and_unknown_findings) (form='trailing zeros', keys=['font_px', 'font_pt'], operation='check_element') ... ERROR
+  test_oversized_size_numbers_have_named_errors_and_unknown_findings (test_inputs.InputTests.test_oversized_size_numbers_have_named_errors_and_unknown_findings) (form='leading zeros', keys=['font_px'], operation='normalise') ... FAIL
+  test_oversized_size_numbers_have_named_errors_and_unknown_findings (test_inputs.InputTests.test_oversized_size_numbers_have_named_errors_and_unknown_findings) (form='leading zeros', keys=['font_px'], operation='check_element') ... ERROR
+  test_oversized_size_numbers_have_named_errors_and_unknown_findings (test_inputs.InputTests.test_oversized_size_numbers_have_named_errors_and_unknown_findings) (form='leading zeros', keys=['font_pt'], operation='normalise') ... FAIL
+  test_oversized_size_numbers_have_named_errors_and_unknown_findings (test_inputs.InputTests.test_oversized_size_numbers_have_named_errors_and_unknown_findings) (form='leading zeros', keys=['font_pt'], operation='check_element') ... ERROR
+  test_oversized_size_numbers_have_named_errors_and_unknown_findings (test_inputs.InputTests.test_oversized_size_numbers_have_named_errors_and_unknown_findings) (form='leading zeros', keys=['font_px', 'font_pt'], operation='normalise') ... ERROR
+  test_oversized_size_numbers_have_named_errors_and_unknown_findings (test_inputs.InputTests.test_oversized_size_numbers_have_named_errors_and_unknown_findings) (form='leading zeros', keys=['font_px', 'font_pt'], operation='check_element') ... ERROR
+test_size_precision_cannot_promote_threshold_or_hide_conflict (test_inputs.InputTests.test_size_precision_cannot_promote_threshold_or_hide_conflict) ... ok
+test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) ... ok
+test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) ... ok
+
+======================================================================
+ERROR: test_oversized_size_numbers_have_named_errors_and_unknown_findings (test_inputs.InputTests.test_oversized_size_numbers_have_named_errors_and_unknown_findings) (form='trailing zeros', keys=['font_px'], operation='check_element')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 118, in test_oversized_size_numbers_have_named_errors_and_unknown_findings
+    finding = audit.check_element(raw)[0]
+              ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/audit.py", line 189, in check_element
+    large = _exact_size(raw["font_px"], "px") >= (Fraction(56, 3) if bold else 24)
+            ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/audit.py", line 77, in _exact_size
+    return Fraction(str(value).strip().lower().removesuffix(unit).strip())
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/fractions.py", line 273, in __new__
+    numerator = numerator * scale + int(decimal)
+                                    ~~~^^^^^^^^^
+ValueError: Exceeds the limit (4300 digits) for integer string conversion: value has 5000 digits; use sys.set_int_max_str_digits() to increase the limit
+
+======================================================================
+ERROR: test_oversized_size_numbers_have_named_errors_and_unknown_findings (test_inputs.InputTests.test_oversized_size_numbers_have_named_errors_and_unknown_findings) (form='trailing zeros', keys=['font_pt'], operation='check_element')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 118, in test_oversized_size_numbers_have_named_errors_and_unknown_findings
+    finding = audit.check_element(raw)[0]
+              ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/audit.py", line 187, in check_element
+    large = _exact_size(raw["font_pt"], "pt") >= (14 if bold else 18)
+            ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/audit.py", line 77, in _exact_size
+    return Fraction(str(value).strip().lower().removesuffix(unit).strip())
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/fractions.py", line 273, in __new__
+    numerator = numerator * scale + int(decimal)
+                                    ~~~^^^^^^^^^
+ValueError: Exceeds the limit (4300 digits) for integer string conversion: value has 5000 digits; use sys.set_int_max_str_digits() to increase the limit
+
+======================================================================
+ERROR: test_oversized_size_numbers_have_named_errors_and_unknown_findings (test_inputs.InputTests.test_oversized_size_numbers_have_named_errors_and_unknown_findings) (form='trailing zeros', keys=['font_px', 'font_pt'], operation='normalise')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 116, in test_oversized_size_numbers_have_named_errors_and_unknown_findings
+    audit.normalise(raw)
+    ~~~~~~~~~~~~~~~^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/audit.py", line 98, in normalise
+    exact_px = _exact_size(el["font_px"], "px")
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/audit.py", line 77, in _exact_size
+    return Fraction(str(value).strip().lower().removesuffix(unit).strip())
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/fractions.py", line 273, in __new__
+    numerator = numerator * scale + int(decimal)
+                                    ~~~^^^^^^^^^
+ValueError: Exceeds the limit (4300 digits) for integer string conversion: value has 5000 digits; use sys.set_int_max_str_digits() to increase the limit
+
+======================================================================
+ERROR: test_oversized_size_numbers_have_named_errors_and_unknown_findings (test_inputs.InputTests.test_oversized_size_numbers_have_named_errors_and_unknown_findings) (form='trailing zeros', keys=['font_px', 'font_pt'], operation='check_element')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 118, in test_oversized_size_numbers_have_named_errors_and_unknown_findings
+    finding = audit.check_element(raw)[0]
+              ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/audit.py", line 126, in check_element
+    el = normalise(raw)
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/audit.py", line 98, in normalise
+    exact_px = _exact_size(el["font_px"], "px")
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/audit.py", line 77, in _exact_size
+    return Fraction(str(value).strip().lower().removesuffix(unit).strip())
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/fractions.py", line 273, in __new__
+    numerator = numerator * scale + int(decimal)
+                                    ~~~^^^^^^^^^
+ValueError: Exceeds the limit (4300 digits) for integer string conversion: value has 5000 digits; use sys.set_int_max_str_digits() to increase the limit
+
+======================================================================
+ERROR: test_oversized_size_numbers_have_named_errors_and_unknown_findings (test_inputs.InputTests.test_oversized_size_numbers_have_named_errors_and_unknown_findings) (form='leading zeros', keys=['font_px'], operation='check_element')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 118, in test_oversized_size_numbers_have_named_errors_and_unknown_findings
+    finding = audit.check_element(raw)[0]
+              ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/audit.py", line 189, in check_element
+    large = _exact_size(raw["font_px"], "px") >= (Fraction(56, 3) if bold else 24)
+            ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/audit.py", line 77, in _exact_size
+    return Fraction(str(value).strip().lower().removesuffix(unit).strip())
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/fractions.py", line 263, in __new__
+    numerator = int(m.group('num') or '0')
+ValueError: Exceeds the limit (4300 digits) for integer string conversion: value has 5002 digits; use sys.set_int_max_str_digits() to increase the limit
+
+======================================================================
+ERROR: test_oversized_size_numbers_have_named_errors_and_unknown_findings (test_inputs.InputTests.test_oversized_size_numbers_have_named_errors_and_unknown_findings) (form='leading zeros', keys=['font_pt'], operation='check_element')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 118, in test_oversized_size_numbers_have_named_errors_and_unknown_findings
+    finding = audit.check_element(raw)[0]
+              ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/audit.py", line 187, in check_element
+    large = _exact_size(raw["font_pt"], "pt") >= (14 if bold else 18)
+            ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/audit.py", line 77, in _exact_size
+    return Fraction(str(value).strip().lower().removesuffix(unit).strip())
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/fractions.py", line 263, in __new__
+    numerator = int(m.group('num') or '0')
+ValueError: Exceeds the limit (4300 digits) for integer string conversion: value has 5002 digits; use sys.set_int_max_str_digits() to increase the limit
+
+======================================================================
+ERROR: test_oversized_size_numbers_have_named_errors_and_unknown_findings (test_inputs.InputTests.test_oversized_size_numbers_have_named_errors_and_unknown_findings) (form='leading zeros', keys=['font_px', 'font_pt'], operation='normalise')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 116, in test_oversized_size_numbers_have_named_errors_and_unknown_findings
+    audit.normalise(raw)
+    ~~~~~~~~~~~~~~~^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/audit.py", line 98, in normalise
+    exact_px = _exact_size(el["font_px"], "px")
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/audit.py", line 77, in _exact_size
+    return Fraction(str(value).strip().lower().removesuffix(unit).strip())
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/fractions.py", line 263, in __new__
+    numerator = int(m.group('num') or '0')
+ValueError: Exceeds the limit (4300 digits) for integer string conversion: value has 5002 digits; use sys.set_int_max_str_digits() to increase the limit
+
+======================================================================
+ERROR: test_oversized_size_numbers_have_named_errors_and_unknown_findings (test_inputs.InputTests.test_oversized_size_numbers_have_named_errors_and_unknown_findings) (form='leading zeros', keys=['font_px', 'font_pt'], operation='check_element')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 118, in test_oversized_size_numbers_have_named_errors_and_unknown_findings
+    finding = audit.check_element(raw)[0]
+              ~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/audit.py", line 126, in check_element
+    el = normalise(raw)
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/audit.py", line 98, in normalise
+    exact_px = _exact_size(el["font_px"], "px")
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/checker/audit.py", line 77, in _exact_size
+    return Fraction(str(value).strip().lower().removesuffix(unit).strip())
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/fractions.py", line 263, in __new__
+    numerator = int(m.group('num') or '0')
+ValueError: Exceeds the limit (4300 digits) for integer string conversion: value has 5002 digits; use sys.set_int_max_str_digits() to increase the limit
+
+======================================================================
+FAIL: test_oversized_size_does_not_hide_mixed_aa_failure_exit (test_inputs.InputTests.test_oversized_size_does_not_hide_mixed_aa_failure_exit) (form='trailing zeros')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 132, in test_oversized_size_does_not_hide_mixed_aa_failure_exit
+    self.assertEqual(result.returncode, 1, result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1 : 
+
+======================================================================
+FAIL: test_oversized_size_does_not_hide_mixed_aa_failure_exit (test_inputs.InputTests.test_oversized_size_does_not_hide_mixed_aa_failure_exit) (form='leading zeros')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 132, in test_oversized_size_does_not_hide_mixed_aa_failure_exit
+    self.assertEqual(result.returncode, 1, result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 1 : 
+
+======================================================================
+FAIL: test_oversized_size_numbers_have_named_errors_and_unknown_findings (test_inputs.InputTests.test_oversized_size_numbers_have_named_errors_and_unknown_findings) (form='trailing zeros', keys=['font_px'], operation='normalise')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 115, in test_oversized_size_numbers_have_named_errors_and_unknown_findings
+    with self.assertRaisesRegex(contrast.ColorError, "cannot represent"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ColorError not raised
+
+======================================================================
+FAIL: test_oversized_size_numbers_have_named_errors_and_unknown_findings (test_inputs.InputTests.test_oversized_size_numbers_have_named_errors_and_unknown_findings) (form='trailing zeros', keys=['font_pt'], operation='normalise')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 115, in test_oversized_size_numbers_have_named_errors_and_unknown_findings
+    with self.assertRaisesRegex(contrast.ColorError, "cannot represent"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ColorError not raised
+
+======================================================================
+FAIL: test_oversized_size_numbers_have_named_errors_and_unknown_findings (test_inputs.InputTests.test_oversized_size_numbers_have_named_errors_and_unknown_findings) (form='leading zeros', keys=['font_px'], operation='normalise')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 115, in test_oversized_size_numbers_have_named_errors_and_unknown_findings
+    with self.assertRaisesRegex(contrast.ColorError, "cannot represent"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ColorError not raised
+
+======================================================================
+FAIL: test_oversized_size_numbers_have_named_errors_and_unknown_findings (test_inputs.InputTests.test_oversized_size_numbers_have_named_errors_and_unknown_findings) (form='leading zeros', keys=['font_pt'], operation='normalise')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_inputs.py", line 115, in test_oversized_size_numbers_have_named_errors_and_unknown_findings
+    with self.assertRaisesRegex(contrast.ColorError, "cannot represent"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ColorError not raised
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.924s
+
+FAILED (failures=6, errors=8)

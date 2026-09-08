@@ -167,3 +167,7 @@ looks like when it fails is in receipts/DEVIATIONS.md.
 The approved finish work uses [.planning/comp-12-finish/TEST_ADDENDUM.md](../.planning/comp-12-finish/TEST_ADDENDUM.md). The original TEST_METHOD.md is byte-identical to 0b57525. Portability regressions and the crash-versus-rejection canary, their raw outputs, and independent review are preserved in [comp-12-finish/](comp-12-finish/). All six OS/Python jobs passed at 7310355 in run 34269111360.
 
 Correction to the earlier count: the table above lists eight entries, C-1 through C-8. Its preceding “3” sentence was stale. Those eight historical correction entries are separate from the new finish-plan defects and fixes; they are not a count of independent human runs.
+
+### Finish-plan input repairs
+
+Commits1046d94 and2ee0596 repair strict booleans, finite positive sizes, units/conflicts, fractional channels, exact transparency, weights, exact large-text boundaries and long-number refusals. Each new regression was observed red before repair; all attempts are retained in comp-12-finish/task-2-red.txt, with green outputs and independent review beside it. The temporary conservative refusal of precise valid sizes was replaced with exact original-size comparisons after review. At2ee0596,17 targeted tests,22 regression tests total and131 existing checks passed locally. This is not a final-release or model-evaluation receipt. Task3 must preserve the original inputs through report rendering.

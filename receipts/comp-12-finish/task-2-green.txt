@@ -1,0 +1,1179 @@
+COMMAND: /opt/homebrew/opt/python@3.14/bin/python3.14 -m unittest discover -s tests -p test_inputs.py -v
+EXIT: 0
+STDOUT:
+
+STDERR:
+test_alpha_requires_exactly_one (test_inputs.ColorTests.test_alpha_requires_exactly_one) ... ok
+test_fractional_channels_are_preserved (test_inputs.ColorTests.test_fractional_channels_are_preserved) ... ok
+test_fractional_rgb_verdicts_around_both_aa_thresholds (test_inputs.ColorTests.test_fractional_rgb_verdicts_around_both_aa_thresholds) ... ok
+test_malformed_or_out_of_range_channels_raise_named_error (test_inputs.ColorTests.test_malformed_or_out_of_range_channels_raise_named_error) ... ok
+test_nonstring_colors_raise_named_error (test_inputs.ColorTests.test_nonstring_colors_raise_named_error) ... ok
+test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) ... ok
+test_cli_mixed_elements_and_aaa_exit_semantics (test_inputs.InputTests.test_cli_mixed_elements_and_aaa_exit_semantics) ... ok
+test_dual_sizes_agree_or_are_rejected (test_inputs.InputTests.test_dual_sizes_agree_or_are_rejected) ... ok
+test_dual_weight_declarations_must_agree (test_inputs.InputTests.test_dual_weight_declarations_must_agree) ... ok
+test_exact_large_text_boundaries_in_points_and_pixels (test_inputs.InputTests.test_exact_large_text_boundaries_in_points_and_pixels) ... ok
+test_invalid_elements_are_retained_alongside_valid_elements (test_inputs.InputTests.test_invalid_elements_are_retained_alongside_valid_elements) ... ok
+test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) ... ok
+test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) ... ok
+test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.183s
+
+OK
+
+COMMAND: /opt/homebrew/opt/python@3.14/bin/python3.14 -m unittest discover -s tests -v
+EXIT: 0
+STDOUT:
+
+STDERR:
+test_alpha_requires_exactly_one (test_inputs.ColorTests.test_alpha_requires_exactly_one) ... ok
+test_fractional_channels_are_preserved (test_inputs.ColorTests.test_fractional_channels_are_preserved) ... ok
+test_fractional_rgb_verdicts_around_both_aa_thresholds (test_inputs.ColorTests.test_fractional_rgb_verdicts_around_both_aa_thresholds) ... ok
+test_malformed_or_out_of_range_channels_raise_named_error (test_inputs.ColorTests.test_malformed_or_out_of_range_channels_raise_named_error) ... ok
+test_nonstring_colors_raise_named_error (test_inputs.ColorTests.test_nonstring_colors_raise_named_error) ... ok
+test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) ... ok
+test_cli_mixed_elements_and_aaa_exit_semantics (test_inputs.InputTests.test_cli_mixed_elements_and_aaa_exit_semantics) ... ok
+test_dual_sizes_agree_or_are_rejected (test_inputs.InputTests.test_dual_sizes_agree_or_are_rejected) ... ok
+test_dual_weight_declarations_must_agree (test_inputs.InputTests.test_dual_weight_declarations_must_agree) ... ok
+test_exact_large_text_boundaries_in_points_and_pixels (test_inputs.InputTests.test_exact_large_text_boundaries_in_points_and_pixels) ... ok
+test_invalid_elements_are_retained_alongside_valid_elements (test_inputs.InputTests.test_invalid_elements_are_retained_alongside_valid_elements) ... ok
+test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) ... ok
+test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) ... ok
+test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) ... ok
+test_all_existing_gates_with_windows_default_encoding (test_portability.PortabilityTests.test_all_existing_gates_with_windows_default_encoding) ... ok
+test_audit_reads_utf8_input (test_portability.PortabilityTests.test_audit_reads_utf8_input) ... ok
+test_both_reference_gates_reject_changed_line_ending_bytes (test_portability.PortabilityTests.test_both_reference_gates_reject_changed_line_ending_bytes) ... ok
+test_fetch_writes_utf8_lf_bytes_matching_manifest (test_portability.PortabilityTests.test_fetch_writes_utf8_lf_bytes_matching_manifest) ... ok
+test_findings_reads_utf8_report_and_notices (test_portability.PortabilityTests.test_findings_reads_utf8_report_and_notices) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.228s
+
+OK
+
+COMMAND: /opt/homebrew/opt/python@3.14/bin/python3.14 check.py
+EXIT: 0
+STDOUT:
+
+[1] SHAPE: the drop-in folder holds the declared set and nothing else
+  ok    auditor/ exists
+  ok    auditor/ has every declared item
+  ok    auditor/ has nothing undeclared
+  ok    exact filename: README.md
+  ok    exact filename: checker
+  ok    exact filename: examples.md
+  ok    exact filename: identity.md
+  ok    exact filename: reference
+  ok    exact filename: rules.md
+
+[2] PROVENANCE: the cited standard is on disk, dated, hashed, with its status
+  ok    auditor/reference/MANIFEST.json exists
+  ok    manifest records the retrieval date
+  ok    manifest pins a hash of the source document
+  ok    manifest records the document status
+  ok    1.4.11: wcag21-1.4.11.md exists on disk
+  ok    1.4.11: carries the W3C status line
+  ok    1.4.11: carries the W3C licence notice
+  ok    1.4.11: file hash matches the manifest
+  ok    1.4.3: wcag21-1.4.3.md exists on disk
+  ok    1.4.3: carries the W3C status line
+  ok    1.4.3: carries the W3C licence notice
+  ok    1.4.3: file hash matches the manifest
+  ok    1.4.6: wcag21-1.4.6.md exists on disk
+  ok    1.4.6: carries the W3C status line
+  ok    1.4.6: carries the W3C licence notice
+  ok    1.4.6: file hash matches the manifest
+  ok    contrast-ratio: wcag21-glossary-contrast-ratio.md exists on disk
+  ok    contrast-ratio: carries the W3C status line
+  ok    contrast-ratio: carries the W3C licence notice
+  ok    contrast-ratio: file hash matches the manifest
+  ok    large-scale-text: wcag21-glossary-large-scale-text.md exists on disk
+  ok    large-scale-text: carries the W3C status line
+  ok    large-scale-text: carries the W3C licence notice
+  ok    large-scale-text: file hash matches the manifest
+  ok    relative-luminance: wcag21-glossary-relative-luminance.md exists on disk
+  ok    relative-luminance: carries the W3C status line
+  ok    relative-luminance: carries the W3C licence notice
+  ok    relative-luminance: file hash matches the manifest
+  ok    code cites wcag21-1.4.11.md, which the manifest lists
+  ok    code cites wcag21-1.4.3.md, which the manifest lists
+  ok    code cites wcag21-1.4.6.md, which the manifest lists
+  ok    quote is verbatim in wcag21-1.4.3.md: "Large-scale text and images of large-scale text ..."
+  ok    quote is verbatim in wcag21-1.4.6.md: "Large-scale text and images of large-scale text ..."
+  ok    quote is verbatim in wcag21-1.4.3.md: "Text or images of text that are part of an inact..."
+  ok    quote is verbatim in wcag21-1.4.3.md: "Text that is part of a logo or brand name has no..."
+  ok    quote is verbatim in wcag21-1.4.3.md: "The visual presentation of text and images of te..."
+  ok    quote is verbatim in wcag21-1.4.6.md: "The visual presentation of text and images of te..."
+  ok    quote is verbatim in wcag21-1.4.11.md: "The visual presentation of the following have a ..."
+  ok    quote is verbatim in wcag21-1.4.11.md: "Visual information required to identify user int..."
+  ok    quote is verbatim in wcag21-1.4.11.md: "except for inactive components or where the appe..."
+
+[3] ANCHOR: ratio math against known boundary values
+  ok    #000000 on #ffffff == 21.0:1
+  ok    #ffffff on #ffffff == 1.0:1
+  ok    #767676 on #ffffff == 4.5:1
+  ok    #777777 on #ffffff == 4.4:1
+  ok    ratio is symmetric
+  ok    rounding never rounds a fail up to the bar
+  ok    large text starts at 24px (18pt) regular
+  ok    large bold text starts at 18.67px (14pt)
+
+[4] MUTATION: each rule must go red on input built to break it
+  ok    1.4.3 normal text below 4.5:1 -> FAIL
+  ok    1.4.3 large text below 3:1 -> FAIL
+  ok    1.4.11 non-text below 3:1 -> FAIL
+  ok    large-text exception actually changes the verdict
+  ok    severity separates a near miss from unreadable
+  ok    exactly two thirds of the bar is major, not blocker
+  ok    just under two thirds is blocker
+  ok    font_pt 18 is large text (24px), font_px 18 is not
+  ok    font_weight 700 is bold, 600 is not
+  ok    font_weight 'bold' and font_px '19px' are read, not crashed on
+  ok    an unreadable size is one UNDECIDABLE finding, not a traceback
+  ok    8-digit hex with alpha is refused as non-opaque
+  ok    8-digit hex with full alpha is measured
+  ok    alpha above 1 is refused
+  ok    opacity below 1 is refused, not measured
+  ok    named logotype is N/A and quotes the Logotypes clause
+  ok    the same pair without the exemption named is FAIL
+  ok    an exemption the criterion does not have is refused
+  ok    a divider named decorative is N/A under 1.4.11 and quotes the 'required to identify' clause
+  ok    an undecidable non-text element cites 1.4.11, not 1.4.3
+
+[5] SILENCE: compliant input must produce no AA failures, and passes are reported
+  ok    clean fixture returns verdict PASS
+  ok    clean fixture invents zero failures
+  ok    clean fixture reports every pass
+  ok    violating fixture returns verdict FAIL
+  ok    an AAA miss is never printed as [FAIL]
+  ok    an AAA miss is printed as headroom
+  ok    an undecided audit is INCOMPLETE, exit 2, never a silent pass
+
+[6] INVARIANCE: one violation, five spellings, five identical verdicts
+  ok    all five spellings produce the same verdict
+  ok    all five spellings produce the same ratio
+  ok    and that shared verdict is FAIL
+
+[7] PURITY: the deterministic layer reaches nothing outside itself
+  ok    auditor/checker/contrast.py imports nothing that reaches out
+  ok    auditor/checker/contrast.py has no dynamic import or eval
+  ok    auditor/checker/audit.py imports nothing that reaches out
+  ok    auditor/checker/audit.py has no dynamic import or eval
+  ok    auditor/checker/findings.py imports nothing that reaches out
+  ok    auditor/checker/findings.py has no dynamic import or eval
+
+[8] CITATION: every finding names a real provision, quotes it verbatim, and recomputes
+  ok    the checker's own output parses back
+  ok    the checker's own output passes its own gate
+  ok    examples/findings-broken.md parses to four findings
+  ok    the valid finding holds
+
+  --- DEMONSTRATION: the citation gate, fired on purpose
+      caught: orange CTA text: A_UNKNOWN_SC: SC 1.4.13 is not in reference/MANIFEST.json
+      caught: ghost border: C_QUOTE_NOT_VERBATIM: quote is not in reference/wcag21-1.4.11.md
+      caught: no size given: D_KIND_MISMATCH: SC 1.4.11 applies to nontext, element is text
+      caught: no size given: F_RATIO_MISMATCH: finding says FAIL 4.5:1, checker recomputes ('UNDECIDABLE', 4.5)
+      caught: no size given: F_SEVERITY_MISMATCH: finding says major, checker recomputes unknown
+  ok    planted nonexistent SC is caught by check A
+  ok    planted non-verbatim quote is caught by check C
+  ok    planted wrong-kind criterion is caught by check D
+  ok    exactly three of four findings rejected
+  ok    a real 1.4.3 quote under the 1.4.11 file is rejected (B_FILE_MISMATCH)
+  ok    SC 1.4.6 labelled AA over the 1.4.3 file is rejected
+  ok    a finding with no input line is rejected (I_NO_INPUT)
+  ok    an unknown mark is rejected (H_UNKNOWN_MARK)
+  ok    an indented finding is still parsed
+  ok    a provision outside reference/ is rejected, never opened
+  ok    a wrong severity is rejected (F_SEVERITY_MISMATCH)
+  ok    an AAA headroom line with a wrong ratio is recomputed and rejected
+  ok    a malformed input line is a rejection, not a crash
+  ok    reference files hash to the manifest before any citation is judged
+
+[9] EXAMPLES: every pasted output in examples.md is a live run of the checker
+  ok    examples.md carries at least three tagged output blocks
+  ok    full output for fixtures/clean.json equals a live run byte for byte
+  ok    full output for fixtures/violating.json equals a live run byte for byte
+  ok    excerpt of fixtures/violating.json appears verbatim in a live run
+  ok    full output for fixtures/exempt.json equals a live run byte for byte
+
+[10] TERRITORY: real public brand token files re-audit to the committed verdicts
+  ok    receipts/EXPECTED-brands.json exists
+  ok    at least 40 brand fixtures on disk
+  ok    every fixture has a committed expectation
+  ok    every fixture names a pinned upstream commit, its hash, and matched it at build time
+  ok    no fixture drifted from its committed verdicts
+      58 brands: FAIL 48, INCOMPLETE 2, PASS 8; 4 undecidable element(s) reported, none skipped
+  ok    at least five pairs were hand-anchored against WebAIM
+  ok    airbnb muted on canvas: ours 5.4:1 vs WebAIM 5.4:1
+  ok    airbnb on-primary on primary: ours 3.5:1 vs WebAIM 3.51:1
+  ok    anthropic on-primary on primary: ours 3.2:1 vs WebAIM 3.27:1
+  ok    cursor ink on canvas: ours 14.3:1 vs WebAIM 14.3:1
+  ok    coinbase muted on canvas: ours 3.8:1 vs WebAIM 3.87:1
+  ok    mintlify hairline on canvas: ours 1.2:1 vs WebAIM 1.25:1
+
+[11] DIFFERENTIAL: an independent luminance implementation agrees on every brand pair
+  ok    208 opaque pairs compared against the vendored oracle
+  ok    zero disagreements beyond 0.01
+  ok    every opaque pair carries the oracle's build-time ratio
+
+==============================================================
+131 checks in 11 gates: 131 passed, 0 failed
+GATE PASSED. What each gate proved is in its own lines above; what a gate
+looks like when it fails is in receipts/DEVIATIONS.md.
+
+STDERR:
+
+
+FINAL VALIDATION after weight precision and tiny-opacity exponent fixes:
+COMMAND: /opt/homebrew/opt/python@3.14/bin/python3.14 -m unittest discover -s tests -p test_inputs.py -v
+EXIT: 0
+STDOUT:
+
+STDERR:
+test_alpha_requires_exactly_one (test_inputs.ColorTests.test_alpha_requires_exactly_one) ... ok
+test_fractional_channels_are_preserved (test_inputs.ColorTests.test_fractional_channels_are_preserved) ... ok
+test_fractional_rgb_verdicts_around_both_aa_thresholds (test_inputs.ColorTests.test_fractional_rgb_verdicts_around_both_aa_thresholds) ... ok
+test_malformed_or_out_of_range_channels_raise_named_error (test_inputs.ColorTests.test_malformed_or_out_of_range_channels_raise_named_error) ... ok
+test_nonstring_colors_raise_named_error (test_inputs.ColorTests.test_nonstring_colors_raise_named_error) ... ok
+test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) ... ok
+test_cli_mixed_elements_and_aaa_exit_semantics (test_inputs.InputTests.test_cli_mixed_elements_and_aaa_exit_semantics) ... ok
+test_dual_sizes_agree_or_are_rejected (test_inputs.InputTests.test_dual_sizes_agree_or_are_rejected) ... ok
+test_dual_weight_declarations_must_agree (test_inputs.InputTests.test_dual_weight_declarations_must_agree) ... ok
+test_exact_large_text_boundaries_in_points_and_pixels (test_inputs.InputTests.test_exact_large_text_boundaries_in_points_and_pixels) ... ok
+test_invalid_elements_are_retained_alongside_valid_elements (test_inputs.InputTests.test_invalid_elements_are_retained_alongside_valid_elements) ... ok
+test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) ... ok
+test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) ... ok
+test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.279s
+
+OK
+
+COMMAND: /opt/homebrew/opt/python@3.14/bin/python3.14 -m unittest discover -s tests -v
+EXIT: 0
+STDOUT:
+
+STDERR:
+test_alpha_requires_exactly_one (test_inputs.ColorTests.test_alpha_requires_exactly_one) ... ok
+test_fractional_channels_are_preserved (test_inputs.ColorTests.test_fractional_channels_are_preserved) ... ok
+test_fractional_rgb_verdicts_around_both_aa_thresholds (test_inputs.ColorTests.test_fractional_rgb_verdicts_around_both_aa_thresholds) ... ok
+test_malformed_or_out_of_range_channels_raise_named_error (test_inputs.ColorTests.test_malformed_or_out_of_range_channels_raise_named_error) ... ok
+test_nonstring_colors_raise_named_error (test_inputs.ColorTests.test_nonstring_colors_raise_named_error) ... ok
+test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) ... ok
+test_cli_mixed_elements_and_aaa_exit_semantics (test_inputs.InputTests.test_cli_mixed_elements_and_aaa_exit_semantics) ... ok
+test_dual_sizes_agree_or_are_rejected (test_inputs.InputTests.test_dual_sizes_agree_or_are_rejected) ... ok
+test_dual_weight_declarations_must_agree (test_inputs.InputTests.test_dual_weight_declarations_must_agree) ... ok
+test_exact_large_text_boundaries_in_points_and_pixels (test_inputs.InputTests.test_exact_large_text_boundaries_in_points_and_pixels) ... ok
+test_invalid_elements_are_retained_alongside_valid_elements (test_inputs.InputTests.test_invalid_elements_are_retained_alongside_valid_elements) ... ok
+test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) ... ok
+test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) ... ok
+test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) ... ok
+test_all_existing_gates_with_windows_default_encoding (test_portability.PortabilityTests.test_all_existing_gates_with_windows_default_encoding) ... ok
+test_audit_reads_utf8_input (test_portability.PortabilityTests.test_audit_reads_utf8_input) ... ok
+test_both_reference_gates_reject_changed_line_ending_bytes (test_portability.PortabilityTests.test_both_reference_gates_reject_changed_line_ending_bytes) ... ok
+test_fetch_writes_utf8_lf_bytes_matching_manifest (test_portability.PortabilityTests.test_fetch_writes_utf8_lf_bytes_matching_manifest) ... ok
+test_findings_reads_utf8_report_and_notices (test_portability.PortabilityTests.test_findings_reads_utf8_report_and_notices) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.322s
+
+OK
+
+COMMAND: /opt/homebrew/opt/python@3.14/bin/python3.14 check.py
+EXIT: 0
+STDOUT:
+
+[1] SHAPE: the drop-in folder holds the declared set and nothing else
+  ok    auditor/ exists
+  ok    auditor/ has every declared item
+  ok    auditor/ has nothing undeclared
+  ok    exact filename: README.md
+  ok    exact filename: checker
+  ok    exact filename: examples.md
+  ok    exact filename: identity.md
+  ok    exact filename: reference
+  ok    exact filename: rules.md
+
+[2] PROVENANCE: the cited standard is on disk, dated, hashed, with its status
+  ok    auditor/reference/MANIFEST.json exists
+  ok    manifest records the retrieval date
+  ok    manifest pins a hash of the source document
+  ok    manifest records the document status
+  ok    1.4.11: wcag21-1.4.11.md exists on disk
+  ok    1.4.11: carries the W3C status line
+  ok    1.4.11: carries the W3C licence notice
+  ok    1.4.11: file hash matches the manifest
+  ok    1.4.3: wcag21-1.4.3.md exists on disk
+  ok    1.4.3: carries the W3C status line
+  ok    1.4.3: carries the W3C licence notice
+  ok    1.4.3: file hash matches the manifest
+  ok    1.4.6: wcag21-1.4.6.md exists on disk
+  ok    1.4.6: carries the W3C status line
+  ok    1.4.6: carries the W3C licence notice
+  ok    1.4.6: file hash matches the manifest
+  ok    contrast-ratio: wcag21-glossary-contrast-ratio.md exists on disk
+  ok    contrast-ratio: carries the W3C status line
+  ok    contrast-ratio: carries the W3C licence notice
+  ok    contrast-ratio: file hash matches the manifest
+  ok    large-scale-text: wcag21-glossary-large-scale-text.md exists on disk
+  ok    large-scale-text: carries the W3C status line
+  ok    large-scale-text: carries the W3C licence notice
+  ok    large-scale-text: file hash matches the manifest
+  ok    relative-luminance: wcag21-glossary-relative-luminance.md exists on disk
+  ok    relative-luminance: carries the W3C status line
+  ok    relative-luminance: carries the W3C licence notice
+  ok    relative-luminance: file hash matches the manifest
+  ok    code cites wcag21-1.4.11.md, which the manifest lists
+  ok    code cites wcag21-1.4.3.md, which the manifest lists
+  ok    code cites wcag21-1.4.6.md, which the manifest lists
+  ok    quote is verbatim in wcag21-1.4.3.md: "Large-scale text and images of large-scale text ..."
+  ok    quote is verbatim in wcag21-1.4.6.md: "Large-scale text and images of large-scale text ..."
+  ok    quote is verbatim in wcag21-1.4.3.md: "Text or images of text that are part of an inact..."
+  ok    quote is verbatim in wcag21-1.4.3.md: "Text that is part of a logo or brand name has no..."
+  ok    quote is verbatim in wcag21-1.4.3.md: "The visual presentation of text and images of te..."
+  ok    quote is verbatim in wcag21-1.4.6.md: "The visual presentation of text and images of te..."
+  ok    quote is verbatim in wcag21-1.4.11.md: "The visual presentation of the following have a ..."
+  ok    quote is verbatim in wcag21-1.4.11.md: "Visual information required to identify user int..."
+  ok    quote is verbatim in wcag21-1.4.11.md: "except for inactive components or where the appe..."
+
+[3] ANCHOR: ratio math against known boundary values
+  ok    #000000 on #ffffff == 21.0:1
+  ok    #ffffff on #ffffff == 1.0:1
+  ok    #767676 on #ffffff == 4.5:1
+  ok    #777777 on #ffffff == 4.4:1
+  ok    ratio is symmetric
+  ok    rounding never rounds a fail up to the bar
+  ok    large text starts at 24px (18pt) regular
+  ok    large bold text starts at 18.67px (14pt)
+
+[4] MUTATION: each rule must go red on input built to break it
+  ok    1.4.3 normal text below 4.5:1 -> FAIL
+  ok    1.4.3 large text below 3:1 -> FAIL
+  ok    1.4.11 non-text below 3:1 -> FAIL
+  ok    large-text exception actually changes the verdict
+  ok    severity separates a near miss from unreadable
+  ok    exactly two thirds of the bar is major, not blocker
+  ok    just under two thirds is blocker
+  ok    font_pt 18 is large text (24px), font_px 18 is not
+  ok    font_weight 700 is bold, 600 is not
+  ok    font_weight 'bold' and font_px '19px' are read, not crashed on
+  ok    an unreadable size is one UNDECIDABLE finding, not a traceback
+  ok    8-digit hex with alpha is refused as non-opaque
+  ok    8-digit hex with full alpha is measured
+  ok    alpha above 1 is refused
+  ok    opacity below 1 is refused, not measured
+  ok    named logotype is N/A and quotes the Logotypes clause
+  ok    the same pair without the exemption named is FAIL
+  ok    an exemption the criterion does not have is refused
+  ok    a divider named decorative is N/A under 1.4.11 and quotes the 'required to identify' clause
+  ok    an undecidable non-text element cites 1.4.11, not 1.4.3
+
+[5] SILENCE: compliant input must produce no AA failures, and passes are reported
+  ok    clean fixture returns verdict PASS
+  ok    clean fixture invents zero failures
+  ok    clean fixture reports every pass
+  ok    violating fixture returns verdict FAIL
+  ok    an AAA miss is never printed as [FAIL]
+  ok    an AAA miss is printed as headroom
+  ok    an undecided audit is INCOMPLETE, exit 2, never a silent pass
+
+[6] INVARIANCE: one violation, five spellings, five identical verdicts
+  ok    all five spellings produce the same verdict
+  ok    all five spellings produce the same ratio
+  ok    and that shared verdict is FAIL
+
+[7] PURITY: the deterministic layer reaches nothing outside itself
+  ok    auditor/checker/contrast.py imports nothing that reaches out
+  ok    auditor/checker/contrast.py has no dynamic import or eval
+  ok    auditor/checker/audit.py imports nothing that reaches out
+  ok    auditor/checker/audit.py has no dynamic import or eval
+  ok    auditor/checker/findings.py imports nothing that reaches out
+  ok    auditor/checker/findings.py has no dynamic import or eval
+
+[8] CITATION: every finding names a real provision, quotes it verbatim, and recomputes
+  ok    the checker's own output parses back
+  ok    the checker's own output passes its own gate
+  ok    examples/findings-broken.md parses to four findings
+  ok    the valid finding holds
+
+  --- DEMONSTRATION: the citation gate, fired on purpose
+      caught: orange CTA text: A_UNKNOWN_SC: SC 1.4.13 is not in reference/MANIFEST.json
+      caught: ghost border: C_QUOTE_NOT_VERBATIM: quote is not in reference/wcag21-1.4.11.md
+      caught: no size given: D_KIND_MISMATCH: SC 1.4.11 applies to nontext, element is text
+      caught: no size given: F_RATIO_MISMATCH: finding says FAIL 4.5:1, checker recomputes ('UNDECIDABLE', 4.5)
+      caught: no size given: F_SEVERITY_MISMATCH: finding says major, checker recomputes unknown
+  ok    planted nonexistent SC is caught by check A
+  ok    planted non-verbatim quote is caught by check C
+  ok    planted wrong-kind criterion is caught by check D
+  ok    exactly three of four findings rejected
+  ok    a real 1.4.3 quote under the 1.4.11 file is rejected (B_FILE_MISMATCH)
+  ok    SC 1.4.6 labelled AA over the 1.4.3 file is rejected
+  ok    a finding with no input line is rejected (I_NO_INPUT)
+  ok    an unknown mark is rejected (H_UNKNOWN_MARK)
+  ok    an indented finding is still parsed
+  ok    a provision outside reference/ is rejected, never opened
+  ok    a wrong severity is rejected (F_SEVERITY_MISMATCH)
+  ok    an AAA headroom line with a wrong ratio is recomputed and rejected
+  ok    a malformed input line is a rejection, not a crash
+  ok    reference files hash to the manifest before any citation is judged
+
+[9] EXAMPLES: every pasted output in examples.md is a live run of the checker
+  ok    examples.md carries at least three tagged output blocks
+  ok    full output for fixtures/clean.json equals a live run byte for byte
+  ok    full output for fixtures/violating.json equals a live run byte for byte
+  ok    excerpt of fixtures/violating.json appears verbatim in a live run
+  ok    full output for fixtures/exempt.json equals a live run byte for byte
+
+[10] TERRITORY: real public brand token files re-audit to the committed verdicts
+  ok    receipts/EXPECTED-brands.json exists
+  ok    at least 40 brand fixtures on disk
+  ok    every fixture has a committed expectation
+  ok    every fixture names a pinned upstream commit, its hash, and matched it at build time
+  ok    no fixture drifted from its committed verdicts
+      58 brands: FAIL 48, INCOMPLETE 2, PASS 8; 4 undecidable element(s) reported, none skipped
+  ok    at least five pairs were hand-anchored against WebAIM
+  ok    airbnb muted on canvas: ours 5.4:1 vs WebAIM 5.4:1
+  ok    airbnb on-primary on primary: ours 3.5:1 vs WebAIM 3.51:1
+  ok    anthropic on-primary on primary: ours 3.2:1 vs WebAIM 3.27:1
+  ok    cursor ink on canvas: ours 14.3:1 vs WebAIM 14.3:1
+  ok    coinbase muted on canvas: ours 3.8:1 vs WebAIM 3.87:1
+  ok    mintlify hairline on canvas: ours 1.2:1 vs WebAIM 1.25:1
+
+[11] DIFFERENTIAL: an independent luminance implementation agrees on every brand pair
+  ok    208 opaque pairs compared against the vendored oracle
+  ok    zero disagreements beyond 0.01
+  ok    every opaque pair carries the oracle's build-time ratio
+
+==============================================================
+131 checks in 11 gates: 131 passed, 0 failed
+GATE PASSED. What each gate proved is in its own lines above; what a gate
+looks like when it fails is in receipts/DEVIATIONS.md.
+
+STDERR:
+
+
+RUNTIME: 3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]
+BYTE CHECK: TEST_METHOD.md equals git show 0b57525:TEST_METHOD.md; SHA256 6f62a872180d4361c50089c3db786b51214a22cf500e0d0210f877ae934b3c41
+COMMAND: git diff --check
+EXIT: 0
+STDOUT:
+
+STDERR:
+
+REVIEW ROUND 1 FINAL VALIDATION after size precision refusal fix:
+COMMAND: /opt/homebrew/opt/python@3.14/bin/python3.14 -m unittest discover -s tests -p test_inputs.py -v
+EXIT: 0
+STDOUT:
+
+STDERR:
+test_alpha_requires_exactly_one (test_inputs.ColorTests.test_alpha_requires_exactly_one) ... ok
+test_fractional_channels_are_preserved (test_inputs.ColorTests.test_fractional_channels_are_preserved) ... ok
+test_fractional_rgb_verdicts_around_both_aa_thresholds (test_inputs.ColorTests.test_fractional_rgb_verdicts_around_both_aa_thresholds) ... ok
+test_malformed_or_out_of_range_channels_raise_named_error (test_inputs.ColorTests.test_malformed_or_out_of_range_channels_raise_named_error) ... ok
+test_nonstring_colors_raise_named_error (test_inputs.ColorTests.test_nonstring_colors_raise_named_error) ... ok
+test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) ... ok
+test_cli_mixed_elements_and_aaa_exit_semantics (test_inputs.InputTests.test_cli_mixed_elements_and_aaa_exit_semantics) ... ok
+test_dual_sizes_agree_or_are_rejected (test_inputs.InputTests.test_dual_sizes_agree_or_are_rejected) ... ok
+test_dual_weight_declarations_must_agree (test_inputs.InputTests.test_dual_weight_declarations_must_agree) ... ok
+test_exact_large_text_boundaries_in_points_and_pixels (test_inputs.InputTests.test_exact_large_text_boundaries_in_points_and_pixels) ... ok
+test_invalid_elements_are_retained_alongside_valid_elements (test_inputs.InputTests.test_invalid_elements_are_retained_alongside_valid_elements) ... ok
+test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) ... ok
+test_size_precision_cannot_promote_threshold_or_hide_conflict (test_inputs.InputTests.test_size_precision_cannot_promote_threshold_or_hide_conflict) ... ok
+test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) ... ok
+test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.208s
+
+OK
+
+COMMAND: /opt/homebrew/opt/python@3.14/bin/python3.14 -m unittest discover -s tests -v
+EXIT: 0
+STDOUT:
+
+STDERR:
+test_alpha_requires_exactly_one (test_inputs.ColorTests.test_alpha_requires_exactly_one) ... ok
+test_fractional_channels_are_preserved (test_inputs.ColorTests.test_fractional_channels_are_preserved) ... ok
+test_fractional_rgb_verdicts_around_both_aa_thresholds (test_inputs.ColorTests.test_fractional_rgb_verdicts_around_both_aa_thresholds) ... ok
+test_malformed_or_out_of_range_channels_raise_named_error (test_inputs.ColorTests.test_malformed_or_out_of_range_channels_raise_named_error) ... ok
+test_nonstring_colors_raise_named_error (test_inputs.ColorTests.test_nonstring_colors_raise_named_error) ... ok
+test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) ... ok
+test_cli_mixed_elements_and_aaa_exit_semantics (test_inputs.InputTests.test_cli_mixed_elements_and_aaa_exit_semantics) ... ok
+test_dual_sizes_agree_or_are_rejected (test_inputs.InputTests.test_dual_sizes_agree_or_are_rejected) ... ok
+test_dual_weight_declarations_must_agree (test_inputs.InputTests.test_dual_weight_declarations_must_agree) ... ok
+test_exact_large_text_boundaries_in_points_and_pixels (test_inputs.InputTests.test_exact_large_text_boundaries_in_points_and_pixels) ... ok
+test_invalid_elements_are_retained_alongside_valid_elements (test_inputs.InputTests.test_invalid_elements_are_retained_alongside_valid_elements) ... ok
+test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) ... ok
+test_size_precision_cannot_promote_threshold_or_hide_conflict (test_inputs.InputTests.test_size_precision_cannot_promote_threshold_or_hide_conflict) ... ok
+test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) ... ok
+test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) ... ok
+test_all_existing_gates_with_windows_default_encoding (test_portability.PortabilityTests.test_all_existing_gates_with_windows_default_encoding) ... ok
+test_audit_reads_utf8_input (test_portability.PortabilityTests.test_audit_reads_utf8_input) ... ok
+test_both_reference_gates_reject_changed_line_ending_bytes (test_portability.PortabilityTests.test_both_reference_gates_reject_changed_line_ending_bytes) ... ok
+test_fetch_writes_utf8_lf_bytes_matching_manifest (test_portability.PortabilityTests.test_fetch_writes_utf8_lf_bytes_matching_manifest) ... ok
+test_findings_reads_utf8_report_and_notices (test_portability.PortabilityTests.test_findings_reads_utf8_report_and_notices) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.408s
+
+OK
+
+COMMAND: /opt/homebrew/opt/python@3.14/bin/python3.14 check.py
+EXIT: 0
+STDOUT:
+
+[1] SHAPE: the drop-in folder holds the declared set and nothing else
+  ok    auditor/ exists
+  ok    auditor/ has every declared item
+  ok    auditor/ has nothing undeclared
+  ok    exact filename: README.md
+  ok    exact filename: checker
+  ok    exact filename: examples.md
+  ok    exact filename: identity.md
+  ok    exact filename: reference
+  ok    exact filename: rules.md
+
+[2] PROVENANCE: the cited standard is on disk, dated, hashed, with its status
+  ok    auditor/reference/MANIFEST.json exists
+  ok    manifest records the retrieval date
+  ok    manifest pins a hash of the source document
+  ok    manifest records the document status
+  ok    1.4.11: wcag21-1.4.11.md exists on disk
+  ok    1.4.11: carries the W3C status line
+  ok    1.4.11: carries the W3C licence notice
+  ok    1.4.11: file hash matches the manifest
+  ok    1.4.3: wcag21-1.4.3.md exists on disk
+  ok    1.4.3: carries the W3C status line
+  ok    1.4.3: carries the W3C licence notice
+  ok    1.4.3: file hash matches the manifest
+  ok    1.4.6: wcag21-1.4.6.md exists on disk
+  ok    1.4.6: carries the W3C status line
+  ok    1.4.6: carries the W3C licence notice
+  ok    1.4.6: file hash matches the manifest
+  ok    contrast-ratio: wcag21-glossary-contrast-ratio.md exists on disk
+  ok    contrast-ratio: carries the W3C status line
+  ok    contrast-ratio: carries the W3C licence notice
+  ok    contrast-ratio: file hash matches the manifest
+  ok    large-scale-text: wcag21-glossary-large-scale-text.md exists on disk
+  ok    large-scale-text: carries the W3C status line
+  ok    large-scale-text: carries the W3C licence notice
+  ok    large-scale-text: file hash matches the manifest
+  ok    relative-luminance: wcag21-glossary-relative-luminance.md exists on disk
+  ok    relative-luminance: carries the W3C status line
+  ok    relative-luminance: carries the W3C licence notice
+  ok    relative-luminance: file hash matches the manifest
+  ok    code cites wcag21-1.4.11.md, which the manifest lists
+  ok    code cites wcag21-1.4.3.md, which the manifest lists
+  ok    code cites wcag21-1.4.6.md, which the manifest lists
+  ok    quote is verbatim in wcag21-1.4.3.md: "Large-scale text and images of large-scale text ..."
+  ok    quote is verbatim in wcag21-1.4.6.md: "Large-scale text and images of large-scale text ..."
+  ok    quote is verbatim in wcag21-1.4.3.md: "Text or images of text that are part of an inact..."
+  ok    quote is verbatim in wcag21-1.4.3.md: "Text that is part of a logo or brand name has no..."
+  ok    quote is verbatim in wcag21-1.4.3.md: "The visual presentation of text and images of te..."
+  ok    quote is verbatim in wcag21-1.4.6.md: "The visual presentation of text and images of te..."
+  ok    quote is verbatim in wcag21-1.4.11.md: "The visual presentation of the following have a ..."
+  ok    quote is verbatim in wcag21-1.4.11.md: "Visual information required to identify user int..."
+  ok    quote is verbatim in wcag21-1.4.11.md: "except for inactive components or where the appe..."
+
+[3] ANCHOR: ratio math against known boundary values
+  ok    #000000 on #ffffff == 21.0:1
+  ok    #ffffff on #ffffff == 1.0:1
+  ok    #767676 on #ffffff == 4.5:1
+  ok    #777777 on #ffffff == 4.4:1
+  ok    ratio is symmetric
+  ok    rounding never rounds a fail up to the bar
+  ok    large text starts at 24px (18pt) regular
+  ok    large bold text starts at 18.67px (14pt)
+
+[4] MUTATION: each rule must go red on input built to break it
+  ok    1.4.3 normal text below 4.5:1 -> FAIL
+  ok    1.4.3 large text below 3:1 -> FAIL
+  ok    1.4.11 non-text below 3:1 -> FAIL
+  ok    large-text exception actually changes the verdict
+  ok    severity separates a near miss from unreadable
+  ok    exactly two thirds of the bar is major, not blocker
+  ok    just under two thirds is blocker
+  ok    font_pt 18 is large text (24px), font_px 18 is not
+  ok    font_weight 700 is bold, 600 is not
+  ok    font_weight 'bold' and font_px '19px' are read, not crashed on
+  ok    an unreadable size is one UNDECIDABLE finding, not a traceback
+  ok    8-digit hex with alpha is refused as non-opaque
+  ok    8-digit hex with full alpha is measured
+  ok    alpha above 1 is refused
+  ok    opacity below 1 is refused, not measured
+  ok    named logotype is N/A and quotes the Logotypes clause
+  ok    the same pair without the exemption named is FAIL
+  ok    an exemption the criterion does not have is refused
+  ok    a divider named decorative is N/A under 1.4.11 and quotes the 'required to identify' clause
+  ok    an undecidable non-text element cites 1.4.11, not 1.4.3
+
+[5] SILENCE: compliant input must produce no AA failures, and passes are reported
+  ok    clean fixture returns verdict PASS
+  ok    clean fixture invents zero failures
+  ok    clean fixture reports every pass
+  ok    violating fixture returns verdict FAIL
+  ok    an AAA miss is never printed as [FAIL]
+  ok    an AAA miss is printed as headroom
+  ok    an undecided audit is INCOMPLETE, exit 2, never a silent pass
+
+[6] INVARIANCE: one violation, five spellings, five identical verdicts
+  ok    all five spellings produce the same verdict
+  ok    all five spellings produce the same ratio
+  ok    and that shared verdict is FAIL
+
+[7] PURITY: the deterministic layer reaches nothing outside itself
+  ok    auditor/checker/contrast.py imports nothing that reaches out
+  ok    auditor/checker/contrast.py has no dynamic import or eval
+  ok    auditor/checker/audit.py imports nothing that reaches out
+  ok    auditor/checker/audit.py has no dynamic import or eval
+  ok    auditor/checker/findings.py imports nothing that reaches out
+  ok    auditor/checker/findings.py has no dynamic import or eval
+
+[8] CITATION: every finding names a real provision, quotes it verbatim, and recomputes
+  ok    the checker's own output parses back
+  ok    the checker's own output passes its own gate
+  ok    examples/findings-broken.md parses to four findings
+  ok    the valid finding holds
+
+  --- DEMONSTRATION: the citation gate, fired on purpose
+      caught: orange CTA text: A_UNKNOWN_SC: SC 1.4.13 is not in reference/MANIFEST.json
+      caught: ghost border: C_QUOTE_NOT_VERBATIM: quote is not in reference/wcag21-1.4.11.md
+      caught: no size given: D_KIND_MISMATCH: SC 1.4.11 applies to nontext, element is text
+      caught: no size given: F_RATIO_MISMATCH: finding says FAIL 4.5:1, checker recomputes ('UNDECIDABLE', 4.5)
+      caught: no size given: F_SEVERITY_MISMATCH: finding says major, checker recomputes unknown
+  ok    planted nonexistent SC is caught by check A
+  ok    planted non-verbatim quote is caught by check C
+  ok    planted wrong-kind criterion is caught by check D
+  ok    exactly three of four findings rejected
+  ok    a real 1.4.3 quote under the 1.4.11 file is rejected (B_FILE_MISMATCH)
+  ok    SC 1.4.6 labelled AA over the 1.4.3 file is rejected
+  ok    a finding with no input line is rejected (I_NO_INPUT)
+  ok    an unknown mark is rejected (H_UNKNOWN_MARK)
+  ok    an indented finding is still parsed
+  ok    a provision outside reference/ is rejected, never opened
+  ok    a wrong severity is rejected (F_SEVERITY_MISMATCH)
+  ok    an AAA headroom line with a wrong ratio is recomputed and rejected
+  ok    a malformed input line is a rejection, not a crash
+  ok    reference files hash to the manifest before any citation is judged
+
+[9] EXAMPLES: every pasted output in examples.md is a live run of the checker
+  ok    examples.md carries at least three tagged output blocks
+  ok    full output for fixtures/clean.json equals a live run byte for byte
+  ok    full output for fixtures/violating.json equals a live run byte for byte
+  ok    excerpt of fixtures/violating.json appears verbatim in a live run
+  ok    full output for fixtures/exempt.json equals a live run byte for byte
+
+[10] TERRITORY: real public brand token files re-audit to the committed verdicts
+  ok    receipts/EXPECTED-brands.json exists
+  ok    at least 40 brand fixtures on disk
+  ok    every fixture has a committed expectation
+  ok    every fixture names a pinned upstream commit, its hash, and matched it at build time
+  ok    no fixture drifted from its committed verdicts
+      58 brands: FAIL 48, INCOMPLETE 2, PASS 8; 4 undecidable element(s) reported, none skipped
+  ok    at least five pairs were hand-anchored against WebAIM
+  ok    airbnb muted on canvas: ours 5.4:1 vs WebAIM 5.4:1
+  ok    airbnb on-primary on primary: ours 3.5:1 vs WebAIM 3.51:1
+  ok    anthropic on-primary on primary: ours 3.2:1 vs WebAIM 3.27:1
+  ok    cursor ink on canvas: ours 14.3:1 vs WebAIM 14.3:1
+  ok    coinbase muted on canvas: ours 3.8:1 vs WebAIM 3.87:1
+  ok    mintlify hairline on canvas: ours 1.2:1 vs WebAIM 1.25:1
+
+[11] DIFFERENTIAL: an independent luminance implementation agrees on every brand pair
+  ok    208 opaque pairs compared against the vendored oracle
+  ok    zero disagreements beyond 0.01
+  ok    every opaque pair carries the oracle's build-time ratio
+
+==============================================================
+131 checks in 11 gates: 131 passed, 0 failed
+GATE PASSED. What each gate proved is in its own lines above; what a gate
+looks like when it fails is in receipts/DEVIATIONS.md.
+
+STDERR:
+
+COMMAND: git diff --check
+EXIT: 0
+STDOUT:
+
+STDERR:
+
+
+REVIEW ROUND 1 FINAL VALIDATION after exact size comparisons (supersedes precision refusal):
+COMMAND: /opt/homebrew/opt/python@3.14/bin/python3.14 -m unittest discover -s tests -p test_inputs.py -v
+EXIT: 0
+STDOUT:
+
+STDERR:
+test_alpha_requires_exactly_one (test_inputs.ColorTests.test_alpha_requires_exactly_one) ... ok
+test_fractional_channels_are_preserved (test_inputs.ColorTests.test_fractional_channels_are_preserved) ... ok
+test_fractional_rgb_verdicts_around_both_aa_thresholds (test_inputs.ColorTests.test_fractional_rgb_verdicts_around_both_aa_thresholds) ... ok
+test_malformed_or_out_of_range_channels_raise_named_error (test_inputs.ColorTests.test_malformed_or_out_of_range_channels_raise_named_error) ... ok
+test_nonstring_colors_raise_named_error (test_inputs.ColorTests.test_nonstring_colors_raise_named_error) ... ok
+test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) ... ok
+test_cli_mixed_elements_and_aaa_exit_semantics (test_inputs.InputTests.test_cli_mixed_elements_and_aaa_exit_semantics) ... ok
+test_dual_sizes_agree_or_are_rejected (test_inputs.InputTests.test_dual_sizes_agree_or_are_rejected) ... ok
+test_dual_weight_declarations_must_agree (test_inputs.InputTests.test_dual_weight_declarations_must_agree) ... ok
+test_exact_large_text_boundaries_in_points_and_pixels (test_inputs.InputTests.test_exact_large_text_boundaries_in_points_and_pixels) ... ok
+test_invalid_elements_are_retained_alongside_valid_elements (test_inputs.InputTests.test_invalid_elements_are_retained_alongside_valid_elements) ... ok
+test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) ... ok
+test_size_precision_cannot_promote_threshold_or_hide_conflict (test_inputs.InputTests.test_size_precision_cannot_promote_threshold_or_hide_conflict) ... ok
+test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) ... ok
+test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 1.111s
+
+OK
+
+COMMAND: /opt/homebrew/opt/python@3.14/bin/python3.14 -m unittest discover -s tests -v
+EXIT: 0
+STDOUT:
+
+STDERR:
+test_alpha_requires_exactly_one (test_inputs.ColorTests.test_alpha_requires_exactly_one) ... ok
+test_fractional_channels_are_preserved (test_inputs.ColorTests.test_fractional_channels_are_preserved) ... ok
+test_fractional_rgb_verdicts_around_both_aa_thresholds (test_inputs.ColorTests.test_fractional_rgb_verdicts_around_both_aa_thresholds) ... ok
+test_malformed_or_out_of_range_channels_raise_named_error (test_inputs.ColorTests.test_malformed_or_out_of_range_channels_raise_named_error) ... ok
+test_nonstring_colors_raise_named_error (test_inputs.ColorTests.test_nonstring_colors_raise_named_error) ... ok
+test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) ... ok
+test_cli_mixed_elements_and_aaa_exit_semantics (test_inputs.InputTests.test_cli_mixed_elements_and_aaa_exit_semantics) ... ok
+test_dual_sizes_agree_or_are_rejected (test_inputs.InputTests.test_dual_sizes_agree_or_are_rejected) ... ok
+test_dual_weight_declarations_must_agree (test_inputs.InputTests.test_dual_weight_declarations_must_agree) ... ok
+test_exact_large_text_boundaries_in_points_and_pixels (test_inputs.InputTests.test_exact_large_text_boundaries_in_points_and_pixels) ... ok
+test_invalid_elements_are_retained_alongside_valid_elements (test_inputs.InputTests.test_invalid_elements_are_retained_alongside_valid_elements) ... ok
+test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) ... ok
+test_size_precision_cannot_promote_threshold_or_hide_conflict (test_inputs.InputTests.test_size_precision_cannot_promote_threshold_or_hide_conflict) ... ok
+test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) ... ok
+test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) ... ok
+test_all_existing_gates_with_windows_default_encoding (test_portability.PortabilityTests.test_all_existing_gates_with_windows_default_encoding) ... ok
+test_audit_reads_utf8_input (test_portability.PortabilityTests.test_audit_reads_utf8_input) ... ok
+test_both_reference_gates_reject_changed_line_ending_bytes (test_portability.PortabilityTests.test_both_reference_gates_reject_changed_line_ending_bytes) ... ok
+test_fetch_writes_utf8_lf_bytes_matching_manifest (test_portability.PortabilityTests.test_fetch_writes_utf8_lf_bytes_matching_manifest) ... ok
+test_findings_reads_utf8_report_and_notices (test_portability.PortabilityTests.test_findings_reads_utf8_report_and_notices) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.887s
+
+OK
+
+COMMAND: /opt/homebrew/opt/python@3.14/bin/python3.14 check.py
+EXIT: 0
+STDOUT:
+
+[1] SHAPE: the drop-in folder holds the declared set and nothing else
+  ok    auditor/ exists
+  ok    auditor/ has every declared item
+  ok    auditor/ has nothing undeclared
+  ok    exact filename: README.md
+  ok    exact filename: checker
+  ok    exact filename: examples.md
+  ok    exact filename: identity.md
+  ok    exact filename: reference
+  ok    exact filename: rules.md
+
+[2] PROVENANCE: the cited standard is on disk, dated, hashed, with its status
+  ok    auditor/reference/MANIFEST.json exists
+  ok    manifest records the retrieval date
+  ok    manifest pins a hash of the source document
+  ok    manifest records the document status
+  ok    1.4.11: wcag21-1.4.11.md exists on disk
+  ok    1.4.11: carries the W3C status line
+  ok    1.4.11: carries the W3C licence notice
+  ok    1.4.11: file hash matches the manifest
+  ok    1.4.3: wcag21-1.4.3.md exists on disk
+  ok    1.4.3: carries the W3C status line
+  ok    1.4.3: carries the W3C licence notice
+  ok    1.4.3: file hash matches the manifest
+  ok    1.4.6: wcag21-1.4.6.md exists on disk
+  ok    1.4.6: carries the W3C status line
+  ok    1.4.6: carries the W3C licence notice
+  ok    1.4.6: file hash matches the manifest
+  ok    contrast-ratio: wcag21-glossary-contrast-ratio.md exists on disk
+  ok    contrast-ratio: carries the W3C status line
+  ok    contrast-ratio: carries the W3C licence notice
+  ok    contrast-ratio: file hash matches the manifest
+  ok    large-scale-text: wcag21-glossary-large-scale-text.md exists on disk
+  ok    large-scale-text: carries the W3C status line
+  ok    large-scale-text: carries the W3C licence notice
+  ok    large-scale-text: file hash matches the manifest
+  ok    relative-luminance: wcag21-glossary-relative-luminance.md exists on disk
+  ok    relative-luminance: carries the W3C status line
+  ok    relative-luminance: carries the W3C licence notice
+  ok    relative-luminance: file hash matches the manifest
+  ok    code cites wcag21-1.4.11.md, which the manifest lists
+  ok    code cites wcag21-1.4.3.md, which the manifest lists
+  ok    code cites wcag21-1.4.6.md, which the manifest lists
+  ok    quote is verbatim in wcag21-1.4.3.md: "Large-scale text and images of large-scale text ..."
+  ok    quote is verbatim in wcag21-1.4.6.md: "Large-scale text and images of large-scale text ..."
+  ok    quote is verbatim in wcag21-1.4.3.md: "Text or images of text that are part of an inact..."
+  ok    quote is verbatim in wcag21-1.4.3.md: "Text that is part of a logo or brand name has no..."
+  ok    quote is verbatim in wcag21-1.4.3.md: "The visual presentation of text and images of te..."
+  ok    quote is verbatim in wcag21-1.4.6.md: "The visual presentation of text and images of te..."
+  ok    quote is verbatim in wcag21-1.4.11.md: "The visual presentation of the following have a ..."
+  ok    quote is verbatim in wcag21-1.4.11.md: "Visual information required to identify user int..."
+  ok    quote is verbatim in wcag21-1.4.11.md: "except for inactive components or where the appe..."
+
+[3] ANCHOR: ratio math against known boundary values
+  ok    #000000 on #ffffff == 21.0:1
+  ok    #ffffff on #ffffff == 1.0:1
+  ok    #767676 on #ffffff == 4.5:1
+  ok    #777777 on #ffffff == 4.4:1
+  ok    ratio is symmetric
+  ok    rounding never rounds a fail up to the bar
+  ok    large text starts at 24px (18pt) regular
+  ok    large bold text starts at 18.67px (14pt)
+
+[4] MUTATION: each rule must go red on input built to break it
+  ok    1.4.3 normal text below 4.5:1 -> FAIL
+  ok    1.4.3 large text below 3:1 -> FAIL
+  ok    1.4.11 non-text below 3:1 -> FAIL
+  ok    large-text exception actually changes the verdict
+  ok    severity separates a near miss from unreadable
+  ok    exactly two thirds of the bar is major, not blocker
+  ok    just under two thirds is blocker
+  ok    font_pt 18 is large text (24px), font_px 18 is not
+  ok    font_weight 700 is bold, 600 is not
+  ok    font_weight 'bold' and font_px '19px' are read, not crashed on
+  ok    an unreadable size is one UNDECIDABLE finding, not a traceback
+  ok    8-digit hex with alpha is refused as non-opaque
+  ok    8-digit hex with full alpha is measured
+  ok    alpha above 1 is refused
+  ok    opacity below 1 is refused, not measured
+  ok    named logotype is N/A and quotes the Logotypes clause
+  ok    the same pair without the exemption named is FAIL
+  ok    an exemption the criterion does not have is refused
+  ok    a divider named decorative is N/A under 1.4.11 and quotes the 'required to identify' clause
+  ok    an undecidable non-text element cites 1.4.11, not 1.4.3
+
+[5] SILENCE: compliant input must produce no AA failures, and passes are reported
+  ok    clean fixture returns verdict PASS
+  ok    clean fixture invents zero failures
+  ok    clean fixture reports every pass
+  ok    violating fixture returns verdict FAIL
+  ok    an AAA miss is never printed as [FAIL]
+  ok    an AAA miss is printed as headroom
+  ok    an undecided audit is INCOMPLETE, exit 2, never a silent pass
+
+[6] INVARIANCE: one violation, five spellings, five identical verdicts
+  ok    all five spellings produce the same verdict
+  ok    all five spellings produce the same ratio
+  ok    and that shared verdict is FAIL
+
+[7] PURITY: the deterministic layer reaches nothing outside itself
+  ok    auditor/checker/contrast.py imports nothing that reaches out
+  ok    auditor/checker/contrast.py has no dynamic import or eval
+  ok    auditor/checker/audit.py imports nothing that reaches out
+  ok    auditor/checker/audit.py has no dynamic import or eval
+  ok    auditor/checker/findings.py imports nothing that reaches out
+  ok    auditor/checker/findings.py has no dynamic import or eval
+
+[8] CITATION: every finding names a real provision, quotes it verbatim, and recomputes
+  ok    the checker's own output parses back
+  ok    the checker's own output passes its own gate
+  ok    examples/findings-broken.md parses to four findings
+  ok    the valid finding holds
+
+  --- DEMONSTRATION: the citation gate, fired on purpose
+      caught: orange CTA text: A_UNKNOWN_SC: SC 1.4.13 is not in reference/MANIFEST.json
+      caught: ghost border: C_QUOTE_NOT_VERBATIM: quote is not in reference/wcag21-1.4.11.md
+      caught: no size given: D_KIND_MISMATCH: SC 1.4.11 applies to nontext, element is text
+      caught: no size given: F_RATIO_MISMATCH: finding says FAIL 4.5:1, checker recomputes ('UNDECIDABLE', 4.5)
+      caught: no size given: F_SEVERITY_MISMATCH: finding says major, checker recomputes unknown
+  ok    planted nonexistent SC is caught by check A
+  ok    planted non-verbatim quote is caught by check C
+  ok    planted wrong-kind criterion is caught by check D
+  ok    exactly three of four findings rejected
+  ok    a real 1.4.3 quote under the 1.4.11 file is rejected (B_FILE_MISMATCH)
+  ok    SC 1.4.6 labelled AA over the 1.4.3 file is rejected
+  ok    a finding with no input line is rejected (I_NO_INPUT)
+  ok    an unknown mark is rejected (H_UNKNOWN_MARK)
+  ok    an indented finding is still parsed
+  ok    a provision outside reference/ is rejected, never opened
+  ok    a wrong severity is rejected (F_SEVERITY_MISMATCH)
+  ok    an AAA headroom line with a wrong ratio is recomputed and rejected
+  ok    a malformed input line is a rejection, not a crash
+  ok    reference files hash to the manifest before any citation is judged
+
+[9] EXAMPLES: every pasted output in examples.md is a live run of the checker
+  ok    examples.md carries at least three tagged output blocks
+  ok    full output for fixtures/clean.json equals a live run byte for byte
+  ok    full output for fixtures/violating.json equals a live run byte for byte
+  ok    excerpt of fixtures/violating.json appears verbatim in a live run
+  ok    full output for fixtures/exempt.json equals a live run byte for byte
+
+[10] TERRITORY: real public brand token files re-audit to the committed verdicts
+  ok    receipts/EXPECTED-brands.json exists
+  ok    at least 40 brand fixtures on disk
+  ok    every fixture has a committed expectation
+  ok    every fixture names a pinned upstream commit, its hash, and matched it at build time
+  ok    no fixture drifted from its committed verdicts
+      58 brands: FAIL 48, INCOMPLETE 2, PASS 8; 4 undecidable element(s) reported, none skipped
+  ok    at least five pairs were hand-anchored against WebAIM
+  ok    airbnb muted on canvas: ours 5.4:1 vs WebAIM 5.4:1
+  ok    airbnb on-primary on primary: ours 3.5:1 vs WebAIM 3.51:1
+  ok    anthropic on-primary on primary: ours 3.2:1 vs WebAIM 3.27:1
+  ok    cursor ink on canvas: ours 14.3:1 vs WebAIM 14.3:1
+  ok    coinbase muted on canvas: ours 3.8:1 vs WebAIM 3.87:1
+  ok    mintlify hairline on canvas: ours 1.2:1 vs WebAIM 1.25:1
+
+[11] DIFFERENTIAL: an independent luminance implementation agrees on every brand pair
+  ok    208 opaque pairs compared against the vendored oracle
+  ok    zero disagreements beyond 0.01
+  ok    every opaque pair carries the oracle's build-time ratio
+
+==============================================================
+131 checks in 11 gates: 131 passed, 0 failed
+GATE PASSED. What each gate proved is in its own lines above; what a gate
+looks like when it fails is in receipts/DEVIATIONS.md.
+
+STDERR:
+
+COMMAND: git diff --check
+EXIT: 0
+STDOUT:
+
+STDERR:
+
+
+REVIEW ROUND 2 FINAL VALIDATION after oversized-size named-error repair:
+COMMAND: /opt/homebrew/opt/python@3.14/bin/python3.14 -m unittest discover -s tests -p test_inputs.py -v
+EXIT: 0
+STDOUT:
+
+STDERR:
+test_alpha_requires_exactly_one (test_inputs.ColorTests.test_alpha_requires_exactly_one) ... ok
+test_fractional_channels_are_preserved (test_inputs.ColorTests.test_fractional_channels_are_preserved) ... ok
+test_fractional_rgb_verdicts_around_both_aa_thresholds (test_inputs.ColorTests.test_fractional_rgb_verdicts_around_both_aa_thresholds) ... ok
+test_malformed_or_out_of_range_channels_raise_named_error (test_inputs.ColorTests.test_malformed_or_out_of_range_channels_raise_named_error) ... ok
+test_nonstring_colors_raise_named_error (test_inputs.ColorTests.test_nonstring_colors_raise_named_error) ... ok
+test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) ... ok
+test_cli_mixed_elements_and_aaa_exit_semantics (test_inputs.InputTests.test_cli_mixed_elements_and_aaa_exit_semantics) ... ok
+test_dual_sizes_agree_or_are_rejected (test_inputs.InputTests.test_dual_sizes_agree_or_are_rejected) ... ok
+test_dual_weight_declarations_must_agree (test_inputs.InputTests.test_dual_weight_declarations_must_agree) ... ok
+test_exact_large_text_boundaries_in_points_and_pixels (test_inputs.InputTests.test_exact_large_text_boundaries_in_points_and_pixels) ... ok
+test_invalid_elements_are_retained_alongside_valid_elements (test_inputs.InputTests.test_invalid_elements_are_retained_alongside_valid_elements) ... ok
+test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) ... ok
+test_oversized_size_does_not_hide_mixed_aa_failure_exit (test_inputs.InputTests.test_oversized_size_does_not_hide_mixed_aa_failure_exit) ... ok
+test_oversized_size_numbers_have_named_errors_and_unknown_findings (test_inputs.InputTests.test_oversized_size_numbers_have_named_errors_and_unknown_findings) ... ok
+test_size_precision_cannot_promote_threshold_or_hide_conflict (test_inputs.InputTests.test_size_precision_cannot_promote_threshold_or_hide_conflict) ... ok
+test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) ... ok
+test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 3.370s
+
+OK
+
+COMMAND: /opt/homebrew/opt/python@3.14/bin/python3.14 -m unittest discover -s tests -v
+EXIT: 0
+STDOUT:
+
+STDERR:
+test_alpha_requires_exactly_one (test_inputs.ColorTests.test_alpha_requires_exactly_one) ... ok
+test_fractional_channels_are_preserved (test_inputs.ColorTests.test_fractional_channels_are_preserved) ... ok
+test_fractional_rgb_verdicts_around_both_aa_thresholds (test_inputs.ColorTests.test_fractional_rgb_verdicts_around_both_aa_thresholds) ... ok
+test_malformed_or_out_of_range_channels_raise_named_error (test_inputs.ColorTests.test_malformed_or_out_of_range_channels_raise_named_error) ... ok
+test_nonstring_colors_raise_named_error (test_inputs.ColorTests.test_nonstring_colors_raise_named_error) ... ok
+test_bold_requires_boolean (test_inputs.InputTests.test_bold_requires_boolean) ... ok
+test_cli_mixed_elements_and_aaa_exit_semantics (test_inputs.InputTests.test_cli_mixed_elements_and_aaa_exit_semantics) ... ok
+test_dual_sizes_agree_or_are_rejected (test_inputs.InputTests.test_dual_sizes_agree_or_are_rejected) ... ok
+test_dual_weight_declarations_must_agree (test_inputs.InputTests.test_dual_weight_declarations_must_agree) ... ok
+test_exact_large_text_boundaries_in_points_and_pixels (test_inputs.InputTests.test_exact_large_text_boundaries_in_points_and_pixels) ... ok
+test_invalid_elements_are_retained_alongside_valid_elements (test_inputs.InputTests.test_invalid_elements_are_retained_alongside_valid_elements) ... ok
+test_opacity_is_finite_in_range_and_exactly_opaque (test_inputs.InputTests.test_opacity_is_finite_in_range_and_exactly_opaque) ... ok
+test_oversized_size_does_not_hide_mixed_aa_failure_exit (test_inputs.InputTests.test_oversized_size_does_not_hide_mixed_aa_failure_exit) ... ok
+test_oversized_size_numbers_have_named_errors_and_unknown_findings (test_inputs.InputTests.test_oversized_size_numbers_have_named_errors_and_unknown_findings) ... ok
+test_size_precision_cannot_promote_threshold_or_hide_conflict (test_inputs.InputTests.test_size_precision_cannot_promote_threshold_or_hide_conflict) ... ok
+test_sizes_require_finite_positive_values_and_matching_units (test_inputs.InputTests.test_sizes_require_finite_positive_values_and_matching_units) ... ok
+test_weight_bounds_and_relative_context (test_inputs.InputTests.test_weight_bounds_and_relative_context) ... ok
+test_all_existing_gates_with_windows_default_encoding (test_portability.PortabilityTests.test_all_existing_gates_with_windows_default_encoding) ... ok
+test_audit_reads_utf8_input (test_portability.PortabilityTests.test_audit_reads_utf8_input) ... ok
+test_both_reference_gates_reject_changed_line_ending_bytes (test_portability.PortabilityTests.test_both_reference_gates_reject_changed_line_ending_bytes) ... ok
+test_fetch_writes_utf8_lf_bytes_matching_manifest (test_portability.PortabilityTests.test_fetch_writes_utf8_lf_bytes_matching_manifest) ... ok
+test_findings_reads_utf8_report_and_notices (test_portability.PortabilityTests.test_findings_reads_utf8_report_and_notices) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 3.208s
+
+OK
+
+COMMAND: /opt/homebrew/opt/python@3.14/bin/python3.14 check.py
+EXIT: 0
+STDOUT:
+
+[1] SHAPE: the drop-in folder holds the declared set and nothing else
+  ok    auditor/ exists
+  ok    auditor/ has every declared item
+  ok    auditor/ has nothing undeclared
+  ok    exact filename: README.md
+  ok    exact filename: checker
+  ok    exact filename: examples.md
+  ok    exact filename: identity.md
+  ok    exact filename: reference
+  ok    exact filename: rules.md
+
+[2] PROVENANCE: the cited standard is on disk, dated, hashed, with its status
+  ok    auditor/reference/MANIFEST.json exists
+  ok    manifest records the retrieval date
+  ok    manifest pins a hash of the source document
+  ok    manifest records the document status
+  ok    1.4.11: wcag21-1.4.11.md exists on disk
+  ok    1.4.11: carries the W3C status line
+  ok    1.4.11: carries the W3C licence notice
+  ok    1.4.11: file hash matches the manifest
+  ok    1.4.3: wcag21-1.4.3.md exists on disk
+  ok    1.4.3: carries the W3C status line
+  ok    1.4.3: carries the W3C licence notice
+  ok    1.4.3: file hash matches the manifest
+  ok    1.4.6: wcag21-1.4.6.md exists on disk
+  ok    1.4.6: carries the W3C status line
+  ok    1.4.6: carries the W3C licence notice
+  ok    1.4.6: file hash matches the manifest
+  ok    contrast-ratio: wcag21-glossary-contrast-ratio.md exists on disk
+  ok    contrast-ratio: carries the W3C status line
+  ok    contrast-ratio: carries the W3C licence notice
+  ok    contrast-ratio: file hash matches the manifest
+  ok    large-scale-text: wcag21-glossary-large-scale-text.md exists on disk
+  ok    large-scale-text: carries the W3C status line
+  ok    large-scale-text: carries the W3C licence notice
+  ok    large-scale-text: file hash matches the manifest
+  ok    relative-luminance: wcag21-glossary-relative-luminance.md exists on disk
+  ok    relative-luminance: carries the W3C status line
+  ok    relative-luminance: carries the W3C licence notice
+  ok    relative-luminance: file hash matches the manifest
+  ok    code cites wcag21-1.4.11.md, which the manifest lists
+  ok    code cites wcag21-1.4.3.md, which the manifest lists
+  ok    code cites wcag21-1.4.6.md, which the manifest lists
+  ok    quote is verbatim in wcag21-1.4.3.md: "Large-scale text and images of large-scale text ..."
+  ok    quote is verbatim in wcag21-1.4.6.md: "Large-scale text and images of large-scale text ..."
+  ok    quote is verbatim in wcag21-1.4.3.md: "Text or images of text that are part of an inact..."
+  ok    quote is verbatim in wcag21-1.4.3.md: "Text that is part of a logo or brand name has no..."
+  ok    quote is verbatim in wcag21-1.4.3.md: "The visual presentation of text and images of te..."
+  ok    quote is verbatim in wcag21-1.4.6.md: "The visual presentation of text and images of te..."
+  ok    quote is verbatim in wcag21-1.4.11.md: "The visual presentation of the following have a ..."
+  ok    quote is verbatim in wcag21-1.4.11.md: "Visual information required to identify user int..."
+  ok    quote is verbatim in wcag21-1.4.11.md: "except for inactive components or where the appe..."
+
+[3] ANCHOR: ratio math against known boundary values
+  ok    #000000 on #ffffff == 21.0:1
+  ok    #ffffff on #ffffff == 1.0:1
+  ok    #767676 on #ffffff == 4.5:1
+  ok    #777777 on #ffffff == 4.4:1
+  ok    ratio is symmetric
+  ok    rounding never rounds a fail up to the bar
+  ok    large text starts at 24px (18pt) regular
+  ok    large bold text starts at 18.67px (14pt)
+
+[4] MUTATION: each rule must go red on input built to break it
+  ok    1.4.3 normal text below 4.5:1 -> FAIL
+  ok    1.4.3 large text below 3:1 -> FAIL
+  ok    1.4.11 non-text below 3:1 -> FAIL
+  ok    large-text exception actually changes the verdict
+  ok    severity separates a near miss from unreadable
+  ok    exactly two thirds of the bar is major, not blocker
+  ok    just under two thirds is blocker
+  ok    font_pt 18 is large text (24px), font_px 18 is not
+  ok    font_weight 700 is bold, 600 is not
+  ok    font_weight 'bold' and font_px '19px' are read, not crashed on
+  ok    an unreadable size is one UNDECIDABLE finding, not a traceback
+  ok    8-digit hex with alpha is refused as non-opaque
+  ok    8-digit hex with full alpha is measured
+  ok    alpha above 1 is refused
+  ok    opacity below 1 is refused, not measured
+  ok    named logotype is N/A and quotes the Logotypes clause
+  ok    the same pair without the exemption named is FAIL
+  ok    an exemption the criterion does not have is refused
+  ok    a divider named decorative is N/A under 1.4.11 and quotes the 'required to identify' clause
+  ok    an undecidable non-text element cites 1.4.11, not 1.4.3
+
+[5] SILENCE: compliant input must produce no AA failures, and passes are reported
+  ok    clean fixture returns verdict PASS
+  ok    clean fixture invents zero failures
+  ok    clean fixture reports every pass
+  ok    violating fixture returns verdict FAIL
+  ok    an AAA miss is never printed as [FAIL]
+  ok    an AAA miss is printed as headroom
+  ok    an undecided audit is INCOMPLETE, exit 2, never a silent pass
+
+[6] INVARIANCE: one violation, five spellings, five identical verdicts
+  ok    all five spellings produce the same verdict
+  ok    all five spellings produce the same ratio
+  ok    and that shared verdict is FAIL
+
+[7] PURITY: the deterministic layer reaches nothing outside itself
+  ok    auditor/checker/contrast.py imports nothing that reaches out
+  ok    auditor/checker/contrast.py has no dynamic import or eval
+  ok    auditor/checker/audit.py imports nothing that reaches out
+  ok    auditor/checker/audit.py has no dynamic import or eval
+  ok    auditor/checker/findings.py imports nothing that reaches out
+  ok    auditor/checker/findings.py has no dynamic import or eval
+
+[8] CITATION: every finding names a real provision, quotes it verbatim, and recomputes
+  ok    the checker's own output parses back
+  ok    the checker's own output passes its own gate
+  ok    examples/findings-broken.md parses to four findings
+  ok    the valid finding holds
+
+  --- DEMONSTRATION: the citation gate, fired on purpose
+      caught: orange CTA text: A_UNKNOWN_SC: SC 1.4.13 is not in reference/MANIFEST.json
+      caught: ghost border: C_QUOTE_NOT_VERBATIM: quote is not in reference/wcag21-1.4.11.md
+      caught: no size given: D_KIND_MISMATCH: SC 1.4.11 applies to nontext, element is text
+      caught: no size given: F_RATIO_MISMATCH: finding says FAIL 4.5:1, checker recomputes ('UNDECIDABLE', 4.5)
+      caught: no size given: F_SEVERITY_MISMATCH: finding says major, checker recomputes unknown
+  ok    planted nonexistent SC is caught by check A
+  ok    planted non-verbatim quote is caught by check C
+  ok    planted wrong-kind criterion is caught by check D
+  ok    exactly three of four findings rejected
+  ok    a real 1.4.3 quote under the 1.4.11 file is rejected (B_FILE_MISMATCH)
+  ok    SC 1.4.6 labelled AA over the 1.4.3 file is rejected
+  ok    a finding with no input line is rejected (I_NO_INPUT)
+  ok    an unknown mark is rejected (H_UNKNOWN_MARK)
+  ok    an indented finding is still parsed
+  ok    a provision outside reference/ is rejected, never opened
+  ok    a wrong severity is rejected (F_SEVERITY_MISMATCH)
+  ok    an AAA headroom line with a wrong ratio is recomputed and rejected
+  ok    a malformed input line is a rejection, not a crash
+  ok    reference files hash to the manifest before any citation is judged
+
+[9] EXAMPLES: every pasted output in examples.md is a live run of the checker
+  ok    examples.md carries at least three tagged output blocks
+  ok    full output for fixtures/clean.json equals a live run byte for byte
+  ok    full output for fixtures/violating.json equals a live run byte for byte
+  ok    excerpt of fixtures/violating.json appears verbatim in a live run
+  ok    full output for fixtures/exempt.json equals a live run byte for byte
+
+[10] TERRITORY: real public brand token files re-audit to the committed verdicts
+  ok    receipts/EXPECTED-brands.json exists
+  ok    at least 40 brand fixtures on disk
+  ok    every fixture has a committed expectation
+  ok    every fixture names a pinned upstream commit, its hash, and matched it at build time
+  ok    no fixture drifted from its committed verdicts
+      58 brands: FAIL 48, INCOMPLETE 2, PASS 8; 4 undecidable element(s) reported, none skipped
+  ok    at least five pairs were hand-anchored against WebAIM
+  ok    airbnb muted on canvas: ours 5.4:1 vs WebAIM 5.4:1
+  ok    airbnb on-primary on primary: ours 3.5:1 vs WebAIM 3.51:1
+  ok    anthropic on-primary on primary: ours 3.2:1 vs WebAIM 3.27:1
+  ok    cursor ink on canvas: ours 14.3:1 vs WebAIM 14.3:1
+  ok    coinbase muted on canvas: ours 3.8:1 vs WebAIM 3.87:1
+  ok    mintlify hairline on canvas: ours 1.2:1 vs WebAIM 1.25:1
+
+[11] DIFFERENTIAL: an independent luminance implementation agrees on every brand pair
+  ok    208 opaque pairs compared against the vendored oracle
+  ok    zero disagreements beyond 0.01
+  ok    every opaque pair carries the oracle's build-time ratio
+
+==============================================================
+131 checks in 11 gates: 131 passed, 0 failed
+GATE PASSED. What each gate proved is in its own lines above; what a gate
+looks like when it fails is in receipts/DEVIATIONS.md.
+
+STDERR:
+
+COMMAND: git diff --check
+EXIT: 0
+STDOUT:
+
+STDERR:
+
