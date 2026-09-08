@@ -3,7 +3,7 @@
 Checks colour pairs against three success criteria of the W3C Web Content
 Accessibility Guidelines 2.1 and reports what passes, what fails, where, by how
 much, and which provision says so. Drop this folder into a Claude project and
-Claude becomes the auditor. Or run the checker yourself; it is the same number.
+Claude becomes the auditor.
 
 ## Use it in three steps
 
@@ -54,8 +54,7 @@ with the W3C licence, the document status, and a hash.
 It never estimates. If a colour is transparent, a size is missing, or a format is
 unknown, the finding says UNDECIDABLE and the audit is INCOMPLETE. It does not
 decide that text is a logo; if you mark an element `"exempt": "logotype"` it
-reports N/A and quotes the exception clause. It has no opinion about whether a
-colour is nice.
+reports N/A and quotes the exception clause.
 
 Alt text, focus order, headings, motion and the other 75 criteria are out of
 scope, and it says so instead of guessing.

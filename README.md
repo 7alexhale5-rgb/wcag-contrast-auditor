@@ -4,8 +4,8 @@
 passes, what fails, by how much, and which success criterion says so, with the
 provision text sitting in the folder where you can check it.**
 
-Built for Clief Notes Comp 12 "The Auditor". Authored with Claude Code; the
-receipts say which parts a person ran.
+Built for Clief Notes Comp 12 "The Auditor" with Claude Code. The receipts name
+who ran each test.
 
 ## Falsify it in thirty seconds
 
@@ -35,7 +35,7 @@ python3 check.py examples/findings-broken.md
 
 It names the line and the check that caught it, and exits non-zero. Every gate
 has also been shown red on purpose, one sabotage at a time, in
-`receipts/DEVIATIONS.md`. A gate that has only ever run green has proved nothing.
+`receipts/DEVIATIONS.md`.
 
 ## The four things this is judged on, and where to check each
 
@@ -60,10 +60,10 @@ has also been shown red on purpose, one sabotage at a time, in
 awesome-design-md catalog, each with its source URL and a hash of the local copy.
 The TERRITORY gate re-audits all 59 against committed verdicts; the DIFFERENTIAL
 gate compares 209 colour pairs against an independent luminance implementation;
-six pairs were checked by hand against WebAIM before the gate existed. Result on
-this run: 48 brands fail Level AA on at least one pair, 8 pass, 3 are incomplete
-because a token carries transparency. Airbnb's white-on-Rausch button text is
-3.5:1. Anthropic's white on terracotta is 3.2:1. Both below 4.5:1, both cited.
+six pairs were checked by hand against WebAIM before the gate existed. 48 brands
+fail Level AA on at least one pair, 8 pass, 3 are incomplete because a token
+carries transparency. Airbnb's white-on-Rausch button text is 3.5:1. Anthropic's
+white on terracotta is 3.2:1.
 
 The pairing rule (which token is text on which) is published in
 `fixtures/build_brand_fixtures.py` so you can disagree with it. Divider tokens
