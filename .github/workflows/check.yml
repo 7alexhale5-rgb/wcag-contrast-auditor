@@ -20,7 +20,18 @@ jobs:
       - name: the drop-in still refuses to pass its own broken example
         shell: bash
         run: |
-          set +e
-          python3 check.py examples/findings-broken.md
-          status=$?
-          test "$status" -eq 1
+          python3 - <<'PY'
+          import subprocess
+          import sys
+
+          result = subprocess.run(
+              [sys.executable, "check.py", "examples/findings-broken.md"],
+              capture_output=True, text=True, encoding="utf-8",
+          )
+          print(result.stdout, end="")
+          print(result.stderr, end="", file=sys.stderr)
+          expected = "4 citation(s) checked, 3 rejected"
+          if (result.returncode != 1 or result.stderr != ""
+                  or expected not in result.stdout.splitlines()):
+              raise SystemExit("BROKEN_EXAMPLE: expected a completed rejection, not a crash")
+          PY
