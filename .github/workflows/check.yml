@@ -1,0 +1,22 @@
+name: check
+on: [push, pull_request]
+jobs:
+  gate:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python: ["3.10", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: every gate, offline, standard library only
+        run: python3 check.py
+      - name: the drop-in still refuses to pass its own broken example
+        shell: bash
+        run: |
+          set +e
+          python3 check.py examples/findings-broken.md
+          test $? -ne 0
