@@ -1,0 +1,50 @@
+{
+  "brand": "bugatti",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/bugatti/DESIGN.md",
+  "local_copy_sha256": "a07a9d5bb1a777a17d11fbd674ff34bf935a33e928b2e25485c11cf97e272bcf",
+  "extracted": "2026-09-08",
+  "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
+  "elements": [
+    {
+      "id": "on-primary on primary",
+      "fg": "#000000",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 21.0
+    },
+    {
+      "id": "ink on canvas",
+      "fg": "#ffffff",
+      "bg": "#000000",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 21.0
+    },
+    {
+      "id": "body on canvas",
+      "fg": "#cccccc",
+      "bg": "#000000",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 13.08
+    },
+    {
+      "id": "muted on canvas",
+      "fg": "#999999",
+      "bg": "#000000",
+      "kind": "text",
+      "font_px": 16.0,
+      "note": "the oracle skips this pair because some schemas use muted as a surface, not text; included here as text on the reading that muted is muted text",
+      "xref_ratio": 7.37
+    },
+    {
+      "id": "hairline on canvas",
+      "fg": "#262626",
+      "bg": "#000000",
+      "kind": "nontext",
+      "note": "ambiguous role: a page divider is out of scope for 1.4.11, a control outline is in scope; the oracle warns rather than fails on this pair",
+      "xref_ratio": 1.39
+    }
+  ]
+}

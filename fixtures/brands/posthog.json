@@ -1,0 +1,41 @@
+{
+  "brand": "posthog",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/posthog/DESIGN.md",
+  "local_copy_sha256": "a70dbcc92ea3173556037e4b6c5c918fcb566695ac14c5f0e0cd508b109754c5",
+  "extracted": "2026-09-08",
+  "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
+  "elements": [
+    {
+      "id": "on-primary on primary",
+      "fg": "#23251d",
+      "bg": "#f7a501",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 7.64
+    },
+    {
+      "id": "ink on canvas",
+      "fg": "#23251d",
+      "bg": "#eeefe9",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 13.41
+    },
+    {
+      "id": "body on canvas",
+      "fg": "#4d4f46",
+      "bg": "#eeefe9",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 7.2
+    },
+    {
+      "id": "hairline on canvas",
+      "fg": "#bfc1b7",
+      "bg": "#eeefe9",
+      "kind": "nontext",
+      "note": "ambiguous role: a page divider is out of scope for 1.4.11, a control outline is in scope; the oracle warns rather than fails on this pair",
+      "xref_ratio": 1.58
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "brand": "zapier",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/zapier/DESIGN.md",
+  "local_copy_sha256": "555e2757e5bd10873029b4235d0e94b098f9ff2b13f4b8ca2d4d821a8cdc7cb1",
+  "extracted": "2026-09-08",
+  "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
+  "elements": [
+    {
+      "id": "on-primary on primary",
+      "fg": "#fffefb",
+      "bg": "#ff4f00",
+      "kind": "text",
+      "font_px": 18.0,
+      "xref_ratio": 3.27
+    },
+    {
+      "id": "ink on canvas",
+      "fg": "#201515",
+      "bg": "#fffefb",
+      "kind": "text",
+      "font_px": 18.0,
+      "xref_ratio": 17.65
+    },
+    {
+      "id": "body on canvas",
+      "fg": "#605d52",
+      "bg": "#fffefb",
+      "kind": "text",
+      "font_px": 18.0,
+      "xref_ratio": 6.54
+    }
+  ]
+}

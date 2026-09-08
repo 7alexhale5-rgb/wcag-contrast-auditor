@@ -1,0 +1,33 @@
+{
+  "brand": "stripe",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/stripe/DESIGN.md",
+  "local_copy_sha256": "7dc608329055fb459e61e89baa3f9b4944608b5eb119cf040b2d4ebcf8617227",
+  "extracted": "2026-09-08",
+  "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
+  "elements": [
+    {
+      "id": "on-primary on primary",
+      "fg": "#ffffff",
+      "bg": "#533afd",
+      "kind": "text",
+      "font_px": 15.0,
+      "xref_ratio": 6.19
+    },
+    {
+      "id": "ink on canvas",
+      "fg": "#0d253d",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 15.0,
+      "xref_ratio": 15.57
+    },
+    {
+      "id": "hairline on canvas",
+      "fg": "#e3e8ee",
+      "bg": "#ffffff",
+      "kind": "nontext",
+      "note": "ambiguous role: a page divider is out of scope for 1.4.11, a control outline is in scope; the oracle warns rather than fails on this pair",
+      "xref_ratio": 1.23
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "brand": "resend",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/resend/DESIGN.md",
+  "local_copy_sha256": "979184f5b7bc65acbe89b75047a4535fd6fd6df71280c4a29a097d0819fc3a66",
+  "extracted": "2026-09-08",
+  "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
+  "elements": [
+    {
+      "id": "ink on canvas",
+      "fg": "#fcfdff",
+      "bg": "#000000",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 20.63
+    },
+    {
+      "id": "body on canvas",
+      "fg": "rgba(252,253,255,0.86)",
+      "bg": "#000000",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": null
+    },
+    {
+      "id": "hairline on canvas",
+      "fg": "rgba(255,255,255,0.06)",
+      "bg": "#000000",
+      "kind": "nontext",
+      "note": "ambiguous role: a page divider is out of scope for 1.4.11, a control outline is in scope; the oracle warns rather than fails on this pair",
+      "xref_ratio": null
+    }
+  ]
+}

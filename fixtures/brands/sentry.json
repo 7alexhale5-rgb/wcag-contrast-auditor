@@ -1,0 +1,17 @@
+{
+  "brand": "sentry",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/sentry/DESIGN.md",
+  "local_copy_sha256": "446fb2b989cfc9b8b565169b5e7fc061ea82895c5dbbb7d100b0d166ff960b1e",
+  "extracted": "2026-09-08",
+  "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
+  "elements": [
+    {
+      "id": "on-primary on primary",
+      "fg": "#ffffff",
+      "bg": "#150f23",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 18.68
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "brand": "hashicorp",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/hashicorp/DESIGN.md",
+  "local_copy_sha256": "e082de2d132727d8524dcf8f386819867c6c1dd91c436085fd9ef3758e480bdd",
+  "extracted": "2026-09-08",
+  "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
+  "elements": [
+    {
+      "id": "on-primary on primary",
+      "fg": "#ffffff",
+      "bg": "#000000",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 21.0
+    },
+    {
+      "id": "ink on canvas",
+      "fg": "#ffffff",
+      "bg": "#000000",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 21.0
+    },
+    {
+      "id": "hairline on canvas",
+      "fg": "#3b3d45",
+      "bg": "#000000",
+      "kind": "nontext",
+      "note": "ambiguous role: a page divider is out of scope for 1.4.11, a control outline is in scope; the oracle warns rather than fails on this pair",
+      "xref_ratio": 1.94
+    }
+  ]
+}

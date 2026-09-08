@@ -1,0 +1,41 @@
+{
+  "brand": "opencode",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/opencode/DESIGN.md",
+  "local_copy_sha256": "ea0dfb1b046e61e101d2f2ca562de3d86ea69092e4b5f536f0c0fc15bc574152",
+  "extracted": "2026-09-08",
+  "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
+  "elements": [
+    {
+      "id": "on-primary on primary",
+      "fg": "#fdfcfc",
+      "bg": "#201d1d",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 16.34
+    },
+    {
+      "id": "ink on canvas",
+      "fg": "#201d1d",
+      "bg": "#fdfcfc",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 16.34
+    },
+    {
+      "id": "body on canvas",
+      "fg": "#424245",
+      "bg": "#fdfcfc",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 9.78
+    },
+    {
+      "id": "hairline on canvas",
+      "fg": "rgba(15,0,0,0.12)",
+      "bg": "#fdfcfc",
+      "kind": "nontext",
+      "note": "ambiguous role: a page divider is out of scope for 1.4.11, a control outline is in scope; the oracle warns rather than fails on this pair",
+      "xref_ratio": null
+    }
+  ]
+}

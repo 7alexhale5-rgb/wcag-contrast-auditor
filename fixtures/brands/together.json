@@ -1,0 +1,41 @@
+{
+  "brand": "together",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/together/DESIGN.md",
+  "local_copy_sha256": "9433123ce8ee0d86d77ccfdb33f6b8724fd5298aa9d924e0a371f38c1fae43f4",
+  "extracted": "2026-09-08",
+  "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
+  "elements": [
+    {
+      "id": "on-primary on primary",
+      "fg": "#ffffff",
+      "bg": "#000000",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 21.0
+    },
+    {
+      "id": "ink on canvas",
+      "fg": "#000000",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 21.0
+    },
+    {
+      "id": "body on canvas",
+      "fg": "#959494",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 3.03
+    },
+    {
+      "id": "hairline on canvas",
+      "fg": "#959494",
+      "bg": "#ffffff",
+      "kind": "nontext",
+      "note": "ambiguous role: a page divider is out of scope for 1.4.11, a control outline is in scope; the oracle warns rather than fails on this pair",
+      "xref_ratio": 3.03
+    }
+  ]
+}

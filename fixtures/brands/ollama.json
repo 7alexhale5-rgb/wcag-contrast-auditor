@@ -1,0 +1,41 @@
+{
+  "brand": "ollama",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/ollama/DESIGN.md",
+  "local_copy_sha256": "26ba0afd1db71a3402f2ee2b04d21cdbf42c326d9e8e09298d143bdf05fd8c97",
+  "extracted": "2026-09-08",
+  "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
+  "elements": [
+    {
+      "id": "on-primary on primary",
+      "fg": "#ffffff",
+      "bg": "#000000",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 21.0
+    },
+    {
+      "id": "ink on canvas",
+      "fg": "#000000",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 21.0
+    },
+    {
+      "id": "body on canvas",
+      "fg": "#737373",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 4.74
+    },
+    {
+      "id": "hairline on canvas",
+      "fg": "#e5e5e5",
+      "bg": "#ffffff",
+      "kind": "nontext",
+      "note": "ambiguous role: a page divider is out of scope for 1.4.11, a control outline is in scope; the oracle warns rather than fails on this pair",
+      "xref_ratio": 1.26
+    }
+  ]
+}

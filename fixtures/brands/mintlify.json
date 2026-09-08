@@ -1,0 +1,42 @@
+{
+  "brand": "mintlify",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/mintlify/DESIGN.md",
+  "local_copy_sha256": "b988163b57e5a463bf1931c0b07e70103c0ad198cc7205e073d178136230c651",
+  "extracted": "2026-09-08",
+  "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
+  "elements": [
+    {
+      "id": "on-primary on primary",
+      "fg": "#ffffff",
+      "bg": "#0a0a0a",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 19.8
+    },
+    {
+      "id": "ink on canvas",
+      "fg": "#0a0a0a",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 19.8
+    },
+    {
+      "id": "muted on canvas",
+      "fg": "#a8a8aa",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "note": "the oracle skips this pair because some schemas use muted as a surface, not text; included here as text on the reading that muted is muted text",
+      "xref_ratio": 2.37
+    },
+    {
+      "id": "hairline on canvas",
+      "fg": "#e5e5e5",
+      "bg": "#ffffff",
+      "kind": "nontext",
+      "note": "ambiguous role: a page divider is out of scope for 1.4.11, a control outline is in scope; the oracle warns rather than fails on this pair",
+      "xref_ratio": 1.26
+    }
+  ]
+}

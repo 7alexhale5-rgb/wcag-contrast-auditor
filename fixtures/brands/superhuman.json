@@ -1,0 +1,33 @@
+{
+  "brand": "superhuman",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/superhuman/DESIGN.md",
+  "local_copy_sha256": "a59f14d3c1487fa3fca1b70114b677b9c3c3eb3245dd6029d908f1d3291a06ed",
+  "extracted": "2026-09-08",
+  "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
+  "elements": [
+    {
+      "id": "on-primary on primary",
+      "fg": "#ffffff",
+      "bg": "#1b1938",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 16.9
+    },
+    {
+      "id": "ink on canvas",
+      "fg": "#292827",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 14.72
+    },
+    {
+      "id": "hairline on canvas",
+      "fg": "#e8e4dd",
+      "bg": "#ffffff",
+      "kind": "nontext",
+      "note": "ambiguous role: a page divider is out of scope for 1.4.11, a control outline is in scope; the oracle warns rather than fails on this pair",
+      "xref_ratio": 1.27
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "brand": "mistral",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/mistral/DESIGN.md",
+  "local_copy_sha256": "51f71f93d303a6ab065bee80d8467f09c96945cd02816d645557aaa6044c827d",
+  "extracted": "2026-09-08",
+  "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
+  "elements": [
+    {
+      "id": "on-primary on primary",
+      "fg": "#ffffff",
+      "bg": "#fa520f",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 3.34
+    },
+    {
+      "id": "ink on canvas",
+      "fg": "#1f1f1f",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 16.48
+    },
+    {
+      "id": "muted on canvas",
+      "fg": "#a8a8a8",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "note": "the oracle skips this pair because some schemas use muted as a surface, not text; included here as text on the reading that muted is muted text",
+      "xref_ratio": 2.38
+    },
+    {
+      "id": "hairline on canvas",
+      "fg": "#e5e5e5",
+      "bg": "#ffffff",
+      "kind": "nontext",
+      "note": "ambiguous role: a page divider is out of scope for 1.4.11, a control outline is in scope; the oracle warns rather than fails on this pair",
+      "xref_ratio": 1.26
+    }
+  ]
+}

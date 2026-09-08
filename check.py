@@ -232,6 +232,73 @@ def gate_examples():
         else:
             check(f"full output for {fixture} equals a live run byte for byte", body.strip() == rep.strip())
 
+
+# ------------------------------------------------------------ TERRITORY
+def _oracle_luminance(hex6: str) -> float:
+    """Independent WCAG luminance, vendored from software-factory/bin/design_check.py
+    (lines 157-165, 2026-09-08) so the differential replays without that repo.
+    Kept deliberately separate from contrast.py: two implementations, one standard."""
+    r, g, b = (int(hex6[i:i + 2], 16) / 255 for i in (1, 3, 5))
+    def lin(c): return c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4
+    return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b)
+
+def _oracle_ratio(fg: str, bg: str) -> float:
+    l1, l2 = sorted((_oracle_luminance(fg), _oracle_luminance(bg)), reverse=True)
+    return (l1 + 0.05) / (l2 + 0.05)
+
+def gate_territory():
+    gate("TERRITORY: real public brand token files re-audit to the committed verdicts")
+    exp_path = ROOT / "receipts/EXPECTED-brands.json"
+    check("receipts/EXPECTED-brands.json exists", exp_path.exists())
+    if not exp_path.exists(): return
+    expected = json.loads(exp_path.read_text())
+    files = sorted((ROOT / "fixtures/brands").glob("*.json"))
+    check("at least 40 brand fixtures on disk", len(files) >= 40, str(len(files)))
+    check("every fixture has a committed expectation", {f.stem for f in files} == set(expected["brands"]),
+          str({f.stem for f in files} ^ set(expected["brands"])))
+    drift, verdicts, undecided = [], {}, 0
+    for f in files:
+        fx = json.loads(f.read_text())
+        check_prov = "VoltAgent" in fx.get("source", "") and fx.get("local_copy_sha256")
+        if not check_prov: drift.append(f"{f.stem}: no provenance")
+        rep = audit.audit(fx["elements"])
+        got = [[x["location"], x["criterion"], x["level"], x["verdict"], x["measured"]] for x in rep["findings"]]
+        e = expected["brands"].get(f.stem, {})
+        if rep["verdict"] != e.get("verdict") or got != e.get("findings"):
+            drift.append(f.stem)
+        verdicts[rep["verdict"]] = verdicts.get(rep["verdict"], 0) + 1
+        undecided += rep["summary"]["undecidable"]
+    check("every fixture carries catalog provenance and a local hash", not any(d.endswith("no provenance") for d in drift))
+    check("no fixture drifted from its committed verdicts", not [d for d in drift if not d.endswith("no provenance")], str(drift[:5]))
+    print(f"      {len(files)} brands: " + ", ".join(f"{k} {v}" for k, v in sorted(verdicts.items())) + f"; {undecided} undecidable element(s) reported, none skipped")
+    # Hand anchors: pairs checked against a second public calculator before this gate existed.
+    anchors = expected.get("hand_anchors", [])
+    check("at least five pairs were hand-anchored against WebAIM", len(anchors) >= 5, str(len(anchors)))
+    for a in anchors:
+        ours = contrast.round_ratio(contrast.contrast_ratio(a["fg"], a["bg"]))
+        # WebAIM rounds to two decimals; we floor to one. Agreement means our floored
+        # value equals WebAIM's value floored the same way.
+        theirs = __import__("math").floor(a["webaim_ratio"] * 10) / 10
+        check(f"{a['brand']} {a['location']}: ours {ours}:1 vs WebAIM {a['webaim_ratio']}:1", ours == theirs)
+
+def gate_differential():
+    gate("DIFFERENTIAL: an independent luminance implementation agrees on every brand pair")
+    files = sorted((ROOT / "fixtures/brands").glob("*.json"))
+    pairs, disagreements, missing_xref = 0, [], 0
+    for f in files:
+        for el in json.loads(f.read_text())["elements"]:
+            if not (re.fullmatch(r"#[0-9a-fA-F]{6}", el["fg"]) and re.fullmatch(r"#[0-9a-fA-F]{6}", el["bg"])):
+                continue
+            pairs += 1
+            ours = round(contrast.contrast_ratio(el["fg"], el["bg"]), 2)
+            vendored = round(_oracle_ratio(el["fg"], el["bg"]), 2)
+            if abs(ours - vendored) > 0.011: disagreements.append((f.stem, el["id"], ours, vendored))
+            if el.get("xref_ratio") is None: missing_xref += 1
+            elif abs(ours - el["xref_ratio"]) > 0.011: disagreements.append((f.stem, el["id"], ours, el["xref_ratio"]))
+    check(f"{pairs} opaque pairs compared against the vendored oracle", pairs > 100, str(pairs))
+    check("zero disagreements beyond 0.01", not disagreements, str(disagreements[:3]))
+    check("every opaque pair carries the oracle's build-time ratio", missing_xref == 0, str(missing_xref))
+
 # -------------------------------------------------------------- runner
 def verify_reference() -> int:
     m = json.loads((REF / "MANIFEST.json").read_text())
@@ -247,7 +314,7 @@ def main(argv: list[str]) -> int:
     if len(argv) == 2:
         return _cite_only(argv[1])
     for g in (gate_shape, gate_provenance, gate_anchor, gate_mutation, gate_silence,
-              gate_invariance, gate_purity, gate_citation, gate_examples):
+              gate_invariance, gate_purity, gate_citation, gate_examples, gate_territory, gate_differential):
         g()
     print("\n" + "=" * 62)
     print(f"{COUNT} checks in {GATES} gates: {COUNT - len(FAILS)} passed, {len(FAILS)} failed")

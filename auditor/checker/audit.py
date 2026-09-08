@@ -59,6 +59,7 @@ def normalise(el: dict) -> dict:
     elif el.get("font_weight") is not None: out["bold"] = is_bold(el["font_weight"])
     else: out["bold"] = False
     if el.get("opacity") is not None: out["opacity"] = float(el["opacity"])
+    if el.get("note"): out["note"] = str(el["note"])
     return out
 
 def _input_str(el: dict) -> str:
@@ -172,16 +173,20 @@ def render(rep: dict) -> str:
         L.append(f"        provision: reference/{f['provision_file']}")
         L.append(f"        quote: \"{f['quote']}\"")
         L.append(f"        input: {_input_str(f['input'])}")
+        if f["input"].get("note"):
+            L.append(f"        note: {f['input']['note']}")
     return "\n".join(L)
 
 EXIT = {"PASS": 0, "FAIL": 1, "INCOMPLETE": 2}
 
 def main() -> int:
     p = argparse.ArgumentParser(description="Audit colour pairs against WCAG 2.1 AA contrast.")
-    p.add_argument("input", help="JSON file: a list of {id, fg, bg, font_px, bold, kind}")
+    p.add_argument("input", help="JSON file: a list of {id, fg, bg, font_px|font_pt, bold|font_weight, opacity, exempt, kind}, or an object with an elements list")
     p.add_argument("--json", action="store_true", help="emit the full report as JSON")
     a = p.parse_args()
-    rep = audit(json.loads(Path(a.input).read_text()))
+    data = json.loads(Path(a.input).read_text())
+    # Accept a bare list of elements, or an object carrying "elements" plus provenance.
+    rep = audit(data["elements"] if isinstance(data, dict) else data)
     print(json.dumps(rep, indent=2) if a.json else render(rep))
     return EXIT[rep["verdict"]]  # PASS 0, FAIL 1, INCOMPLETE 2: an undecided audit never passes CI silently
 

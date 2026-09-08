@@ -1,0 +1,50 @@
+{
+  "brand": "cal",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/cal/DESIGN.md",
+  "local_copy_sha256": "b47441d70df5e1c6788239bcc495ab3b65ab5fbc81ddb0b49e3d0e3156cd5101",
+  "extracted": "2026-09-08",
+  "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
+  "elements": [
+    {
+      "id": "on-primary on primary",
+      "fg": "#ffffff",
+      "bg": "#111111",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 18.88
+    },
+    {
+      "id": "ink on canvas",
+      "fg": "#111111",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 18.88
+    },
+    {
+      "id": "body on canvas",
+      "fg": "#374151",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 10.31
+    },
+    {
+      "id": "muted on canvas",
+      "fg": "#6b7280",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "note": "the oracle skips this pair because some schemas use muted as a surface, not text; included here as text on the reading that muted is muted text",
+      "xref_ratio": 4.83
+    },
+    {
+      "id": "hairline on canvas",
+      "fg": "#e5e7eb",
+      "bg": "#ffffff",
+      "kind": "nontext",
+      "note": "ambiguous role: a page divider is out of scope for 1.4.11, a control outline is in scope; the oracle warns rather than fails on this pair",
+      "xref_ratio": 1.24
+    }
+  ]
+}

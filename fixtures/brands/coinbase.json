@@ -1,0 +1,50 @@
+{
+  "brand": "coinbase",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/coinbase/DESIGN.md",
+  "local_copy_sha256": "f0c2219e15d7755d5a7d1a45443110ed6e1c159397a15bee493ed7fcb764d7ad",
+  "extracted": "2026-09-08",
+  "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
+  "elements": [
+    {
+      "id": "on-primary on primary",
+      "fg": "#ffffff",
+      "bg": "#0052ff",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 5.75
+    },
+    {
+      "id": "ink on canvas",
+      "fg": "#0a0b0d",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 19.69
+    },
+    {
+      "id": "body on canvas",
+      "fg": "#5b616e",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 6.21
+    },
+    {
+      "id": "muted on canvas",
+      "fg": "#7c828a",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "note": "the oracle skips this pair because some schemas use muted as a surface, not text; included here as text on the reading that muted is muted text",
+      "xref_ratio": 3.88
+    },
+    {
+      "id": "hairline on canvas",
+      "fg": "#dee1e6",
+      "bg": "#ffffff",
+      "kind": "nontext",
+      "note": "ambiguous role: a page divider is out of scope for 1.4.11, a control outline is in scope; the oracle warns rather than fails on this pair",
+      "xref_ratio": 1.31
+    }
+  ]
+}

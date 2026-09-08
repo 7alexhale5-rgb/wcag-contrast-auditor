@@ -49,6 +49,8 @@ def parse_findings(text: str) -> list[dict]:
             cur["quote"] = s[len("quote: "):].strip('"')
         elif s.startswith("input: "):
             cur["input"] = dict(kv.split("=", 1) for kv in s[len("input: "):].split())
+        elif s.startswith("note: "):
+            cur["note"] = s[len("note: "):]
         elif s:
             cur["lines"].append(s)
     for f in out:

@@ -1,0 +1,33 @@
+{
+  "brand": "vodafone",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/vodafone/DESIGN.md",
+  "local_copy_sha256": "dfd39e853beabb244013407cf89e0eda41f90100daf2d3651a2a78c36a24b0eb",
+  "extracted": "2026-09-08",
+  "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
+  "elements": [
+    {
+      "id": "on-primary on primary",
+      "fg": "#ffffff",
+      "bg": "#e60000",
+      "kind": "text",
+      "font_px": 18.0,
+      "xref_ratio": 4.81
+    },
+    {
+      "id": "ink on canvas",
+      "fg": "#25282b",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 18.0,
+      "xref_ratio": 14.82
+    },
+    {
+      "id": "body on canvas",
+      "fg": "#7e7e7e",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 18.0,
+      "xref_ratio": 4.06
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "brand": "slack",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/slack/DESIGN.md",
+  "local_copy_sha256": "50faf2cd801e601dc379b096c106b07469c80c1e44155e3a3d8af6e811575f15",
+  "extracted": "2026-09-08",
+  "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
+  "elements": [
+    {
+      "id": "on-primary on primary",
+      "fg": "#ffffff",
+      "bg": "#4a154b",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 14.0
+    },
+    {
+      "id": "ink on canvas",
+      "fg": "#1d1d1d",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 16.86
+    },
+    {
+      "id": "hairline on canvas",
+      "fg": "#e6e6e6",
+      "bg": "#ffffff",
+      "kind": "nontext",
+      "note": "ambiguous role: a page divider is out of scope for 1.4.11, a control outline is in scope; the oracle warns rather than fails on this pair",
+      "xref_ratio": 1.25
+    }
+  ]
+}

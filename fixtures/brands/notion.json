@@ -1,0 +1,42 @@
+{
+  "brand": "notion",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/notion/DESIGN.md",
+  "local_copy_sha256": "a693706bb5364fb86fc7232041b72d28454e755bf222028cb18eef9f474be87b",
+  "extracted": "2026-09-08",
+  "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
+  "elements": [
+    {
+      "id": "on-primary on primary",
+      "fg": "#ffffff",
+      "bg": "#5645d4",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 6.57
+    },
+    {
+      "id": "ink on canvas",
+      "fg": "#1a1a1a",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 17.4
+    },
+    {
+      "id": "muted on canvas",
+      "fg": "#bbb8b1",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "note": "the oracle skips this pair because some schemas use muted as a surface, not text; included here as text on the reading that muted is muted text",
+      "xref_ratio": 1.98
+    },
+    {
+      "id": "hairline on canvas",
+      "fg": "#e5e3df",
+      "bg": "#ffffff",
+      "kind": "nontext",
+      "note": "ambiguous role: a page divider is out of scope for 1.4.11, a control outline is in scope; the oracle warns rather than fails on this pair",
+      "xref_ratio": 1.28
+    }
+  ]
+}

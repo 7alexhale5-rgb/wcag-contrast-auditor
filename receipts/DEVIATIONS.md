@@ -59,3 +59,24 @@ After each restore:
 GATE PASSED: every rule was shown to fail on purpose, stay quiet on compliant
 input, hold across five spellings, cite only what is on disk, and recompute.
 ```
+
+### One committed brand verdict changed from FAIL to PASS
+```
+  FAIL  no fixture drifted from its committed verdicts  <- ['airbnb']
+114 checks in 11 gates: 113 passed, 1 failed
+GATE FAILED
+```
+
+### The vendored oracle nudged by one coefficient
+```
+  FAIL  zero disagreements beyond 0.01  <- [('airbnb', 'on-primary on primary', 3.52, 3.49), ('airbnb', 'ink on canvas', 15.91, 15.8), ('airbnb', 'body on canvas', 10.53, 10.48)]
+114 checks in 11 gates: 113 passed, 1 failed
+GATE FAILED
+```
+
+After restore:
+```
+114 checks in 11 gates: 114 passed, 0 failed
+GATE PASSED: every rule was shown to fail on purpose, stay quiet on compliant
+input, hold across five spellings, cite only what is on disk, and recompute.
+```

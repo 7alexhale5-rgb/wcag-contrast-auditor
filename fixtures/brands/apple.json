@@ -1,0 +1,41 @@
+{
+  "brand": "apple",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/apple/DESIGN.md",
+  "local_copy_sha256": "4ef3bb63eb6eb4aeeb6330dce2624e53129cb3950ad58f5a277a0a3f0c1722b4",
+  "extracted": "2026-09-08",
+  "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
+  "elements": [
+    {
+      "id": "on-primary on primary",
+      "fg": "#ffffff",
+      "bg": "#0066cc",
+      "kind": "text",
+      "font_px": 17.0,
+      "xref_ratio": 5.57
+    },
+    {
+      "id": "ink on canvas",
+      "fg": "#1d1d1f",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 17.0,
+      "xref_ratio": 16.83
+    },
+    {
+      "id": "body on canvas",
+      "fg": "#1d1d1f",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 17.0,
+      "xref_ratio": 16.83
+    },
+    {
+      "id": "hairline on canvas",
+      "fg": "#e0e0e0",
+      "bg": "#ffffff",
+      "kind": "nontext",
+      "note": "ambiguous role: a page divider is out of scope for 1.4.11, a control outline is in scope; the oracle warns rather than fails on this pair",
+      "xref_ratio": 1.32
+    }
+  ]
+}

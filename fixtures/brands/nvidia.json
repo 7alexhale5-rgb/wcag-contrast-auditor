@@ -1,0 +1,41 @@
+{
+  "brand": "nvidia",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/nvidia/DESIGN.md",
+  "local_copy_sha256": "8e13743d88bd54efc64cc6f7cdd4158ea811441072f89c149b3c5211407808da",
+  "extracted": "2026-09-08",
+  "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
+  "elements": [
+    {
+      "id": "on-primary on primary",
+      "fg": "#000000",
+      "bg": "#76b900",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 8.71
+    },
+    {
+      "id": "ink on canvas",
+      "fg": "#000000",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 21.0
+    },
+    {
+      "id": "body on canvas",
+      "fg": "#1a1a1a",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 17.4
+    },
+    {
+      "id": "hairline on canvas",
+      "fg": "#cccccc",
+      "bg": "#ffffff",
+      "kind": "nontext",
+      "note": "ambiguous role: a page divider is out of scope for 1.4.11, a control outline is in scope; the oracle warns rather than fails on this pair",
+      "xref_ratio": 1.61
+    }
+  ]
+}

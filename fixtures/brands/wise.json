@@ -1,0 +1,33 @@
+{
+  "brand": "wise",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/wise/DESIGN.md",
+  "local_copy_sha256": "88505259061e4a4bc310e5fa1b7b4ff1106e3388d5d1673aecf154ccda5902e2",
+  "extracted": "2026-09-08",
+  "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
+  "elements": [
+    {
+      "id": "on-primary on primary",
+      "fg": "#0e0f0c",
+      "bg": "#9fe870",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 13.05
+    },
+    {
+      "id": "ink on canvas",
+      "fg": "#0e0f0c",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 19.23
+    },
+    {
+      "id": "body on canvas",
+      "fg": "#454745",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 9.37
+    }
+  ]
+}

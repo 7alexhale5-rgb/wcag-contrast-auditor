@@ -1,0 +1,41 @@
+{
+  "brand": "webflow",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/webflow/DESIGN.md",
+  "local_copy_sha256": "5b507e4750a11f448559edeb6641abcb9c19692a320bc00adfb65e44874bb0ea",
+  "extracted": "2026-09-08",
+  "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
+  "elements": [
+    {
+      "id": "on-primary on primary",
+      "fg": "#ffffff",
+      "bg": "#080808",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 20.03
+    },
+    {
+      "id": "ink on canvas",
+      "fg": "#080808",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 20.03
+    },
+    {
+      "id": "body on canvas",
+      "fg": "#363636",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 12.08
+    },
+    {
+      "id": "hairline on canvas",
+      "fg": "#d8d8d8",
+      "bg": "#ffffff",
+      "kind": "nontext",
+      "note": "ambiguous role: a page divider is out of scope for 1.4.11, a control outline is in scope; the oracle warns rather than fails on this pair",
+      "xref_ratio": 1.43
+    }
+  ]
+}

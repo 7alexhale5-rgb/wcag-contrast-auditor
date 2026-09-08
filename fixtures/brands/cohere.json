@@ -1,0 +1,42 @@
+{
+  "brand": "cohere",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/cohere/DESIGN.md",
+  "local_copy_sha256": "2850964e4bd7c591b7ff909ec0b63d70c2acbf169ca1248fc453a77c82ba97bb",
+  "extracted": "2026-09-08",
+  "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
+  "elements": [
+    {
+      "id": "on-primary on primary",
+      "fg": "#ffffff",
+      "bg": "#17171c",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 17.86
+    },
+    {
+      "id": "ink on canvas",
+      "fg": "#212121",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 16.1
+    },
+    {
+      "id": "muted on canvas",
+      "fg": "#93939f",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "note": "the oracle skips this pair because some schemas use muted as a surface, not text; included here as text on the reading that muted is muted text",
+      "xref_ratio": 3.04
+    },
+    {
+      "id": "hairline on canvas",
+      "fg": "#d9d9dd",
+      "bg": "#ffffff",
+      "kind": "nontext",
+      "note": "ambiguous role: a page divider is out of scope for 1.4.11, a control outline is in scope; the oracle warns rather than fails on this pair",
+      "xref_ratio": 1.41
+    }
+  ]
+}

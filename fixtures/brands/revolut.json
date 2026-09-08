@@ -1,0 +1,17 @@
+{
+  "brand": "revolut",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/revolut/DESIGN.md",
+  "local_copy_sha256": "d0ae9aba4144fb4a15f2ca42a27c8f36505c07a070e5e2490e910dba14d4f2bf",
+  "extracted": "2026-09-08",
+  "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
+  "elements": [
+    {
+      "id": "on-primary on primary",
+      "fg": "#ffffff",
+      "bg": "#494fdf",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 6.06
+    }
+  ]
+}

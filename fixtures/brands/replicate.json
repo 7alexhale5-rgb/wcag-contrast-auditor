@@ -1,0 +1,41 @@
+{
+  "brand": "replicate",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/replicate/DESIGN.md",
+  "local_copy_sha256": "61903d155b91135869cfb6461c5f103f5c8778cdc173e9a119d9d2868f6211f1",
+  "extracted": "2026-09-08",
+  "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
+  "elements": [
+    {
+      "id": "on-primary on primary",
+      "fg": "#ffffff",
+      "bg": "#ea2804",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 4.37
+    },
+    {
+      "id": "ink on canvas",
+      "fg": "#202020",
+      "bg": "#f9f7f3",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 15.23
+    },
+    {
+      "id": "body on canvas",
+      "fg": "#3a3a3a",
+      "bg": "#f9f7f3",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 10.63
+    },
+    {
+      "id": "hairline on canvas",
+      "fg": "rgba(32,32,32,0.12)",
+      "bg": "#f9f7f3",
+      "kind": "nontext",
+      "note": "ambiguous role: a page divider is out of scope for 1.4.11, a control outline is in scope; the oracle warns rather than fails on this pair",
+      "xref_ratio": null
+    }
+  ]
+}

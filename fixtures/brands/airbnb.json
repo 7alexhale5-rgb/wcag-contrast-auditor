@@ -1,0 +1,50 @@
+{
+  "brand": "airbnb",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/airbnb/DESIGN.md",
+  "local_copy_sha256": "fb267d8203e3ad338befb389641279ccd70e8c6812a5081baa490c0b66972c98",
+  "extracted": "2026-09-08",
+  "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
+  "elements": [
+    {
+      "id": "on-primary on primary",
+      "fg": "#ffffff",
+      "bg": "#ff385c",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 3.52
+    },
+    {
+      "id": "ink on canvas",
+      "fg": "#222222",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 15.91
+    },
+    {
+      "id": "body on canvas",
+      "fg": "#3f3f3f",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 10.53
+    },
+    {
+      "id": "muted on canvas",
+      "fg": "#6a6a6a",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "note": "the oracle skips this pair because some schemas use muted as a surface, not text; included here as text on the reading that muted is muted text",
+      "xref_ratio": 5.41
+    },
+    {
+      "id": "hairline on canvas",
+      "fg": "#dddddd",
+      "bg": "#ffffff",
+      "kind": "nontext",
+      "note": "ambiguous role: a page divider is out of scope for 1.4.11, a control outline is in scope; the oracle warns rather than fails on this pair",
+      "xref_ratio": 1.36
+    }
+  ]
+}

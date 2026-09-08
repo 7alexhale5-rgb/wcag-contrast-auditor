@@ -1,0 +1,41 @@
+{
+  "brand": "wired",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/wired/DESIGN.md",
+  "local_copy_sha256": "e4963d10203783f4466ee69a090d983a68271e11b73bb0631de431d4bb6bd29a",
+  "extracted": "2026-09-08",
+  "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
+  "elements": [
+    {
+      "id": "on-primary on primary",
+      "fg": "#ffffff",
+      "bg": "#000000",
+      "kind": "text",
+      "font_px": 17.0,
+      "xref_ratio": 21.0
+    },
+    {
+      "id": "ink on canvas",
+      "fg": "#000000",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 17.0,
+      "xref_ratio": 21.0
+    },
+    {
+      "id": "body on canvas",
+      "fg": "#757575",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 17.0,
+      "xref_ratio": 4.61
+    },
+    {
+      "id": "hairline on canvas",
+      "fg": "#e0e0e0",
+      "bg": "#ffffff",
+      "kind": "nontext",
+      "note": "ambiguous role: a page divider is out of scope for 1.4.11, a control outline is in scope; the oracle warns rather than fails on this pair",
+      "xref_ratio": 1.32
+    }
+  ]
+}

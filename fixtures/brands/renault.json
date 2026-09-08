@@ -1,0 +1,41 @@
+{
+  "brand": "renault",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/renault/DESIGN.md",
+  "local_copy_sha256": "8025d41464b36f8388dad9404f3297797b9fea975019a62181fd82f7201add6e",
+  "extracted": "2026-09-08",
+  "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
+  "elements": [
+    {
+      "id": "on-primary on primary",
+      "fg": "#000000",
+      "bg": "#ffed00",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 17.37
+    },
+    {
+      "id": "ink on canvas",
+      "fg": "#000000",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 21.0
+    },
+    {
+      "id": "body on canvas",
+      "fg": "#222222",
+      "bg": "#ffffff",
+      "kind": "text",
+      "font_px": 16.0,
+      "xref_ratio": 15.91
+    },
+    {
+      "id": "hairline on canvas",
+      "fg": "#f2f2f2",
+      "bg": "#ffffff",
+      "kind": "nontext",
+      "note": "ambiguous role: a page divider is out of scope for 1.4.11, a control outline is in scope; the oracle warns rather than fails on this pair",
+      "xref_ratio": 1.12
+    }
+  ]
+}
