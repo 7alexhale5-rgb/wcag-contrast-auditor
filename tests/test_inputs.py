@@ -105,6 +105,36 @@ class InputTests(unittest.TestCase):
                 self.assertEqual(finding["required"], 4.5)
                 self.assertEqual(json.loads(json.dumps(rep)), rep)
 
+    def test_oversized_size_numbers_have_named_errors_and_unknown_findings(self):
+        for form, value in (("trailing zeros", "16." + "0" * 5000),
+                            ("leading zeros", "0" * 5000 + "16")):
+            for fields in ({"font_px": value}, {"font_pt": value},
+                           {"font_px": value, "font_pt": 12}):
+                raw = {"id": "oversized", "fg": "#000", "bg": "#fff", **fields}
+                with self.subTest(form=form, keys=list(fields), operation="normalise"):
+                    with self.assertRaisesRegex(contrast.ColorError, "cannot represent"):
+                        audit.normalise(raw)
+                with self.subTest(form=form, keys=list(fields), operation="check_element"):
+                    finding = audit.check_element(raw)[0]
+                    self.assertEqual(finding.verdict, "UNDECIDABLE")
+                    self.assertIsNone(finding.measured)
+                    self.assertEqual(finding.input, raw)
+
+    def test_oversized_size_does_not_hide_mixed_aa_failure_exit(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "oversized.json"
+            for form, value in (("trailing zeros", "16." + "0" * 5000),
+                                ("leading zeros", "0" * 5000 + "16")):
+                elements = [{**BASE, "fg": "#777"}, {**BASE, "font_px": value}, BASE]
+                path.write_text(json.dumps(elements), encoding="utf-8")
+                result = subprocess.run([sys.executable, str(ROOT / "auditor/checker/audit.py"), str(path), "--json"], capture_output=True, text=True, encoding="utf-8")
+                with self.subTest(form=form):
+                    self.assertEqual(result.returncode, 1, result.stderr)
+                    rep = json.loads(result.stdout)
+                    self.assertEqual(rep["summary"]["aa_fail"], 1)
+                    self.assertEqual(rep["summary"]["aa_pass"], 1)
+                    self.assertEqual(rep["summary"]["undecidable"], 1)
+
     def test_opacity_is_finite_in_range_and_exactly_opaque(self):
         for value in (-1, 0, 0.5, 0.999, math.nextafter(1, 0), 1.001,
                       math.inf, math.nan, True, False, None, "1px", [], {},

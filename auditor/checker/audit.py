@@ -59,8 +59,12 @@ def _num(v, what: str) -> float:
         raise ColorError(f"cannot read {what} {v!r}") from None
     if not math.isfinite(number):
         raise ColorError(f"{what} must be finite, got {v!r}")
-    if what in ("font_px", "font_pt") and number <= 0:
-        raise ColorError(f"{what} must be positive, got {v!r}")
+    if what in ("font_px", "font_pt"):
+        if number <= 0:
+            raise ColorError(f"{what} must be positive, got {v!r}")
+        # Validate exact representation while still inside normalization's
+        # per-element refusal path, before later threshold comparisons.
+        _exact_size(v, unit)
     if what == "opacity":
         try:
             exact = Decimal(s)
@@ -74,7 +78,10 @@ def _num(v, what: str) -> float:
 
 def _exact_size(value, unit: str) -> Fraction:
     """Retain a validated size's supplied decimal value for threshold checks."""
-    return Fraction(str(value).strip().lower().removesuffix(unit).strip())
+    try:
+        return Fraction(str(value).strip().lower().removesuffix(unit).strip())
+    except ValueError:
+        raise ColorError(f"cannot represent {unit} size exactly") from None
 
 def normalise(el: dict) -> dict:
     """Validate absolute inputs before choosing the contrast threshold.
