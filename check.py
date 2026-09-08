@@ -141,6 +141,9 @@ def gate_mutation():
     check("the same pair without the exemption named is FAIL", unnamed.verdict == "FAIL")
     bogus = audit.check_element({"id": "x", "fg": "#eeeeee", "bg": "#ffffff", "kind": "nontext", "exempt": "logotype"})[0]
     check("an exemption the criterion does not have is refused", bogus.verdict == "UNDECIDABLE")
+    div = audit.check_element({"id": "divider", "fg": "#e5e5e5", "bg": "#ffffff", "kind": "nontext", "exempt": "decorative"})[0]
+    check("a divider named decorative is N/A under 1.4.11 and quotes the 'required to identify' clause",
+          div.verdict == "N/A" and div.criterion == "1.4.11" and "required to identify" in div.quote)
     nt = aa({"id": "nt", "fg": "rgba(0,0,0,0.5)", "bg": "#fff", "kind": "nontext"})[0]
     check("an undecidable non-text element cites 1.4.11, not 1.4.3", nt.criterion == "1.4.11", nt.criterion)
 

@@ -106,6 +106,10 @@ EXEMPTIONS = {
     },
     "nontext": {
         "inactive":   ("except for inactive components or where the appearance of the component is determined by the user agent and not modified by the author", "wcag21-1.4.11.md"),
+        # A decorative divider is not "required to identify" a component or state,
+        # so 1.4.11 does not reach it. The person extracting the element decides
+        # that; the auditor only quotes the clause that makes it out of scope.
+        "decorative": ("Visual information required to identify user interface components and states", "wcag21-1.4.11.md"),
     },
 }
 EXEMPTIONS["text"]["inactive"] = EXEMPTIONS["text"]["incidental"]

@@ -38,4 +38,9 @@ Three inputs are undecidable, and you say so instead of guessing:
    without it, and guessing changes the threshold from 4.5:1 to 3:1.
 3. A colour format the parser does not recognise. Ask, do not assume.
 
+And one class of input is out of scope rather than undecidable: a decorative
+divider or a logo. You never decide that yourself. If the person who extracted
+the element marks it `"exempt": "decorative"` or `"exempt": "logotype"`, report
+N/A and quote the clause that puts it out of reach. Without that mark, audit it.
+
 An audit with three honest gaps is worth more than one with three invented numbers.

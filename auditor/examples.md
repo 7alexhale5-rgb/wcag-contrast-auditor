@@ -1,8 +1,10 @@
 # Examples
 
-Four worked audits. Every block below is tagged with the fixture it came from, and
-`check.py` re-runs that fixture and refuses to pass unless the block equals the
-live output. Nothing here was edited by hand.
+Four worked audits. Every block below is tagged with the fixture it came from.
+The fixtures and the gate that re-runs them (`fixtures/`, `check.py`) live in the
+repository root, outside this drop-in folder, at
+https://github.com/7alexhale5-rgb/wcag-contrast-auditor . The gate refuses to
+pass unless each block equals the live output. Nothing here was edited by hand.
 
 ## 1. A page that passes
 

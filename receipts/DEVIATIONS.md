@@ -80,3 +80,15 @@ After restore:
 GATE PASSED: every rule was shown to fail on purpose, stay quiet on compliant
 input, hold across five spellings, cite only what is on disk, and recompute.
 ```
+
+## Corrections traceable to a run (2026-09-08)
+
+Per TEST_METHOD.md, a correction is any change inside `auditor/` traceable to a run. Count so far: **3**, all from Run C-A (cold model, checker available).
+
+| # | From | Change inside auditor/ | Why |
+|---|---|---|---|
+| C-1 | Run C-A | `checker/contrast.py`, `checker/audit.py`: added `decorative` as a named non-text exemption, N/A quoting the 1.4.11 "required to identify" clause | the model found no exemption name for a decorative divider; the only non-text one was `inactive` |
+| C-2 | Run C-A | `examples.md`: says where `fixtures/` and `check.py` live | they are outside the drop-in, so a reader of the folder alone could not run the self-check it described |
+| C-3 | Run C-A | `identity.md`: one paragraph on out-of-scope (decorative, logotype) as distinct from undecidable | follows from C-1 |
+
+Uncorrected edit, not prompted by a run: none.

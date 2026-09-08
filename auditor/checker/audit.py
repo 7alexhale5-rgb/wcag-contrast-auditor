@@ -83,8 +83,10 @@ def check_element(raw: dict) -> list[Finding]:
                             f"exemption {el['exempt']!r} does not exist in SC {base.criterion}; "
                             f"valid for {kind}: {', '.join(sorted(EXEMPTIONS[kind]))}",
                             base.provision_file, base.quote, el)]
+        why = ("not visual information required to identify a component or state, so SC 1.4.11 does not reach it"
+               if kind == "nontext" and el["exempt"] == "decorative" else "no contrast requirement applies")
         return [Finding("N/A", base.criterion, base.level, "none", loc, None, base.ratio,
-                        f"exempt as {el['exempt']}: no contrast requirement applies", ex[1], ex[0], el)]
+                        f"exempt as {el['exempt']}: {why}", ex[1], ex[0], el)]
 
     if el.get("opacity", 1.0) < 0.999:
         return [Finding("UNDECIDABLE", base.criterion, base.level, "unknown", loc, None, base.ratio,
