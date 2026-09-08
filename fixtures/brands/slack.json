@@ -1,7 +1,9 @@
 {
   "brand": "slack",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/slack/DESIGN.md",
-  "local_copy_sha256": "50faf2cd801e601dc379b096c106b07469c80c1e44155e3a3d8af6e811575f15",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/slack/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "03cb243015a2e11d0faf05caba7f3d0c7fda6839b1f5ce707a23e8d46d1a11bd",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

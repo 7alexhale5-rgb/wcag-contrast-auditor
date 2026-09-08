@@ -1,7 +1,9 @@
 {
   "brand": "intercom",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/intercom/DESIGN.md",
-  "local_copy_sha256": "d55506d13e7c7ccf71e9b66d293713c63c078d9476d3988591225e879e443602",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/intercom/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "962be23cd947e87a86b2ffbc0440e9d0808243a6ef3af2aa04e8e7cc04d48ba3",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

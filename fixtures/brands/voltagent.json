@@ -1,7 +1,9 @@
 {
   "brand": "voltagent",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/voltagent/DESIGN.md",
-  "local_copy_sha256": "dc48eeebd93a88ae7542b38d1759a7ada90f92dde677fad3ca21d02d1db56573",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/voltagent/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "4457887741ae5e965e205282b03c4bff83e47dd7a03cd7f38c64623a17569fcd",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

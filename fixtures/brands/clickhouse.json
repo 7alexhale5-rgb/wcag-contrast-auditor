@@ -1,7 +1,9 @@
 {
   "brand": "clickhouse",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/clickhouse/DESIGN.md",
-  "local_copy_sha256": "823e1d13134039ac0591a73a30c5400ee64c5205f96c4e4428794f975ba3d540",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/clickhouse/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "50987e29b603cc7503ebe724af810fcf43845e96fdd4083e0fbe5fe00d2cdd2e",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

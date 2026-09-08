@@ -1,7 +1,9 @@
 {
   "brand": "xai",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/xai/DESIGN.md",
-  "local_copy_sha256": "d0692d4eebcfe6d3e4bfd1dd7a9f41337b58d8d419c5da72a7e1e23c691e9eb7",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/x.ai/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "9c9ef45d8c0c3b9a7622833cdff8bd125ed6bf296a82cc7274215276706e52eb",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

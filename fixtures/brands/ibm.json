@@ -1,7 +1,9 @@
 {
   "brand": "ibm",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/ibm/DESIGN.md",
-  "local_copy_sha256": "2e9fc60e21d759a02a1768af84f202c249825bfa006df2cb8836adc5469f1d1a",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/ibm/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "46f6fd65b5e7524fed1133b9b3c0dd619f9a0f145fbb2b87f3675c701a88f3bd",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

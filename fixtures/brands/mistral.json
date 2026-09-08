@@ -1,7 +1,9 @@
 {
   "brand": "mistral",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/mistral/DESIGN.md",
-  "local_copy_sha256": "51f71f93d303a6ab065bee80d8467f09c96945cd02816d645557aaa6044c827d",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/mistral.ai/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "40e2c692d72c54bae1e43446e2d059b71d773668d39d71ccb7ededa9fa07d145",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

@@ -1,7 +1,9 @@
 {
   "brand": "pinterest",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/pinterest/DESIGN.md",
-  "local_copy_sha256": "789cdaebf30fc3019235d63ea01fefeef540318a00206915a1c975d3b5f82b27",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/pinterest/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "26a202fd244e9213d5e2475d81581828da1dd97e089e44639d9783d04f96e4a8",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

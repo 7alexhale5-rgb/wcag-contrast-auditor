@@ -1,7 +1,9 @@
 {
   "brand": "minimax",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/minimax/DESIGN.md",
-  "local_copy_sha256": "05586b50027812b37db8bba5f7dc8136b698977760c1419d1fe4882b38b56688",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/minimax/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "2658b96488bb629749259b152c5ba2912a0e8feb6a03477e265879abd9264c50",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

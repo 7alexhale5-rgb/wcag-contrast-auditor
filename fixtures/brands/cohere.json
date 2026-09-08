@@ -1,7 +1,9 @@
 {
   "brand": "cohere",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/cohere/DESIGN.md",
-  "local_copy_sha256": "2850964e4bd7c591b7ff909ec0b63d70c2acbf169ca1248fc453a77c82ba97bb",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/cohere/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "1c49a5a5f88d43841d4f4afa33831328d47a5715048700a3b75086a822575883",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

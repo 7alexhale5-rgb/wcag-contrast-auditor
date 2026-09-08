@@ -1,7 +1,9 @@
 {
   "brand": "superhuman",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/superhuman/DESIGN.md",
-  "local_copy_sha256": "a59f14d3c1487fa3fca1b70114b677b9c3c3eb3245dd6029d908f1d3291a06ed",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/superhuman/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "3640298bd2957aee80ce88eb465a7541ba835ec105cba364a6a621d885c7f34f",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

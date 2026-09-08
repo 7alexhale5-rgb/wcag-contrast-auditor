@@ -1,7 +1,9 @@
 {
   "brand": "apple",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/apple/DESIGN.md",
-  "local_copy_sha256": "4ef3bb63eb6eb4aeeb6330dce2624e53129cb3950ad58f5a277a0a3f0c1722b4",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/apple/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "83fbc614443a9b3d7569e9956a43e7b8740f9d0f939f58b8154f7a7cec3002b2",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

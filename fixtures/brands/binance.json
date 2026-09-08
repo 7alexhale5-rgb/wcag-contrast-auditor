@@ -1,7 +1,9 @@
 {
   "brand": "binance",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/binance/DESIGN.md",
-  "local_copy_sha256": "43eae226c68ee19fa7fb807a48d77d475e788ca59a7b6626ee1049487398c035",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/binance/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "378ff97d568ccbc316519b9d45a29d6649ed8961c9c486c3ed4cea7501d72371",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

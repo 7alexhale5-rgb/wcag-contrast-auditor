@@ -2,6 +2,7 @@
 
 Source: https://www.w3.org/TR/WCAG21/#dfn-contrast-ratio
 Status: W3C Recommendation 06 May 2025
+Notice on the source document: Copyright © 2020-2025 World Wide Web Consortium. W3C® liability, trademark and document use rules apply.
 
 Reproduced under the W3C Document License. Copyright (c) W3C(R) (MIT, ERCIM,
 Keio, Beihang). https://www.w3.org/copyright/document-license/

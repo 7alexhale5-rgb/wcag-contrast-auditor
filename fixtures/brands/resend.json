@@ -1,7 +1,9 @@
 {
   "brand": "resend",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/resend/DESIGN.md",
-  "local_copy_sha256": "979184f5b7bc65acbe89b75047a4535fd6fd6df71280c4a29a097d0819fc3a66",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/resend/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "99536f1b2380511a539f7f3466d46d351e4bf35a5af0c0df395bdc20af05c9be",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

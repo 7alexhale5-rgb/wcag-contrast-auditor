@@ -1,7 +1,9 @@
 {
   "brand": "notion",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/notion/DESIGN.md",
-  "local_copy_sha256": "a693706bb5364fb86fc7232041b72d28454e755bf222028cb18eef9f474be87b",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/notion/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "fa9d6e78216d8f3e5d3990709ca2de6bc2e268e945bb94f255fd1bfb15455266",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

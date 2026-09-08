@@ -1,7 +1,9 @@
 {
   "brand": "mintlify",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/mintlify/DESIGN.md",
-  "local_copy_sha256": "b988163b57e5a463bf1931c0b07e70103c0ad198cc7205e073d178136230c651",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/mintlify/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "754ffcf35dcd39ef8aef450085ce936aaca5b872ff92caa66be99e91a5c3d5ec",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

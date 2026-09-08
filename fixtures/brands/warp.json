@@ -1,7 +1,9 @@
 {
   "brand": "warp",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/warp/DESIGN.md",
-  "local_copy_sha256": "cde69f16ac1ffd11d200fc6d7d4b9814e98575ab4d53bf095fdda8ac49331963",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/warp/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "5b1201f7b1b4e72570d148d1f980fd1cb35e6e4122d48dd271787aa3538a25ad",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

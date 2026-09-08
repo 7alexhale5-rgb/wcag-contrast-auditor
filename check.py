@@ -14,7 +14,7 @@ gate proves a cited provision exists and its quote is verbatim. It cannot prove
 the citation is the RIGHT one for the element in front of it. That stays human.
 """
 from __future__ import annotations
-import ast, hashlib, json, re, sys
+import ast, hashlib, json, math, re, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -132,6 +132,16 @@ def gate_mutation():
     w700 = aa({**pair, "id": "w7", "font_px": 19, "font_weight": 700})[0]
     check("font_weight 700 is bold, 600 is not", w700.verdict == "PASS" and w600.verdict == "FAIL",
           f"600={w600.verdict} 700={w700.verdict}")
+    kw = aa({**pair, "id": "kw", "font_px": "19px", "font_weight": "bold"})[0]
+    check("font_weight 'bold' and font_px '19px' are read, not crashed on", kw.verdict == "PASS", kw.verdict)
+    junk = audit.check_element({"id": "junk", "fg": "#777", "bg": "#fff", "font_px": "big", "kind": "text"})[0]
+    check("an unreadable size is one UNDECIDABLE finding, not a traceback", junk.verdict == "UNDECIDABLE")
+    hex8 = aa({"id": "h8", "fg": "#ffffff80", "bg": "#000000", "font_px": 16, "kind": "text"})[0]
+    check("8-digit hex with alpha is refused as non-opaque", hex8.verdict == "UNDECIDABLE" and "non-opaque" in hex8.message)
+    hex8o = aa({"id": "h8o", "fg": "#000000ff", "bg": "#ffffff", "font_px": 16, "kind": "text"})[0]
+    check("8-digit hex with full alpha is measured", hex8o.verdict == "PASS")
+    over = aa({"id": "over", "fg": "rgba(0,0,0,1.5)", "bg": "#fff", "kind": "nontext"})[0]
+    check("alpha above 1 is refused", over.verdict == "UNDECIDABLE")
     op = aa({"id": "op", "fg": "#000000", "bg": "#ffffff", "font_px": 16, "opacity": 0.5, "kind": "text"})[0]
     check("opacity below 1 is refused, not measured", op.verdict == "UNDECIDABLE", op.verdict)
     # The standard's exceptions: only when named, and quoting the clause.
@@ -220,6 +230,30 @@ def gate_citation():
     check("planted non-verbatim quote is caught by check C", "C" in caught.get("ghost border", set()))
     check("planted wrong-kind criterion is caught by check D", "D" in caught.get("no size given", set()))
     check("exactly three of four findings rejected", len(caught) == 3, str(sorted(caught)))
+    # Bypasses a hostile reviewer found on 2026-09-08, each now a named rejection.
+    valid = own.splitlines()
+    head = next(i for i, l in enumerate(valid) if l.startswith("[FAIL] muted caption"))
+    block = "\n".join(valid[head:head + 5])
+    def codes_for(text): return [c.split(":")[0] for f in findings.parse_findings(text) for c in findings.citation_gate(f)]
+    check("a real 1.4.3 quote under the 1.4.11 file is rejected (B_FILE_MISMATCH)",
+          "B_FILE_MISMATCH" in codes_for(block.replace("reference/wcag21-1.4.3.md", "reference/wcag21-1.4.11.md")))
+    check("SC 1.4.6 labelled AA over the 1.4.3 file is rejected",
+          {"B_FILE_MISMATCH"} & set(codes_for(block.replace("SC 1.4.3 (AA)", "SC 1.4.6 (AA)"))))
+    check("a finding with no input line is rejected (I_NO_INPUT)",
+          "I_NO_INPUT" in codes_for("\n".join(valid[head:head + 4])))
+    check("an unknown mark is rejected (H_UNKNOWN_MARK)", "H_UNKNOWN_MARK" in codes_for(block.replace("[FAIL]", "[fail]")))
+    check("an indented finding is still parsed", len(findings.parse_findings("  " + block)) == 1)
+    check("a provision outside reference/ is rejected, never opened",
+          "B_NO_PROVISION" in codes_for(block.replace("reference/wcag21-1.4.3.md", "reference/../../LICENSE")))
+    check("a wrong severity is rejected (F_SEVERITY_MISMATCH)",
+          "F_SEVERITY_MISMATCH" in codes_for(block.replace("severity=blocker", "severity=major")))
+    aaa_head = next(i for i, l in enumerate(valid) if l.startswith("[aaa ] muted caption"))
+    aaa_block = "\n".join(valid[aaa_head:aaa_head + 5])
+    check("an AAA headroom line with a wrong ratio is recomputed and rejected",
+          "F_RATIO_MISMATCH" in codes_for(aaa_block.replace("2.8:1 against", "9.9:1 against")))
+    check("a malformed input line is a rejection, not a crash",
+          "G_UNPARSEABLE_INPUT" in codes_for(block.replace("input: fg=", "input: garbage fg=")))
+    check("reference files hash to the manifest before any citation is judged", findings.verify_reference() == [])
 
 # -------------------------------------------------------------- EXAMPLES
 FENCE = re.compile(r"```text (excerpt )?fixture=(\S+)\n(.*?)\n```", re.S)
@@ -240,7 +274,10 @@ def gate_examples():
 def _oracle_luminance(hex6: str) -> float:
     """Independent WCAG luminance, vendored from software-factory/bin/design_check.py
     (lines 157-165, 2026-09-08) so the differential replays without that repo.
-    Kept deliberately separate from contrast.py: two implementations, one standard."""
+    It uses the 0.03928 linearisation threshold from the older WCAG 2.0 errata;
+    contrast.py uses 0.04045 from the WCAG 2.1 text. The two differ by at most
+    one unit in the third decimal on real colours, which is why the tolerance is
+    0.011 and why this counts as a second implementation rather than a copy."""
     r, g, b = (int(hex6[i:i + 2], 16) / 255 for i in (1, 3, 5))
     def lin(c): return c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4
     return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b)
@@ -262,7 +299,8 @@ def gate_territory():
     drift, verdicts, undecided = [], {}, 0
     for f in files:
         fx = json.loads(f.read_text())
-        check_prov = "VoltAgent" in fx.get("source", "") and fx.get("local_copy_sha256")
+        check_prov = ("VoltAgent" in fx.get("source", "") and fx.get("upstream_commit")
+                      and fx.get("upstream_sha256") and fx.get("upstream_colors_match_local") is True)
         if not check_prov: drift.append(f"{f.stem}: no provenance")
         rep = audit.audit(fx["elements"])
         got = [[x["location"], x["criterion"], x["level"], x["verdict"], x["measured"]] for x in rep["findings"]]
@@ -271,7 +309,8 @@ def gate_territory():
             drift.append(f.stem)
         verdicts[rep["verdict"]] = verdicts.get(rep["verdict"], 0) + 1
         undecided += rep["summary"]["undecidable"]
-    check("every fixture carries catalog provenance and a local hash", not any(d.endswith("no provenance") for d in drift))
+    check("every fixture names a pinned upstream commit, its hash, and matched it at build time",
+          not any(d.endswith("no provenance") for d in drift), str([d for d in drift if d.endswith("no provenance")][:4]))
     check("no fixture drifted from its committed verdicts", not [d for d in drift if not d.endswith("no provenance")], str(drift[:5]))
     print(f"      {len(files)} brands: " + ", ".join(f"{k} {v}" for k, v in sorted(verdicts.items())) + f"; {undecided} undecidable element(s) reported, none skipped")
     # Hand anchors: pairs checked against a second public calculator before this gate existed.
@@ -281,7 +320,7 @@ def gate_territory():
         ours = contrast.round_ratio(contrast.contrast_ratio(a["fg"], a["bg"]))
         # WebAIM rounds to two decimals; we floor to one. Agreement means our floored
         # value equals WebAIM's value floored the same way.
-        theirs = __import__("math").floor(a["webaim_ratio"] * 10) / 10
+        theirs = math.floor(a["webaim_ratio"] * 10) / 10
         check(f"{a['brand']} {a['location']}: ours {ours}:1 vs WebAIM {a['webaim_ratio']}:1", ours == theirs)
 
 def gate_differential():
@@ -315,7 +354,8 @@ def main(argv: list[str]) -> int:
     if argv[1:] == ["--verify-reference"]:
         return verify_reference()
     if len(argv) == 2:
-        return _cite_only(argv[1])
+        sys.argv = ["findings.py", argv[1]]
+        return findings.main()
     for g in (gate_shape, gate_provenance, gate_anchor, gate_mutation, gate_silence,
               gate_invariance, gate_purity, gate_citation, gate_examples, gate_territory, gate_differential):
         g()
@@ -324,13 +364,9 @@ def main(argv: list[str]) -> int:
     if FAILS:
         for f in FAILS: print(f"  - {f}")
         print("GATE FAILED"); return 1
-    print("GATE PASSED: every rule was shown to fail on purpose, stay quiet on compliant")
-    print("input, hold across five spellings, cite only what is on disk, and recompute.")
+    print("GATE PASSED. What each gate proved is in its own lines above; what a gate")
+    print("looks like when it fails is in receipts/DEVIATIONS.md.")
     return 0
-
-def _cite_only(path: str) -> int:
-    sys.argv = ["findings.py", path]
-    return findings.main()
 
 if __name__ == "__main__":
     sys.exit(main(sys.argv))

@@ -34,7 +34,7 @@ verdict: PASS
         6.8:1 against a 3.0:1 minimum for user interface components and graphical objects
         provision: reference/wcag21-1.4.11.md
         quote: "The visual presentation of the following have a contrast ratio of at least 3:1 against adjacent color(s)"
-        input: fg=#5a5a5a bg=#ffffff bold=false kind=nontext
+        input: fg=#5a5a5a bg=#ffffff kind=nontext
 ```
 
 Note the heading is measured against 3:1, not 4.5:1. At 40px bold it meets the
@@ -76,7 +76,7 @@ verdict: FAIL
         1.2:1 against a 3.0:1 minimum for user interface components and graphical objects
         provision: reference/wcag21-1.4.11.md
         quote: "The visual presentation of the following have a contrast ratio of at least 3:1 against adjacent color(s)"
-        input: fg=#e8e8e8 bg=#ffffff bold=false kind=nontext
+        input: fg=#e8e8e8 bg=#ffffff kind=nontext
 [????] no size given  SC 1.4.3 (AA)
         measured 4.5:1 but no font size given, so the large-text exception cannot be resolved
         provision: reference/wcag21-1.4.3.md
@@ -127,6 +127,29 @@ verdict: PASS
 
 The verdict is N/A and the quote is the Logotypes clause itself, so an exemption
 is as checkable as a failure. Drop the `exempt` field and the same pair is a FAIL.
+
+## 5. What it says when it cannot run the checker
+
+The same fixture as example 3, audited in a Claude project with no code
+execution. This block is not checker output; it is the shape `rules.md` step 4
+requires in that mode. No ratio appears anywhere, because none was measured.
+
+```text mode=judgment-only
+WCAG 2.1 Level AA contrast audit
+verdict: INCOMPLETE
+4 element(s): 0 pass, 0 fail, 4 undecidable, 0 n/a, 0 blocker(s)
+mode: no code execution available; no ratio was measured
+
+[????] muted caption  SC 1.4.3 (AA)
+        not measured: no checker available. Required 4.5:1 for text under 18pt,
+        or under 14pt bold (declared at 13px, not bold).
+        provision: reference/wcag21-1.4.3.md
+        quote: "The visual presentation of text and images of text has a contrast ratio of at least 4.5:1"
+        input: fg=#999999 bg=#ffffff font_px=13.0 bold=false kind=text
+```
+
+Run `python3 checker/audit.py` on the same file and the `[????]` lines become
+`[pass]` and `[FAIL]` with numbers. Nothing else changes.
 
 ## What a finding is not
 

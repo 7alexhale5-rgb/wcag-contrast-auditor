@@ -1,7 +1,9 @@
 {
   "brand": "mongodb",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/mongodb/DESIGN.md",
-  "local_copy_sha256": "ce8cca587af47cf2f1eef09af5ce9cccfa8e65cba4c93630f2590a599f0f2911",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/mongodb/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "4523f10efd5ccd46f9aeac3b98626e24bcf907bc0c1e46500cb0e3920f932e71",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

@@ -1,7 +1,9 @@
 {
   "brand": "airtable",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/airtable/DESIGN.md",
-  "local_copy_sha256": "a8e5493fb17e45160aa35d2d8691a4fe54e87836da8f1d147e9eb5fe2dd3bc38",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/airtable/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "1d225e511213044d3c705bde50265ad010932bfd8a15740a144dd4f480128889",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

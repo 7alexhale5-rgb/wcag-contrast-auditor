@@ -1,7 +1,9 @@
 {
   "brand": "shopify",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/shopify/DESIGN.md",
-  "local_copy_sha256": "363a5ca1187427939191328cf7107b3475fe2bd0090dda7d9c7377ae9cc4486c",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/shopify/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "495e89b8d0a1848ded013c040f7a2ae62077e9d87fc4385350e25dee02ccdb38",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

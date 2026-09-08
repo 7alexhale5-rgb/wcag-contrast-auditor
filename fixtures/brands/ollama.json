@@ -1,7 +1,9 @@
 {
   "brand": "ollama",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/ollama/DESIGN.md",
-  "local_copy_sha256": "26ba0afd1db71a3402f2ee2b04d21cdbf42c326d9e8e09298d143bdf05fd8c97",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/ollama/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "3f36f897e5aad870344dd97e282c8f125ad208dc99449bb08dd38b9259d2f451",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

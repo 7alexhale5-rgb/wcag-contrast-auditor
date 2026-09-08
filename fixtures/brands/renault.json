@@ -1,7 +1,9 @@
 {
   "brand": "renault",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/renault/DESIGN.md",
-  "local_copy_sha256": "8025d41464b36f8388dad9404f3297797b9fea975019a62181fd82f7201add6e",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/renault/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "b343df9a67e57f248e9eee704f52b17dff9cf6a46d1dc9f8d7ab36741940db59",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

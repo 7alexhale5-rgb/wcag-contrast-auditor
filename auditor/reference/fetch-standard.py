@@ -43,10 +43,13 @@ class Extract(HTMLParser):
         self.cur = None; self.depth = 0; self.buf = []; self.skip = 0
         self.sections = {}; self.dfns = {}
         self.pending_dfn = None; self.in_dd = None; self.status = None; self._in_state = False
+        self.copyright = None; self._in_copy = False
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
         if tag == "p" and a.get("id") == "w3c-state":
             self._in_state = True; self.status = []
+        if tag == "p" and a.get("class") == "copyright":
+            self._in_copy = True; self.copyright = []
         if tag == "section":
             if self.cur is not None: self.depth += 1
             elif a.get("id") in self.section_ids:
@@ -60,6 +63,7 @@ class Extract(HTMLParser):
         if (self.cur or self.in_dd) and tag == "li": self.buf.append("- ")
     def handle_endtag(self, tag):
         if self._in_state and tag == "p": self._in_state = False
+        if self._in_copy and tag == "p": self._in_copy = False
         if (self.cur or self.in_dd) and tag in ("script", "style") and self.skip: self.skip -= 1
         if tag == "section" and self.cur is not None:
             self.depth -= 1
@@ -69,6 +73,7 @@ class Extract(HTMLParser):
             self.dfns[self.in_dd] = "".join(self.buf); self.in_dd = None; self.pending_dfn = None
     def handle_data(self, d):
         if self._in_state: self.status.append(d)
+        if self._in_copy: self.copyright.append(d)
         if (self.cur or self.in_dd) and not self.skip: self.buf.append(d)
 
 def tidy(t):
@@ -76,10 +81,11 @@ def tidy(t):
     t = re.sub(r"\n\s*\n\s*\n+", "\n\n", t)
     return "\n".join(l.rstrip() for l in t.strip().splitlines())
 
-def header(title, anchor, status):
+def header(title, anchor, status, notice):
     return (f"# {title}\n\n"
             f"Source: {SRC}#{anchor}\n"
-            f"Status: {status}\n\n"
+            f"Status: {status}\n"
+            f"Notice on the source document: {notice}\n\n"
             "Reproduced under the W3C Document License. Copyright (c) W3C(R) (MIT, ERCIM,\n"
             "Keio, Beihang). https://www.w3.org/copyright/document-license/\n"
             "This is a verbatim excerpt of the published text. If it disagrees with the\n"
@@ -92,19 +98,20 @@ def main():
     fetched = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     p = Extract(set(WANTED), set(DFNS)); p.feed(raw.decode("utf-8", "replace"))
     status = " ".join("".join(p.status or []).split()) or "status line not found"
+    notice = " ".join("".join(p.copyright or []).split()) or "copyright notice not found"
     missing = [k for k in WANTED if k not in p.sections] + [k for k in DFNS if k not in p.dfns]
     if missing:
         print(f"FAIL: could not locate {missing} at {SRC}", file=sys.stderr); return 1
-    manifest = {"source": SRC, "status": status, "fetched_utc": fetched,
+    manifest = {"source": SRC, "status": status, "notice": notice, "fetched_utc": fetched,
                 "source_sha256": page_sha, "criteria": {}, "definitions": {}}
     for sid, num in WANTED.items():
-        doc = header(f"WCAG 2.1 Success Criterion {num}", sid, status) + tidy(p.sections[sid]) + "\n"
+        doc = header(f"WCAG 2.1 Success Criterion {num}", sid, status, notice) + tidy(p.sections[sid]) + "\n"
         out = HERE / f"wcag21-{num}.md"; out.write_text(doc)
         manifest["criteria"][num] = {"section_id": sid, "file": out.name,
                                      "sha256": hashlib.sha256(doc.encode()).hexdigest()}
         print(f"wrote {out.name}")
     for did, name in DFNS.items():
-        doc = header(f"WCAG 2.1 Glossary: {name.replace('-', ' ')}", did, status) + tidy(p.dfns[did]) + "\n"
+        doc = header(f"WCAG 2.1 Glossary: {name.replace('-', ' ')}", did, status, notice) + tidy(p.dfns[did]) + "\n"
         out = HERE / f"wcag21-glossary-{name}.md"; out.write_text(doc)
         manifest["definitions"][name] = {"dfn_id": did, "file": out.name,
                                          "sha256": hashlib.sha256(doc.encode()).hexdigest()}

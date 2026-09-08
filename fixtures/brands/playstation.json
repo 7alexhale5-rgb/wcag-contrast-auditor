@@ -1,7 +1,9 @@
 {
   "brand": "playstation",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/playstation/DESIGN.md",
-  "local_copy_sha256": "d02bde23f05c875f1cedb72cdeffa00ea8cfa7df7c97c895adf261ca58e4855d",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/playstation/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "2a56c109af6cb847fa091b768f719b498ac56b582d010860e73ea5fb72a1590d",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

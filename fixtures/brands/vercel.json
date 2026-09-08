@@ -1,7 +1,9 @@
 {
   "brand": "vercel",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/vercel/DESIGN.md",
-  "local_copy_sha256": "96f650bce4551d9985b25c9abe2fa333365f10dbda498149325bc50cbde8fbbe",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/vercel/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "d0951b93c2b4ce9840c715c9f9b3e58a386c6c58ae5cc0f804dec3b116b95bd8",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

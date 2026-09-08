@@ -1,7 +1,9 @@
 {
   "brand": "linear",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/linear/DESIGN.md",
-  "local_copy_sha256": "60368afc97e38198ee9ed6b52519f1156e1fbaa512b477c13176d0d3e76d7431",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/linear.app/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "30bd30e72c48a16e4bdbd010f2d1c85fab657c6fae3cc85389399aab10f9cb5f",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

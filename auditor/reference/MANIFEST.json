@@ -1,40 +1,41 @@
 {
   "source": "https://www.w3.org/TR/WCAG21/",
   "status": "W3C Recommendation 06 May 2025",
+  "notice": "Copyright \u00a9 2020-2025 World Wide Web Consortium. W3C\u00ae liability, trademark and document use rules apply.",
   "fetched_utc": "2026-09-08",
   "source_sha256": "233ac31974ce8575c08932ee1bd71c93879cf9b8426b2bc9b961b3ea8afb8ab6",
   "criteria": {
     "1.4.3": {
       "section_id": "contrast-minimum",
       "file": "wcag21-1.4.3.md",
-      "sha256": "ed074b4430868e9edd973447703cd507400c53f47f3a86671b05f31737eecf6f"
+      "sha256": "e4b0c19572283c6565a076fa0ff93c817cd304781c1f3b6c7f29576a8fa1563d"
     },
     "1.4.11": {
       "section_id": "non-text-contrast",
       "file": "wcag21-1.4.11.md",
-      "sha256": "678e067ae347efb675ea0f7a13f10c933645da53e2028c0a27b8fe73a03eaac7"
+      "sha256": "62b56dd0e9f54d69d1924097363b62728ff310e75f25516a5ef7673633ad5e52"
     },
     "1.4.6": {
       "section_id": "contrast-enhanced",
       "file": "wcag21-1.4.6.md",
-      "sha256": "310f93dae5d429f6f11bf8494454ec65f155afff1abe12d461f8d0fd2aba37eb"
+      "sha256": "54a1c1e99f27c9d9779c303771ae9ad0ad5cd5fd785d90655185fbfd25a04df7"
     }
   },
   "definitions": {
     "contrast-ratio": {
       "dfn_id": "dfn-contrast-ratio",
       "file": "wcag21-glossary-contrast-ratio.md",
-      "sha256": "8089dad8f1d6da62ecaa4e0f9f8925ad5d21b9425c3c9af3922247d99a297be2"
+      "sha256": "d06296be9d7ca1d2bacd3b61f8f8b335b5e0bbd760a828cdb6ea8015c34fa3f1"
     },
     "relative-luminance": {
       "dfn_id": "dfn-relative-luminance",
       "file": "wcag21-glossary-relative-luminance.md",
-      "sha256": "50d3584102f55186136e708b01bc72ff8d50a2f44c009c1df475335479c92535"
+      "sha256": "2873f80656c12b344ab70600df5882a7d56766b0bc8352cb7e1bb63c28e3a0f7"
     },
     "large-scale-text": {
       "dfn_id": "dfn-large-scale",
       "file": "wcag21-glossary-large-scale-text.md",
-      "sha256": "8d42425f40c95baedc94dccd3fe31d34a614a7d9ba35b667b4cf40f865701f6c"
+      "sha256": "5f3a5a32dd7327bce7c029e591a0699389b6aa4f97e7dd6a6c1e0fa7a80a1e95"
     }
   }
 }

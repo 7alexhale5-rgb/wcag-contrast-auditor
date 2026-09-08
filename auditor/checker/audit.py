@@ -17,7 +17,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from contrast import (contrast_ratio, round_ratio, is_large_text, is_bold, parse_color,
-                      ColorError, AA_NORMAL, AA_LARGE, AA_NONTEXT,
+                      ColorError, WeightError, AA_NORMAL, AA_LARGE, AA_NONTEXT,
                       AAA_NORMAL, AAA_LARGE, EXEMPTIONS, PT_TO_PX, Threshold)
 
 REF = Path(__file__).resolve().parent.parent / "reference"
@@ -43,6 +43,16 @@ def _severity(ratio: float, required: float) -> str:
     if ratio >= required: return "none"
     return "blocker" if ratio < required * 2 / 3 else "major"
 
+def _num(v, what: str) -> float:
+    """A size is a number or a number with a px/pt suffix. Anything else is refused."""
+    s = str(v).strip().lower()
+    for suffix in ("px", "pt"):
+        if s.endswith(suffix): s = s[:-2]
+    try:
+        return float(s)
+    except ValueError:
+        raise ColorError(f"cannot read {what} {v!r}")
+
 def normalise(el: dict) -> dict:
     """Turn stylesheet-shaped input into what the thresholds need, in code.
 
@@ -53,12 +63,13 @@ def normalise(el: dict) -> dict:
     out = {"id": el.get("id", "<unnamed>"), "fg": el.get("fg"), "bg": el.get("bg"),
            "kind": el.get("kind", "text")}
     if el.get("exempt") is not None: out["exempt"] = el["exempt"]
-    if el.get("font_px") is not None: out["font_px"] = float(el["font_px"])
-    elif el.get("font_pt") is not None: out["font_px"] = round(float(el["font_pt"]) * PT_TO_PX, 4)
-    if el.get("bold") is not None: out["bold"] = bool(el["bold"])
-    elif el.get("font_weight") is not None: out["bold"] = is_bold(el["font_weight"])
-    else: out["bold"] = False
-    if el.get("opacity") is not None: out["opacity"] = float(el["opacity"])
+    if el.get("font_px") is not None: out["font_px"] = _num(el["font_px"], "font_px")
+    elif el.get("font_pt") is not None: out["font_px"] = round(_num(el["font_pt"], "font_pt") * PT_TO_PX, 4)
+    if out["kind"] == "text":
+        if el.get("bold") is not None: out["bold"] = bool(el["bold"])
+        elif el.get("font_weight") is not None: out["bold"] = is_bold(el["font_weight"])
+        else: out["bold"] = False
+    if el.get("opacity") is not None: out["opacity"] = _num(el["opacity"], "opacity")
     if el.get("note"): out["note"] = str(el["note"])
     return out
 
@@ -68,7 +79,16 @@ def _input_str(el: dict) -> str:
 
 def check_element(raw: dict) -> list[Finding]:
     """raw: {id, fg, bg, font_px|font_pt?, bold|font_weight?, opacity?, exempt?, kind: 'text'|'nontext'}"""
-    el = normalise(raw)
+    try:
+        el = normalise(raw)
+    except (ColorError, WeightError, TypeError, AttributeError) as e:
+        # One unreadable element is one UNDECIDABLE finding, never a traceback.
+        loc = raw.get("id", "<unnamed>") if isinstance(raw, dict) else "<unnamed>"
+        kind = raw.get("kind", "text") if isinstance(raw, dict) else "text"
+        base = AA_NONTEXT if kind == "nontext" else AA_NORMAL
+        return [Finding("UNDECIDABLE", base.criterion, base.level, "unknown", loc, None, base.ratio,
+                        f"cannot read element: {e}", base.provision_file, base.quote,
+                        {"kind": kind if kind in ("text", "nontext") else "text"})]
     loc, kind = el["id"], el["kind"]
     if kind not in ("text", "nontext"):
         return [Finding("UNDECIDABLE", "1.4.3", "AA", "unknown", loc, None, AA_NORMAL.ratio,
@@ -109,7 +129,7 @@ def check_element(raw: dict) -> list[Finding]:
             t.provision_file, t.quote, el))
         return out
 
-    font_px, bold = el.get("font_px"), el["bold"]
+    font_px, bold = el.get("font_px"), el.get("bold", False)
     if font_px is None:
         out.append(Finding("UNDECIDABLE", "1.4.3", "AA", "unknown", loc, ratio,
                            AA_NORMAL.ratio,
@@ -186,9 +206,17 @@ def main() -> int:
     p.add_argument("input", help="JSON file: a list of {id, fg, bg, font_px|font_pt, bold|font_weight, opacity, exempt, kind}, or an object with an elements list")
     p.add_argument("--json", action="store_true", help="emit the full report as JSON")
     a = p.parse_args()
-    data = json.loads(Path(a.input).read_text())
-    # Accept a bare list of elements, or an object carrying "elements" plus provenance.
-    rep = audit(data["elements"] if isinstance(data, dict) else data)
+    try:
+        data = json.loads(Path(a.input).read_text())
+        # Accept a bare list of elements, or an object carrying "elements" plus provenance.
+        elements = data["elements"] if isinstance(data, dict) else data
+        if not isinstance(elements, list): raise ValueError("input is not a list of elements")
+        rep = audit(elements)
+    except Exception as e:  # noqa: BLE001
+        # A crash is "could not measure", so it exits 2 like any other undecided
+        # audit, never 1, which would read as a contrast failure in a pipeline.
+        print(f"WCAG 2.1 Level AA contrast audit\nverdict: INCOMPLETE\ncould not read input: {e}")
+        return EXIT["INCOMPLETE"]
     print(json.dumps(rep, indent=2) if a.json else render(rep))
     return EXIT[rep["verdict"]]  # PASS 0, FAIL 1, INCOMPLETE 2: an undecided audit never passes CI silently
 

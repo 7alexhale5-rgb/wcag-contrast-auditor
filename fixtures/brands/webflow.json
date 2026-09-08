@@ -1,7 +1,9 @@
 {
   "brand": "webflow",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/webflow/DESIGN.md",
-  "local_copy_sha256": "5b507e4750a11f448559edeb6641abcb9c19692a320bc00adfb65e44874bb0ea",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/webflow/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "9230c7b3951371fc2edc04958962e32bb7ec9a9b703aa6b72eaf5c7991b7c984",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

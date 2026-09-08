@@ -1,7 +1,9 @@
 {
   "brand": "composio",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/composio/DESIGN.md",
-  "local_copy_sha256": "b6b238090aadde97efde5b2dbb9e17359f9772a350499957c4218f94fe95f45b",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/composio/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "e7db886dabecca61f29b83e8f46d7a1e8a43889d30b81bc6e48162ccaafcbb2f",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

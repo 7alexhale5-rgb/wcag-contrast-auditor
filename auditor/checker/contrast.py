@@ -32,9 +32,11 @@ def parse_color(value: str) -> tuple[int, int, int]:
     m = re.fullmatch(r"#([0-9a-f]{3})", v)
     if m:
         return tuple(int(c * 2, 16) for c in m.group(1))  # type: ignore[return-value]
-    m = re.fullmatch(r"#([0-9a-f]{6})", v)
+    m = re.fullmatch(r"#([0-9a-f]{6})([0-9a-f]{2})?", v)
     if m:
         h = m.group(1)
+        if m.group(2) is not None and int(m.group(2), 16) < 255:
+            raise ColorError(f"non-opaque colour {value!r}: composite it before auditing")
         return (int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16))
     m = re.fullmatch(r"rgba?\(\s*([\d.]+)[\s,]+([\d.]+)[\s,]+([\d.]+)\s*(?:[,/]\s*([\d.%]+)\s*)?\)", v)
     if m:
@@ -42,6 +44,8 @@ def parse_color(value: str) -> tuple[int, int, int]:
         a = m.group(4)
         if a is not None:
             alpha = float(a[:-1]) / 100 if a.endswith("%") else float(a)
+            if alpha > 1.0:
+                raise ColorError(f"alpha out of range in {value!r}")
             if alpha < 0.999:
                 # Compositing against an unknown backdrop is not decidable here.
                 # Refusing beats guessing: a wrong ratio is worse than no ratio.
@@ -121,10 +125,20 @@ PT_TO_PX = 4 / 3
 LARGE_PX = 18 * PT_TO_PX          # 24.0
 LARGE_BOLD_PX = 14 * PT_TO_PX     # 18.666...
 
+class WeightError(ValueError):
+    pass
+
 def is_bold(weight) -> bool:
     """CSS font-weight 700 and up is bold. WCAG's large-text definition says bold,
-    not semibold, so 600 is normal weight here and the fixture notes say so."""
-    return float(weight) >= 700
+    not semibold, so 600 is normal weight here and the fixture notes say so.
+    The keywords bold and bolder count as bold; normal and lighter do not."""
+    w = str(weight).strip().lower()
+    if w in ("bold", "bolder"): return True
+    if w in ("normal", "lighter"): return False
+    try:
+        return float(w) >= 700
+    except ValueError:
+        raise WeightError(f"unrecognised font weight {weight!r}")
 
 def is_large_text(font_px: float, bold: bool) -> bool:
     return font_px >= (LARGE_BOLD_PX if bold else LARGE_PX)

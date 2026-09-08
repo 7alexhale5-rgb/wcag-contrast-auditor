@@ -1,7 +1,9 @@
 {
   "brand": "zapier",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/zapier/DESIGN.md",
-  "local_copy_sha256": "555e2757e5bd10873029b4235d0e94b098f9ff2b13f4b8ca2d4d821a8cdc7cb1",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/zapier/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "9aee43ba8ece1b4fd0753b4cad0a29f3497331882fa376f0dd4fea8a018c32fc",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

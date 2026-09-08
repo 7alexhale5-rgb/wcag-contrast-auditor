@@ -90,5 +90,74 @@ Per TEST_METHOD.md, a correction is any change inside `auditor/` traceable to a 
 | C-1 | Run C-A | `checker/contrast.py`, `checker/audit.py`: added `decorative` as a named non-text exemption, N/A quoting the 1.4.11 "required to identify" clause | the model found no exemption name for a decorative divider; the only non-text one was `inactive` |
 | C-2 | Run C-A | `examples.md`: says where `fixtures/` and `check.py` live | they are outside the drop-in, so a reader of the folder alone could not run the self-check it described |
 | C-3 | Run C-A | `identity.md`: one paragraph on out-of-scope (decorative, logotype) as distinct from undecidable | follows from C-1 |
+| C-4 | Run C-B (judgment-only) and hostile review | `identity.md`: "report that you could not measure, and stop" replaced with the two-mode rule, so it no longer contradicts `rules.md` step 4; the paragraph also names that numbers in other input fields are not measurements | the judgment-only session flagged the `xref_ratio` field as a trap for a reading model; it did not fall for it, but the defence was only its discipline |
+| C-5 | Run C-B | `examples.md`: example 5, the judgment-only shape, with no ratio anywhere | no worked example of mode B existed |
+| C-6 | hostile review | `checker/findings.py`: check 0 (every reference file hashes to the manifest before any citation is judged), B_FILE_MISMATCH (criterion must live in the file cited), I_NO_INPUT, H_UNKNOWN_MARK, F_SEVERITY_MISMATCH, AAA lines recomputed, provision restricted to manifest-listed files, indented heads parsed, malformed input lines rejected instead of crashing | four ways a planted citation got through, one path traversal, one crash |
+| C-7 | Run C-B and hostile review | `checker/contrast.py`, `checker/audit.py`: `font_weight: "bold"` and `font_px: "16px"` read instead of crashing; 8-digit hex parsed with the alpha rule; alpha above 1 refused; an unreadable element is one UNDECIDABLE finding; a crash in `main()` exits 2, never 1 | tracebacks on ordinary CSS values; a crash read as a contrast failure in CI |
+| C-8 | hostile review | `reference/*.md`: the source page's own copyright notice line added to every header (W3C Document License asks for the pre-existing notice) | licence notice was incomplete |
 
-Uncorrected edit, not prompted by a run: none.
+Uncorrected edits, not prompted by a run, with their reasons: the fixture builder now pins an upstream commit and reads each brand's catalog path from its own provenance line (openai dropped: its local copy came from the company site, not the catalog; anthropic maps to `claude`, xai to `x.ai`); `check.py` prints a neutral count instead of a claim on a green run.
+
+## Answer-key drift, disclosed
+
+`receipts/EXPECTED-cold-model.md` was generated at 7a929c2 and prints `bold=false` on the non-text hairline line. After C-7 the checker no longer prints a bold field for non-text elements, so a re-run today differs from the key by that one token on one line. The key is not regenerated, per the method; Run A matched it byte for byte at the time, and this paragraph is the record of what changed after.
+
+## The remaining gates shown red (2026-09-08, after the hostile review noted only six of eleven had been)
+
+Bytecode caching disabled for these runs: an earlier capture reused a stale module because the sabotage and its restore fell within one second at equal file size, and the phantom failure leaked into the next block. Those captures were discarded and redone.
+
+### SHAPE: a stray file dropped into auditor/
+```
+  FAIL  auditor/ has nothing undeclared  <- extra ['notes.txt']
+131 checks in 11 gates: 130 passed, 1 failed
+```
+
+### ANCHOR: the luminance formula given the wrong red coefficient
+```
+  FAIL  #000000 on #ffffff == 21.0:1  <- got 21.2
+  FAIL  full output for fixtures/clean.json equals a live run byte for byte
+  FAIL  full output for fixtures/violating.json equals a live run byte for byte
+  FAIL  no fixture drifted from its committed verdicts  <- ['airbnb', 'airtable', 'anthropic', 'apple', 'binance']
+```
+
+### MUTATION: the large-text exception disconnected
+```
+  FAIL  large-text exception actually changes the verdict  <- 16px=FAIL 32px=FAIL
+  FAIL  font_pt 18 is large text (24px), font_px 18 is not  <- pt=FAIL px=FAIL
+  FAIL  font_weight 700 is bold, 600 is not  <- 600=FAIL 700=FAIL
+  FAIL  font_weight 'bold' and font_px '19px' are read, not crashed on  <- FAIL
+  FAIL  full output for fixtures/clean.json equals a live run byte for byte
+```
+
+### SILENCE: an AAA miss printed as [FAIL] again (defect D1 reintroduced)
+```
+  FAIL  an AAA miss is never printed as [FAIL]
+  FAIL  an AAA miss is printed as headroom
+```
+
+### INVARIANCE: three-digit hex parsing removed
+```
+  FAIL  all five spellings produce the same verdict  <- ['FAIL', 'UNDECIDABLE', 'FAIL', 'FAIL', 'FAIL']
+  FAIL  all five spellings produce the same ratio  <- [4.4, None, 4.4, 4.4, 4.4]
+131 checks in 11 gates: 129 passed, 2 failed
+```
+
+### PURITY: a network import added to the checker
+```
+  FAIL  auditor/checker/contrast.py imports nothing that reaches out  <- found {'urllib'}
+131 checks in 11 gates: 130 passed, 1 failed
+```
+
+### CITATION check 0: one byte appended to a reference file, then a valid report checked against it
+```
+REJECTED reference/  0_REFERENCE_TAMPERED: reference/wcag21-1.4.3.md does not match MANIFEST.json
+
+reference/ does not match its manifest; no citation can be trusted until it does
+```
+
+After each restore:
+```
+131 checks in 11 gates: 131 passed, 0 failed
+GATE PASSED. What each gate proved is in its own lines above; what a gate
+looks like when it fails is in receipts/DEVIATIONS.md.
+```

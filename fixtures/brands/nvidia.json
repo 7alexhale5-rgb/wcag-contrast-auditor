@@ -1,7 +1,9 @@
 {
   "brand": "nvidia",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/nvidia/DESIGN.md",
-  "local_copy_sha256": "8e13743d88bd54efc64cc6f7cdd4158ea811441072f89c149b3c5211407808da",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/nvidia/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "d649be85daf075c98a17071e707e3901c6e19150044a81716acd01ef1169cc83",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

@@ -1,7 +1,9 @@
 {
   "brand": "bmw",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/bmw/DESIGN.md",
-  "local_copy_sha256": "92540b0948fd1db18eeba0f734918338ac033fc30f730a8b1db7c8b7662ecb34",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/bmw/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "b7268279e7c98e85fb80890e06765f4ee8340ba1ea1ccb5a8a5b134de43dac3e",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

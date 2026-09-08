@@ -1,7 +1,9 @@
 {
   "brand": "cursor",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/cursor/DESIGN.md",
-  "local_copy_sha256": "93b9482636fb69e6e7579195cde7337bc267b52a1cee31240067ec3be65315b8",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/cursor/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "a3db9b3019dc2f514fdee7cd0ca0a5232c0bd0119e23178e8eebaf6916258d9d",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

@@ -28,7 +28,11 @@ POOL = Path(sys.argv[1]) if len(sys.argv) > 1 else Path.home() / "Projects/desig
 ORACLE = Path(sys.argv[2]) if len(sys.argv) > 2 else Path.home() / "Projects/software-factory/bin/design_check.py"
 OUT = Path(__file__).resolve().parent / "brands"
 RECEIPT = Path(__file__).resolve().parent.parent / "receipts" / "EXPECTED-brands.json"
-UPSTREAM = "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/{slug}/DESIGN.md"
+# Pinned to one upstream commit so the source a fixture names can be opened and
+# hashed by anyone. The local copy is compared to the upstream file at build time.
+UPSTREAM_COMMIT = "8147538b4226ae41e2487a9179e3bcc1f68e8554"   # main on 2026-07-31
+UPSTREAM = "https://github.com/VoltAgent/awesome-design-md/blob/" + UPSTREAM_COMMIT + "/design-md/{slug}/DESIGN.md"
+UPSTREAM_RAW = "https://raw.githubusercontent.com/VoltAgent/awesome-design-md/" + UPSTREAM_COMMIT + "/design-md/{slug}/DESIGN.md"
 
 TEXT_PAIRS = [("foreground", "background"), ("primary-foreground", "primary"), ("on-primary", "primary"),
               ("ink", "canvas"), ("body", "canvas"), ("muted", "canvas"), ("muted-foreground", "background")]
@@ -40,7 +44,7 @@ NOTES = {
 }
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "auditor/checker"))
-import contrast  # noqa: E402
+import contrast, audit  # noqa: E402
 import yaml  # noqa: E402  (PyYAML; only the builder needs it, never the auditor)
 
 def load_oracle():
@@ -65,6 +69,25 @@ def body_px(doc: dict):
                 n, unit = float(m.group(1)), (m.group(2) or "px")
                 return {"px": n, "pt": n * 4 / 3, "rem": n * 16}[unit]
     return None
+
+def upstream_name(text: str, slug: str) -> str:
+    """The catalog directory this local copy names in its own provenance line.
+    Local slugs were normalised (claude became anthropic, x.ai became xai), so
+    the provenance line, not the slug, is the source of truth."""
+    m = re.search(r"awesome-design-md/blob/\w+/design-md/([^/\s\"]+)/DESIGN\.md", text)
+    return m.group(1) if m else slug
+
+def upstream_body(name: str):
+    """The catalog file at the pinned commit, or None if it is not there."""
+    import urllib.request, urllib.error
+    try:
+        return urllib.request.urlopen(UPSTREAM_RAW.format(slug=name), timeout=30).read().decode("utf-8", "replace")
+    except urllib.error.HTTPError:
+        return None
+
+def colors_of(text: str) -> dict:
+    doc = frontmatter(text) or {}
+    return {str(k): str(v) for k, v in (doc.get("colors") or {}).items()} if isinstance(doc.get("colors"), dict) else {}
 
 def main() -> int:
     oracle = load_oracle()
@@ -97,13 +120,18 @@ def main() -> int:
         for el in elements:
             r = oracle.contrast_ratio(el["fg"], el["bg"]) if re.fullmatch(r"#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}", el["fg"]) and re.fullmatch(r"#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}", el["bg"]) else None
             el["xref_ratio"] = round(r, 2) if r is not None else None
-        fixture = {"brand": slug, "source": UPSTREAM.format(slug=slug),
-                   "local_copy_sha256": hashlib.sha256(text.encode()).hexdigest(),
+        name = upstream_name(text, slug)
+        up = upstream_body(name)
+        if up is None:
+            skipped.append((slug, f"not in the catalog at the pinned commit as design-md/{name}")); continue
+        fixture = {"brand": slug, "source": UPSTREAM.format(slug=name),
+                   "upstream_commit": UPSTREAM_COMMIT,
+                   "upstream_sha256": hashlib.sha256(up.encode()).hexdigest() if up is not None else None,
+                   "upstream_colors_match_local": (colors_of(up) == colors) if up is not None else None,
                    "extracted": datetime.date.today().isoformat(),
                    "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
                    "elements": elements}
         (OUT / f"{slug}.json").write_text(json.dumps(fixture, indent=2) + "\n")
-        import audit
         rep = audit.audit(elements)
         expected[slug] = {"verdict": rep["verdict"],
                           "findings": [[f["location"], f["criterion"], f["level"], f["verdict"], f["measured"]]

@@ -1,7 +1,9 @@
 {
   "brand": "nike",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/nike/DESIGN.md",
-  "local_copy_sha256": "2a742548506bdd5ca6255c9957875105db83c12ae42d2e2c61139b61ac44c5c6",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/nike/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "d2a3d363665839e2ddc15c91b8a9f3e92b1962ff55a7ca5d964ab3bb88b8186c",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

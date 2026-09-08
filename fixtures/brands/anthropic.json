@@ -1,7 +1,9 @@
 {
   "brand": "anthropic",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/anthropic/DESIGN.md",
-  "local_copy_sha256": "9206a21e74970687fc668fad49fd398165018cc3d8a3fd5c7c667747069f3b7f",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/claude/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "3d972f34f8d4f33b442fa28220cf3b7ca2f13c0a97c468e3988148f82521f9df",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

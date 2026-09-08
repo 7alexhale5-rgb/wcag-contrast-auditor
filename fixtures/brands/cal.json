@@ -1,7 +1,9 @@
 {
   "brand": "cal",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/cal/DESIGN.md",
-  "local_copy_sha256": "b47441d70df5e1c6788239bcc495ab3b65ab5fbc81ddb0b49e3d0e3156cd5101",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/cal/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "8cd21b7d67e94c899843d517f4b426e4fee33d47354a433d6a63ebcf79d5a654",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

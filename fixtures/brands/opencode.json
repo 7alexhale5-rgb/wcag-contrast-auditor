@@ -1,7 +1,9 @@
 {
   "brand": "opencode",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/opencode/DESIGN.md",
-  "local_copy_sha256": "ea0dfb1b046e61e101d2f2ca562de3d86ea69092e4b5f536f0c0fc15bc574152",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/opencode.ai/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "d1a8893c4b8ac90b1e86230eee2effa8bd15add3582853477920e32432336dda",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

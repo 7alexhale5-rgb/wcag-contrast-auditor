@@ -1,7 +1,9 @@
 {
   "brand": "replicate",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/replicate/DESIGN.md",
-  "local_copy_sha256": "61903d155b91135869cfb6461c5f103f5c8778cdc173e9a119d9d2868f6211f1",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/replicate/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "c22062d7b4174bf9ced7bc61c48389086cf6eed96a958e098ee70389893b0a15",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

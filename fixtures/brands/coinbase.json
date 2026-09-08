@@ -1,7 +1,9 @@
 {
   "brand": "coinbase",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/coinbase/DESIGN.md",
-  "local_copy_sha256": "f0c2219e15d7755d5a7d1a45443110ed6e1c159397a15bee493ed7fcb764d7ad",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/coinbase/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "c8c67800dd7f58fcc87ed7d267a3bba862e3419e499e8a66d67731a69d2de1d6",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

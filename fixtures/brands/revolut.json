@@ -1,7 +1,9 @@
 {
   "brand": "revolut",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/revolut/DESIGN.md",
-  "local_copy_sha256": "d0ae9aba4144fb4a15f2ca42a27c8f36505c07a070e5e2490e910dba14d4f2bf",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/revolut/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "b7fa8473315541f5d7e7d76f68a77105d255e6dae00d31d5eb34621d1d52de59",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

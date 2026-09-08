@@ -1,7 +1,9 @@
 {
   "brand": "uber",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/uber/DESIGN.md",
-  "local_copy_sha256": "df48611e4a6e401934e6272bcde666a201d6379fa0ad1163a1d73e3edf7f9f71",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/uber/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "f30d2257d2d090790332d00ccb16cd2516c3c6008be61ad2ce83c4e991bcc803",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

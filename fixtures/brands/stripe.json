@@ -1,7 +1,9 @@
 {
   "brand": "stripe",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/stripe/DESIGN.md",
-  "local_copy_sha256": "7dc608329055fb459e61e89baa3f9b4944608b5eb119cf040b2d4ebcf8617227",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/stripe/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "5c8806b7dd3e0c2554ccba9d1e2a7c78e7c6e50e44fcf6ff5daea6026f8a9ed9",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

@@ -1,7 +1,9 @@
 {
   "brand": "miro",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/miro/DESIGN.md",
-  "local_copy_sha256": "91848fc323430363defa0bd62e07e2765470ed2c6e003396904f149a8cd62ffe",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/miro/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "87c71f76297277d64f9679e015a50da88e72d86d7b41badf8733eae1e4cde335",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [

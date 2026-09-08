@@ -1,7 +1,9 @@
 {
   "brand": "wise",
-  "source": "https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/wise/DESIGN.md",
-  "local_copy_sha256": "88505259061e4a4bc310e5fa1b7b4ff1106e3388d5d1673aecf154ccda5902e2",
+  "source": "https://github.com/VoltAgent/awesome-design-md/blob/8147538b4226ae41e2487a9179e3bcc1f68e8554/design-md/wise/DESIGN.md",
+  "upstream_commit": "8147538b4226ae41e2487a9179e3bcc1f68e8554",
+  "upstream_sha256": "442df0ad7380efd8712f5574bdca34a73cfb41a2a43454ff459863a6258af547",
+  "upstream_colors_match_local": true,
   "extracted": "2026-09-08",
   "pairing_rule": "fixtures/build_brand_fixtures.py TEXT_PAIRS and NONTEXT_PAIRS",
   "elements": [
