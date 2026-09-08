@@ -34,8 +34,8 @@ because 1.4.3 sets a different threshold for large text.
 ## Run it
 
 ```bash
-python3 checker/audit.py your-elements.json          # readable report
-python3 checker/audit.py your-elements.json --json   # full report as JSON
+python3 auditor/checker/audit.py your-elements.json          # readable report
+python3 auditor/checker/audit.py your-elements.json --json   # full report as JSON
 ```
 
 Exit code is 1 when any Level AA criterion fails, so it drops into CI unchanged.
@@ -45,7 +45,7 @@ Exit code is 1 when any Level AA criterion fails, so it drops into CI unchanged.
 This is the part that matters. Run the auditor against itself:
 
 ```bash
-python3 selftest/test_auditor.py
+python3 check.py
 ```
 
 27 checks across six classes. It proves the ratio math matches values W3C
@@ -76,19 +76,25 @@ success criteria are out of scope, and the auditor says so rather than guessing.
 ## Layout
 
 ```
-identity.md          who the auditor is and what it refuses to do
-rules.md             audit order, citation format, severity scale
-examples.md          three worked audits, including one it declines to decide
-reference/           the standard itself, dated and hashed
-  fetch-standard.py  re-derives the above from w3.org
-  MANIFEST.json      source URL, retrieval date, SHA-256
-checker/
-  contrast.py        WCAG relative luminance and ratio math
-  audit.py           findings, severity, verdicts
-selftest/
-  test_auditor.py    the six adversarial classes described above
-  fixtures/          one compliant page, one violating page
+auditor/             the drop-in folder
+  identity.md        who the auditor is and what it refuses to do
+  rules.md           audit order, citation format, severity scale
+  examples.md        worked audits, including one it declines to decide
+  reference/         the standard itself, dated and hashed
+    fetch-standard.py  re-derives the above from w3.org
+    MANIFEST.json      source URL, retrieval date, SHA-256
+  checker/
+    contrast.py      WCAG relative luminance and ratio math
+    audit.py         findings, severity, verdicts
+check.py             the gate: runs offline, no API key, prints its own count
+fixtures/            one clean page, one violating page
+TEST_METHOD.md       written and committed before any gate existed
+receipts/            what happened when other people ran it
 ```
+
+The checker lives inside the drop-in on purpose. `rules.md` forbids estimating a
+ratio, so a folder without its checker would have to answer "cannot measure" to
+everything. The number comes from code or it does not exist.
 
 ## Licence
 

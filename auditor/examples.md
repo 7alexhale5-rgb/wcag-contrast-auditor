@@ -5,7 +5,7 @@ unedited. The third is the one that matters most.
 
 ## 1. A page that passes
 
-Input, `selftest/fixtures/compliant.json`: body copy, a heading, a primary button,
+Input, `fixtures/clean.json`: body copy, a heading, a primary button,
 an input border.
 
 ```
@@ -30,7 +30,7 @@ reader to work out which threshold was applied.
 
 ## 2. A page that fails
 
-Input, `selftest/fixtures/violating.json`.
+Input, `fixtures/violating.json`.
 
 ```
 verdict: FAIL

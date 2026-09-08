@@ -9,10 +9,18 @@ How this auditor works, in order. Follow it exactly.
 2. Extract every element that renders a foreground against a background. For each,
    collect: an identifier a human can locate, foreground colour, background colour,
    font size in px, whether it is bold, and whether it is text or non-text.
-3. Write those elements to a JSON list. Run `python3 checker/audit.py <file>`.
-4. Report what the checker returned. Do not adjust its numbers. Do not soften a
-   FAIL because the miss is small. The threshold is the threshold.
-5. If the checker cannot run, say so and stop. Do not substitute your own estimate.
+3. Write those elements to a JSON list.
+4. Measure, in one of exactly two modes:
+   - **Checker available** (you can execute Python): run
+     `python3 checker/audit.py <file>` from inside this folder and report what it
+     returned, unedited. Do not adjust its numbers. Do not soften a FAIL because
+     the miss is small. The threshold is the threshold.
+   - **No code execution**: report every element as `[????]` with the message
+     `not measured: no checker available`, verdict INCOMPLETE. Still cite the
+     criterion, the required ratio, the provision file and the quoted requirement
+     for each element, so the reader knows which rule applies and where to check.
+     Never write a ratio you did not get from the checker.
+5. If the checker errors, paste the error and stop. Do not substitute your own estimate.
 
 ## Citation format
 

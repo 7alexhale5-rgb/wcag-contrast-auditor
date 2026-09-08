@@ -16,8 +16,8 @@ from __future__ import annotations
 import ast, copy, json, sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(ROOT / "checker"))
+ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT / "auditor" / "checker"))
 import contrast, audit  # noqa: E402
 
 FAILS: list[str] = []
@@ -75,12 +75,12 @@ check("severity separates a near miss from unreadable", near != gone, f"{near} v
 # The failure nobody tests for. An auditor that always finds something is a
 # complaint generator; it looks identical to a working one on broken input.
 print("\n[3] SILENCE: compliant input must produce no AA failures")
-rep = audit.audit(json.loads((ROOT / "selftest/fixtures/compliant.json").read_text()))
+rep = audit.audit(json.loads((ROOT / "fixtures/clean.json").read_text()))
 check("compliant fixture returns verdict PASS", rep["verdict"] == "PASS", rep["verdict"])
 check("compliant fixture invents zero failures", rep["summary"]["aa_fail"] == 0,
       str(rep["summary"]))
 # And it must not go quiet on the broken one.
-rep2 = audit.audit(json.loads((ROOT / "selftest/fixtures/violating.json").read_text()))
+rep2 = audit.audit(json.loads((ROOT / "fixtures/violating.json").read_text()))
 check("violating fixture returns verdict FAIL", rep2["verdict"] == "FAIL", rep2["verdict"])
 
 # --- 4 INVARIANCE -----------------------------------------------------------
@@ -109,7 +109,7 @@ check("and that shared verdict is FAIL", verdicts[0] == "FAIL", verdicts[0])
 print("\n[5] PURITY: the deterministic layer reaches nothing outside itself")
 BANNED = {"requests", "urllib", "httpx", "socket", "http", "openai", "anthropic",
           "random", "aiohttp", "subprocess", "boto3"}
-for src in ["checker/contrast.py", "checker/audit.py"]:
+for src in ["auditor/checker/contrast.py", "auditor/checker/audit.py"]:
     tree = ast.parse((ROOT / src).read_text())
     found = set()
     for node in ast.walk(tree):
@@ -122,7 +122,7 @@ for src in ["checker/contrast.py", "checker/audit.py"]:
 
 # The reference copy must be present and dated, or a clean report is unfalsifiable.
 print("\n[6] PROVENANCE: the cited standard is in the repo and carries a date")
-man = ROOT / "reference/MANIFEST.json"
+man = ROOT / "auditor/reference/MANIFEST.json"
 check("reference/MANIFEST.json exists", man.exists())
 if man.exists():
     m = json.loads(man.read_text())
@@ -133,7 +133,7 @@ if man.exists():
               {"id": "y", "fg": "#777", "bg": "#fff", "kind": "nontext"}]
              for x in audit.check_element(el)}
     for f in sorted(cited):
-        check(f"cited provision {f} exists on disk", (ROOT / "reference" / f).exists())
+        check(f"cited provision {f} exists on disk", (ROOT / "auditor/reference" / f).exists())
 
 print("\n" + "=" * 62)
 if FAILS:
