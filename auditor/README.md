@@ -1,104 +1,76 @@
-# WCAG 2.1 Contrast Auditor
+# WCAG 2.1 contrast auditor
 
-A folder-based auditor that checks colour contrast against WCAG 2.1 and reports
-what passes, what fails, where exactly, and which provision it violated.
+Checks colour pairs against three success criteria of the W3C Web Content
+Accessibility Guidelines 2.1 and reports what passes, what fails, where, by how
+much, and which provision says so. Drop this folder into a Claude project and
+Claude becomes the auditor. Or run the checker yourself; it is the same number.
 
-Drop the folder into a Claude project. Claude becomes the auditor.
+## Use it in three steps
 
-## What it enforces
+1. Write the colour pairs you want checked as a JSON list. One entry per
+   foreground-on-background pair:
 
-Three success criteria from the W3C Web Content Accessibility Guidelines 2.1:
-**1.4.3 Contrast (Minimum)** and **1.4.11 Non-text Contrast** at Level AA, plus
-**1.4.6 Contrast (Enhanced)** reported as AAA headroom.
+   ```json
+   [
+     {"id": "body copy",    "fg": "#1a1a1a", "bg": "#ffffff", "font_px": 16, "kind": "text"},
+     {"id": "h1",           "fg": "#0d4a6b", "bg": "#ffffff", "font_px": 40, "bold": true, "kind": "text"},
+     {"id": "input border", "fg": "#5a5a5a", "bg": "#ffffff", "kind": "nontext"}
+   ]
+   ```
 
-The text of all three is in `reference/`, taken from w3.org, with the retrieval
-date and a SHA-256 of the source document. You can open any finding, open the
-provision it cites, and check that the two agree.
+   `kind` is `text` or `nontext`. Text needs a size (`font_px` or `font_pt`) because
+   the standard sets a lower bar for large text. `bold` or `font_weight` matters for
+   the same reason. Colours may be `#rgb`, `#rrggbb`, `rgb()`, opaque `rgba()`, or
+   a common name. Anything with transparency is refused, not guessed.
 
-## Feed it
+2. Run the checker from inside this folder:
 
-A JSON list of elements. One entry per foreground-on-background pair.
+   ```bash
+   python3 checker/audit.py your-pairs.json
+   ```
 
-```json
-[
-  {"id": "body copy",    "fg": "#1a1a1a", "bg": "#ffffff", "font_px": 16, "kind": "text"},
-  {"id": "h1",           "fg": "#0d4a6b", "bg": "#ffffff", "font_px": 40, "bold": true, "kind": "text"},
-  {"id": "input border", "fg": "#5a5a5a", "bg": "#ffffff", "kind": "nontext"}
-]
-```
+3. Read the report. Every finding has six parts: where, which criterion, the
+   measured ratio against the required one, the file in `reference/` the rule
+   came from, the rule quoted from that file, and the input that was measured.
 
-`fg` and `bg` accept `#rgb`, `#rrggbb`, `rgb()`, opaque `rgba()`, or a CSS colour
-name. `kind` is `text` or `nontext`. `font_px` and `bold` are required for text,
-because 1.4.3 sets a different threshold for large text.
+   ```text
+   [FAIL] muted caption  SC 1.4.3 (AA)  severity=blocker
+           2.8:1 against a 4.5:1 minimum for text under 18pt, or under 14pt bold (measured at 13px)
+           provision: reference/wcag21-1.4.3.md
+           quote: "The visual presentation of text and images of text has a contrast ratio of at least 4.5:1"
+           input: fg=#999999 bg=#ffffff font_px=13.0 bold=false kind=text
+   ```
 
-## Run it
+   Exit code 0 means every AA criterion passed. 1 means at least one failed.
+   2 means something could not be measured, and the report says what.
 
-```bash
-python3 auditor/checker/audit.py your-elements.json          # readable report
-python3 auditor/checker/audit.py your-elements.json --json   # full report as JSON
-```
+## What it will and will not do
 
-Exit code is 1 when any Level AA criterion fails, so it drops into CI unchanged.
+It enforces 1.4.3 Contrast (Minimum) and 1.4.11 Non-text Contrast at Level AA,
+and reports 1.4.6 Contrast (Enhanced) as AAA headroom, never as a failure. The
+text of all three, and the definitions the math comes from, sit in `reference/`
+with the W3C licence, the document status, and a hash.
 
-## Verify it
+It never estimates. If a colour is transparent, a size is missing, or a format is
+unknown, the finding says UNDECIDABLE and the audit is INCOMPLETE. It does not
+decide that text is a logo; if you mark an element `"exempt": "logotype"` it
+reports N/A and quotes the exception clause. It has no opinion about whether a
+colour is nice.
 
-This is the part that matters. Run the auditor against itself:
+Alt text, focus order, headings, motion and the other 75 criteria are out of
+scope, and it says so instead of guessing.
 
-```bash
-python3 check.py
-```
+## If you are Claude
 
-27 checks across six classes. It proves the ratio math matches values W3C
-publishes, that every rule goes red on input built to break it, that compliant
-input produces zero findings, that one violation written five different ways
-produces five identical verdicts, that the deterministic layer imports nothing
-that could reach a network or a model, and that every provision this auditor
-cites is actually on disk.
+Read `identity.md`, then `rules.md`. Extract the pairs, write the JSON, run the
+checker if you can execute code. If you cannot, every ratio is UNDECIDABLE and
+you say so; you still cite the criterion and quote the provision. Four worked
+audits are in `examples.md`, each one a real run.
 
-A gate that has only ever run green has proved nothing. This one has been shown
-to fail.
+## Files
 
-## Refresh the standard
-
-```bash
-python3 reference/fetch-standard.py && git diff reference/
-```
-
-Re-derives `reference/` from w3.org. A clean diff means your copy is current. A
-dirty one means the Recommendation moved and your past reports were measured
-against a version that no longer exists.
-
-## Scope
-
-Contrast only. Alt text, focus order, heading structure, motion and the other 75
-success criteria are out of scope, and the auditor says so rather than guessing.
-
-## Layout
-
-```
-auditor/             the drop-in folder
-  identity.md        who the auditor is and what it refuses to do
-  rules.md           audit order, citation format, severity scale
-  examples.md        worked audits, including one it declines to decide
-  reference/         the standard itself, dated and hashed
-    fetch-standard.py  re-derives the above from w3.org
-    MANIFEST.json      source URL, retrieval date, SHA-256
-  checker/
-    contrast.py      WCAG relative luminance and ratio math
-    audit.py         findings, severity, verdicts
-check.py             the gate: runs offline, no API key, prints its own count
-fixtures/            one clean page, one violating page
-TEST_METHOD.md       written and committed before any gate existed
-receipts/            what happened when other people ran it
-```
-
-The checker lives inside the drop-in on purpose. `rules.md` forbids estimating a
-ratio, so a folder without its checker would have to answer "cannot measure" to
-everything. The number comes from code or it does not exist.
-
-## Licence
-
-Code: MIT. The excerpts in `reference/` are reproduced from WCAG 2.1 under the
-[W3C Document License](https://www.w3.org/copyright/document-license/),
-Copyright (c) W3C (MIT, ERCIM, Keio, Beihang). Where this repo and the published
-Recommendation disagree, the Recommendation governs.
+- `identity.md` who the auditor is and what it refuses to do
+- `rules.md` audit order, the six-part finding, severity, the two measuring modes
+- `examples.md` four real runs, including one it refuses to decide and one the standard exempts
+- `reference/` WCAG 2.1 SC 1.4.3, 1.4.11, 1.4.6 and three glossary definitions, verbatim
+- `checker/` the ratio math (`contrast.py`), the findings (`audit.py`), the citation gate (`findings.py`)
