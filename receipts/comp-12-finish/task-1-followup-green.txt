@@ -1,0 +1,408 @@
+Real planted rejection, new CI assertion
+command=['/opt/homebrew/opt/python@3.14/bin/python3.14', '-c', 'import subprocess\nimport sys\n\nresult = subprocess.run(\n    [sys.executable, "check.py", "examples/findings-broken.md"],\n    capture_output=True, text=True, encoding="utf-8",\n)\nprint(result.stdout, end="")\nprint(result.stderr, end="", file=sys.stderr)\nexpected = "4 citation(s) checked, 3 rejected"\nif (result.returncode != 1 or result.stderr != ""\n        or expected not in result.stdout.splitlines()):\n    raise SystemExit("BROKEN_EXAMPLE: expected a completed rejection, not a crash")']
+exit=0
+stdout:
+holds    muted caption  SC 1.4.3 (AA)
+REJECTED orange CTA text  SC 1.4.13 (AA)
+           A_UNKNOWN_SC: SC 1.4.13 is not in reference/MANIFEST.json
+REJECTED ghost border  SC 1.4.11 (AA)
+           C_QUOTE_NOT_VERBATIM: quote is not in reference/wcag21-1.4.11.md
+REJECTED no size given  SC 1.4.11 (AA)
+           D_KIND_MISMATCH: SC 1.4.11 applies to nontext, element is text
+           F_RATIO_MISMATCH: finding says FAIL 4.5:1, checker recomputes ('UNDECIDABLE', 4.5)
+           F_SEVERITY_MISMATCH: finding says major, checker recomputes unknown
+
+4 citation(s) checked, 3 rejected
+
+stderr:
+
+
+Crash canary rejected by new CI assertion
+command=['/opt/homebrew/opt/python@3.14/bin/python3.14', '-c', 'import subprocess\nimport sys\n\nresult = subprocess.run(\n    [sys.executable, "check.py", "examples/findings-broken.md"],\n    capture_output=True, text=True, encoding="utf-8",\n)\nprint(result.stdout, end="")\nprint(result.stderr, end="", file=sys.stderr)\nexpected = "4 citation(s) checked, 3 rejected"\nif (result.returncode != 1 or result.stderr != ""\n        or expected not in result.stdout.splitlines()):\n    raise SystemExit("BROKEN_EXAMPLE: expected a completed rejection, not a crash")']
+exit=1
+stdout:
+
+stderr:
+Traceback (most recent call last):
+  File "/private/var/folders/kr/q84_6j612s11p_gw7dc1ws3r0000gn/T/tmpm4lc016k/check.py", line 1, in <module>
+    raise RuntimeError('crash canary')
+RuntimeError: crash canary
+BROKEN_EXAMPLE: expected a completed rejection, not a crash
+
+
+Wrong exit canary rejected
+command=['/opt/homebrew/opt/python@3.14/bin/python3.14', '-c', 'import subprocess\nimport sys\n\nresult = subprocess.run(\n    [sys.executable, "check.py", "examples/findings-broken.md"],\n    capture_output=True, text=True, encoding="utf-8",\n)\nprint(result.stdout, end="")\nprint(result.stderr, end="", file=sys.stderr)\nexpected = "4 citation(s) checked, 3 rejected"\nif (result.returncode != 1 or result.stderr != ""\n        or expected not in result.stdout.splitlines()):\n    raise SystemExit("BROKEN_EXAMPLE: expected a completed rejection, not a crash")']
+exit=1
+stdout:
+4 citation(s) checked, 3 rejected
+
+stderr:
+BROKEN_EXAMPLE: expected a completed rejection, not a crash
+
+
+Missing completion canary rejected
+command=['/opt/homebrew/opt/python@3.14/bin/python3.14', '-c', 'import subprocess\nimport sys\n\nresult = subprocess.run(\n    [sys.executable, "check.py", "examples/findings-broken.md"],\n    capture_output=True, text=True, encoding="utf-8",\n)\nprint(result.stdout, end="")\nprint(result.stderr, end="", file=sys.stderr)\nexpected = "4 citation(s) checked, 3 rejected"\nif (result.returncode != 1 or result.stderr != ""\n        or expected not in result.stdout.splitlines()):\n    raise SystemExit("BROKEN_EXAMPLE: expected a completed rejection, not a crash")']
+exit=1
+stdout:
+incomplete rejection
+
+stderr:
+BROKEN_EXAMPLE: expected a completed rejection, not a crash
+
+
+Unexpected stderr canary rejected
+command=['/opt/homebrew/opt/python@3.14/bin/python3.14', '-c', 'import subprocess\nimport sys\n\nresult = subprocess.run(\n    [sys.executable, "check.py", "examples/findings-broken.md"],\n    capture_output=True, text=True, encoding="utf-8",\n)\nprint(result.stdout, end="")\nprint(result.stderr, end="", file=sys.stderr)\nexpected = "4 citation(s) checked, 3 rejected"\nif (result.returncode != 1 or result.stderr != ""\n        or expected not in result.stdout.splitlines()):\n    raise SystemExit("BROKEN_EXAMPLE: expected a completed rejection, not a crash")']
+exit=1
+stdout:
+4 citation(s) checked, 3 rejected
+
+stderr:
+unexpected diagnostic
+BROKEN_EXAMPLE: expected a completed rejection, not a crash
+
+
+Missing decision rejected
+command=['/opt/homebrew/opt/python@3.14/bin/python3.14', '/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/scripts/verify_spec.py', '--plan', '/var/folders/kr/q84_6j612s11p_gw7dc1ws3r0000gn/T/tmpm4lc016k/plan.md']
+exit=1
+stdout:
+FAIL DECISION_VERIFIER: missing scope or executable acceptance contract
+
+stderr:
+
+
+Missing scope rejected
+command=['/opt/homebrew/opt/python@3.14/bin/python3.14', '/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/scripts/verify_spec.py', '--plan', '/var/folders/kr/q84_6j612s11p_gw7dc1ws3r0000gn/T/tmpm4lc016k/plan.md']
+exit=1
+stdout:
+FAIL DECISION_VERIFIER: missing scope or executable acceptance contract
+
+stderr:
+
+
+Duplicate task rejected
+command=['/opt/homebrew/opt/python@3.14/bin/python3.14', '/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/scripts/verify_spec.py', '--plan', '/var/folders/kr/q84_6j612s11p_gw7dc1ws3r0000gn/T/tmpm4lc016k/plan.md']
+exit=1
+stdout:
+FAIL TASK_ORDER: expected six unique tasks numbered 1 through 6
+
+stderr:
+
+
+Missing constraints rejected
+command=['/opt/homebrew/opt/python@3.14/bin/python3.14', '/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/scripts/verify_spec.py', '--plan', '/var/folders/kr/q84_6j612s11p_gw7dc1ws3r0000gn/T/tmpm4lc016k/plan.md']
+exit=1
+stdout:
+FAIL GLOBAL_CONSTRAINT: missing 'Python standard library only, offline'
+FAIL GLOBAL_CONSTRAINT: missing 'Preserve TEST_METHOD.md exactly'
+FAIL GLOBAL_CONSTRAINT: missing 'six existing entries'
+FAIL GLOBAL_CONSTRAINT: missing 'Audit exit 0'
+FAIL GLOBAL_CONSTRAINT: missing '1 means an AA failure'
+FAIL GLOBAL_CONSTRAINT: missing '2 means INCOMPLETE'
+FAIL GLOBAL_CONSTRAINT: missing 'One implementer writes at a time'
+FAIL GLOBAL_CONSTRAINT: missing 'Subagents never mutate Git state'
+FAIL GLOBAL_CONSTRAINT: missing 'failing regression before a fix'
+FAIL GLOBAL_CONSTRAINT: missing 'No private corpus'
+FAIL GLOBAL_CONSTRAINT: missing 'Do not rewrite global tools'
+
+stderr:
+
+
+Missing repeat count rejected
+command=['/opt/homebrew/opt/python@3.14/bin/python3.14', '/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/scripts/verify_spec.py', '--plan', '/var/folders/kr/q84_6j612s11p_gw7dc1ws3r0000gn/T/tmpm4lc016k/plan.md']
+exit=1
+stdout:
+FAIL EVALUATION_CONTRACT: expected six cases, five repeats, two modes, 60 trials
+
+stderr:
+
+
+Missing no-execution mode rejected
+command=['/opt/homebrew/opt/python@3.14/bin/python3.14', '/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/scripts/verify_spec.py', '--plan', '/var/folders/kr/q84_6j612s11p_gw7dc1ws3r0000gn/T/tmpm4lc016k/plan.md']
+exit=1
+stdout:
+FAIL EVALUATION_CONTRACT: expected six cases, five repeats, two modes, 60 trials
+
+stderr:
+
+
+Missing Ciaran requirement rejected
+command=['/opt/homebrew/opt/python@3.14/bin/python3.14', '/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/scripts/verify_spec.py', '--plan', '/var/folders/kr/q84_6j612s11p_gw7dc1ws3r0000gn/T/tmpm4lc016k/plan.md']
+exit=1
+stdout:
+FAIL HUMAN_SEND_BOUNDARY: missing Ciaran-only or Alex-only requirement
+
+stderr:
+
+
+Missing no-sends restriction rejected
+command=['/opt/homebrew/opt/python@3.14/bin/python3.14', '/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/scripts/verify_spec.py', '--plan', '/var/folders/kr/q84_6j612s11p_gw7dc1ws3r0000gn/T/tmpm4lc016k/plan.md']
+exit=1
+stdout:
+FAIL HUMAN_SEND_BOUNDARY: missing Ciaran-only or Alex-only requirement
+
+stderr:
+
+
+Changed method rejected
+command=['/opt/homebrew/opt/python@3.14/bin/python3.14', '/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/scripts/verify_spec.py', '--method', '/var/folders/kr/q84_6j612s11p_gw7dc1ws3r0000gn/T/tmpm4lc016k/method.md']
+exit=1
+stdout:
+FAIL FROZEN_METHOD: TEST_METHOD.md differs from commit 0b57525
+
+stderr:
+
+
+Missing plan rejected
+command=['/opt/homebrew/opt/python@3.14/bin/python3.14', '/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/scripts/verify_spec.py', '--plan', '/var/folders/kr/q84_6j612s11p_gw7dc1ws3r0000gn/T/tmpm4lc016k/absent.md']
+exit=1
+stdout:
+FAIL PLAN_READ: [Errno 2] No such file or directory: '/private/var/folders/kr/q84_6j612s11p_gw7dc1ws3r0000gn/T/tmpm4lc016k/absent.md'
+FAIL DECISION_VERIFIER: missing scope or executable acceptance contract
+FAIL TASK_ORDER: expected six unique tasks numbered 1 through 6
+FAIL GLOBAL_CONSTRAINT: missing 'Python standard library only, offline'
+FAIL GLOBAL_CONSTRAINT: missing 'Preserve TEST_METHOD.md exactly'
+FAIL GLOBAL_CONSTRAINT: missing 'six existing entries'
+FAIL GLOBAL_CONSTRAINT: missing 'Audit exit 0'
+FAIL GLOBAL_CONSTRAINT: missing '1 means an AA failure'
+FAIL GLOBAL_CONSTRAINT: missing '2 means INCOMPLETE'
+FAIL GLOBAL_CONSTRAINT: missing 'One implementer writes at a time'
+FAIL GLOBAL_CONSTRAINT: missing 'Subagents never mutate Git state'
+FAIL GLOBAL_CONSTRAINT: missing 'failing regression before a fix'
+FAIL GLOBAL_CONSTRAINT: missing 'No private corpus'
+FAIL GLOBAL_CONSTRAINT: missing 'Do not rewrite global tools'
+FAIL HUMAN_SEND_BOUNDARY: missing Ciaran-only or Alex-only requirement
+FAIL EVALUATION_CONTRACT: expected six cases, five repeats, two modes, 60 trials
+
+stderr:
+
+
+Missing method rejected
+command=['/opt/homebrew/opt/python@3.14/bin/python3.14', '/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/scripts/verify_spec.py', '--method', '/var/folders/kr/q84_6j612s11p_gw7dc1ws3r0000gn/T/tmpm4lc016k/absent.md']
+exit=1
+stdout:
+FAIL FROZEN_METHOD_READ: [Errno 2] No such file or directory: '/private/var/folders/kr/q84_6j612s11p_gw7dc1ws3r0000gn/T/tmpm4lc016k/absent.md'
+
+stderr:
+
+
+Valid default contract from independent cwd
+command=['/opt/homebrew/opt/python@3.14/bin/python3.14', '/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/scripts/verify_spec.py']
+exit=0
+stdout:
+PASS SPEC_CONTRACT: six ordered tasks, acceptance boundaries, 60 trials, frozen method
+
+stderr:
+
+
+Default source-backed verifier
+command=['/opt/homebrew/opt/python@3.14/bin/python3.14', 'scripts/verify_spec.py']
+exit=0
+stdout:
+PASS SPEC_CONTRACT: six ordered tasks, acceptance boundaries, 60 trials, frozen method
+
+stderr:
+
+command=['python3', '-m', 'unittest', 'discover', '-s', 'tests', '-v']
+exit=0
+stdout:
+
+stderr:
+test_all_existing_gates_with_windows_default_encoding (test_portability.PortabilityTests.test_all_existing_gates_with_windows_default_encoding) ... ok
+test_audit_reads_utf8_input (test_portability.PortabilityTests.test_audit_reads_utf8_input) ... ok
+test_both_reference_gates_reject_changed_line_ending_bytes (test_portability.PortabilityTests.test_both_reference_gates_reject_changed_line_ending_bytes) ... ok
+test_fetch_writes_utf8_lf_bytes_matching_manifest (test_portability.PortabilityTests.test_fetch_writes_utf8_lf_bytes_matching_manifest) ... ok
+test_findings_reads_utf8_report_and_notices (test_portability.PortabilityTests.test_findings_reads_utf8_report_and_notices) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.423s
+
+OK
+
+
+command=['python3', 'check.py']
+exit=0
+stdout:
+
+[1] SHAPE: the drop-in folder holds the declared set and nothing else
+  ok    auditor/ exists
+  ok    auditor/ has every declared item
+  ok    auditor/ has nothing undeclared
+  ok    exact filename: README.md
+  ok    exact filename: checker
+  ok    exact filename: examples.md
+  ok    exact filename: identity.md
+  ok    exact filename: reference
+  ok    exact filename: rules.md
+
+[2] PROVENANCE: the cited standard is on disk, dated, hashed, with its status
+  ok    auditor/reference/MANIFEST.json exists
+  ok    manifest records the retrieval date
+  ok    manifest pins a hash of the source document
+  ok    manifest records the document status
+  ok    1.4.11: wcag21-1.4.11.md exists on disk
+  ok    1.4.11: carries the W3C status line
+  ok    1.4.11: carries the W3C licence notice
+  ok    1.4.11: file hash matches the manifest
+  ok    1.4.3: wcag21-1.4.3.md exists on disk
+  ok    1.4.3: carries the W3C status line
+  ok    1.4.3: carries the W3C licence notice
+  ok    1.4.3: file hash matches the manifest
+  ok    1.4.6: wcag21-1.4.6.md exists on disk
+  ok    1.4.6: carries the W3C status line
+  ok    1.4.6: carries the W3C licence notice
+  ok    1.4.6: file hash matches the manifest
+  ok    contrast-ratio: wcag21-glossary-contrast-ratio.md exists on disk
+  ok    contrast-ratio: carries the W3C status line
+  ok    contrast-ratio: carries the W3C licence notice
+  ok    contrast-ratio: file hash matches the manifest
+  ok    large-scale-text: wcag21-glossary-large-scale-text.md exists on disk
+  ok    large-scale-text: carries the W3C status line
+  ok    large-scale-text: carries the W3C licence notice
+  ok    large-scale-text: file hash matches the manifest
+  ok    relative-luminance: wcag21-glossary-relative-luminance.md exists on disk
+  ok    relative-luminance: carries the W3C status line
+  ok    relative-luminance: carries the W3C licence notice
+  ok    relative-luminance: file hash matches the manifest
+  ok    code cites wcag21-1.4.11.md, which the manifest lists
+  ok    code cites wcag21-1.4.3.md, which the manifest lists
+  ok    code cites wcag21-1.4.6.md, which the manifest lists
+  ok    quote is verbatim in wcag21-1.4.3.md: "Large-scale text and images of large-scale text ..."
+  ok    quote is verbatim in wcag21-1.4.6.md: "Large-scale text and images of large-scale text ..."
+  ok    quote is verbatim in wcag21-1.4.3.md: "Text or images of text that are part of an inact..."
+  ok    quote is verbatim in wcag21-1.4.3.md: "Text that is part of a logo or brand name has no..."
+  ok    quote is verbatim in wcag21-1.4.3.md: "The visual presentation of text and images of te..."
+  ok    quote is verbatim in wcag21-1.4.6.md: "The visual presentation of text and images of te..."
+  ok    quote is verbatim in wcag21-1.4.11.md: "The visual presentation of the following have a ..."
+  ok    quote is verbatim in wcag21-1.4.11.md: "Visual information required to identify user int..."
+  ok    quote is verbatim in wcag21-1.4.11.md: "except for inactive components or where the appe..."
+
+[3] ANCHOR: ratio math against known boundary values
+  ok    #000000 on #ffffff == 21.0:1
+  ok    #ffffff on #ffffff == 1.0:1
+  ok    #767676 on #ffffff == 4.5:1
+  ok    #777777 on #ffffff == 4.4:1
+  ok    ratio is symmetric
+  ok    rounding never rounds a fail up to the bar
+  ok    large text starts at 24px (18pt) regular
+  ok    large bold text starts at 18.67px (14pt)
+
+[4] MUTATION: each rule must go red on input built to break it
+  ok    1.4.3 normal text below 4.5:1 -> FAIL
+  ok    1.4.3 large text below 3:1 -> FAIL
+  ok    1.4.11 non-text below 3:1 -> FAIL
+  ok    large-text exception actually changes the verdict
+  ok    severity separates a near miss from unreadable
+  ok    exactly two thirds of the bar is major, not blocker
+  ok    just under two thirds is blocker
+  ok    font_pt 18 is large text (24px), font_px 18 is not
+  ok    font_weight 700 is bold, 600 is not
+  ok    font_weight 'bold' and font_px '19px' are read, not crashed on
+  ok    an unreadable size is one UNDECIDABLE finding, not a traceback
+  ok    8-digit hex with alpha is refused as non-opaque
+  ok    8-digit hex with full alpha is measured
+  ok    alpha above 1 is refused
+  ok    opacity below 1 is refused, not measured
+  ok    named logotype is N/A and quotes the Logotypes clause
+  ok    the same pair without the exemption named is FAIL
+  ok    an exemption the criterion does not have is refused
+  ok    a divider named decorative is N/A under 1.4.11 and quotes the 'required to identify' clause
+  ok    an undecidable non-text element cites 1.4.11, not 1.4.3
+
+[5] SILENCE: compliant input must produce no AA failures, and passes are reported
+  ok    clean fixture returns verdict PASS
+  ok    clean fixture invents zero failures
+  ok    clean fixture reports every pass
+  ok    violating fixture returns verdict FAIL
+  ok    an AAA miss is never printed as [FAIL]
+  ok    an AAA miss is printed as headroom
+  ok    an undecided audit is INCOMPLETE, exit 2, never a silent pass
+
+[6] INVARIANCE: one violation, five spellings, five identical verdicts
+  ok    all five spellings produce the same verdict
+  ok    all five spellings produce the same ratio
+  ok    and that shared verdict is FAIL
+
+[7] PURITY: the deterministic layer reaches nothing outside itself
+  ok    auditor/checker/contrast.py imports nothing that reaches out
+  ok    auditor/checker/contrast.py has no dynamic import or eval
+  ok    auditor/checker/audit.py imports nothing that reaches out
+  ok    auditor/checker/audit.py has no dynamic import or eval
+  ok    auditor/checker/findings.py imports nothing that reaches out
+  ok    auditor/checker/findings.py has no dynamic import or eval
+
+[8] CITATION: every finding names a real provision, quotes it verbatim, and recomputes
+  ok    the checker's own output parses back
+  ok    the checker's own output passes its own gate
+  ok    examples/findings-broken.md parses to four findings
+  ok    the valid finding holds
+
+  --- DEMONSTRATION: the citation gate, fired on purpose
+      caught: orange CTA text: A_UNKNOWN_SC: SC 1.4.13 is not in reference/MANIFEST.json
+      caught: ghost border: C_QUOTE_NOT_VERBATIM: quote is not in reference/wcag21-1.4.11.md
+      caught: no size given: D_KIND_MISMATCH: SC 1.4.11 applies to nontext, element is text
+      caught: no size given: F_RATIO_MISMATCH: finding says FAIL 4.5:1, checker recomputes ('UNDECIDABLE', 4.5)
+      caught: no size given: F_SEVERITY_MISMATCH: finding says major, checker recomputes unknown
+  ok    planted nonexistent SC is caught by check A
+  ok    planted non-verbatim quote is caught by check C
+  ok    planted wrong-kind criterion is caught by check D
+  ok    exactly three of four findings rejected
+  ok    a real 1.4.3 quote under the 1.4.11 file is rejected (B_FILE_MISMATCH)
+  ok    SC 1.4.6 labelled AA over the 1.4.3 file is rejected
+  ok    a finding with no input line is rejected (I_NO_INPUT)
+  ok    an unknown mark is rejected (H_UNKNOWN_MARK)
+  ok    an indented finding is still parsed
+  ok    a provision outside reference/ is rejected, never opened
+  ok    a wrong severity is rejected (F_SEVERITY_MISMATCH)
+  ok    an AAA headroom line with a wrong ratio is recomputed and rejected
+  ok    a malformed input line is a rejection, not a crash
+  ok    reference files hash to the manifest before any citation is judged
+
+[9] EXAMPLES: every pasted output in examples.md is a live run of the checker
+  ok    examples.md carries at least three tagged output blocks
+  ok    full output for fixtures/clean.json equals a live run byte for byte
+  ok    full output for fixtures/violating.json equals a live run byte for byte
+  ok    excerpt of fixtures/violating.json appears verbatim in a live run
+  ok    full output for fixtures/exempt.json equals a live run byte for byte
+
+[10] TERRITORY: real public brand token files re-audit to the committed verdicts
+  ok    receipts/EXPECTED-brands.json exists
+  ok    at least 40 brand fixtures on disk
+  ok    every fixture has a committed expectation
+  ok    every fixture names a pinned upstream commit, its hash, and matched it at build time
+  ok    no fixture drifted from its committed verdicts
+      58 brands: FAIL 48, INCOMPLETE 2, PASS 8; 4 undecidable element(s) reported, none skipped
+  ok    at least five pairs were hand-anchored against WebAIM
+  ok    airbnb muted on canvas: ours 5.4:1 vs WebAIM 5.4:1
+  ok    airbnb on-primary on primary: ours 3.5:1 vs WebAIM 3.51:1
+  ok    anthropic on-primary on primary: ours 3.2:1 vs WebAIM 3.27:1
+  ok    cursor ink on canvas: ours 14.3:1 vs WebAIM 14.3:1
+  ok    coinbase muted on canvas: ours 3.8:1 vs WebAIM 3.87:1
+  ok    mintlify hairline on canvas: ours 1.2:1 vs WebAIM 1.25:1
+
+[11] DIFFERENTIAL: an independent luminance implementation agrees on every brand pair
+  ok    208 opaque pairs compared against the vendored oracle
+  ok    zero disagreements beyond 0.01
+  ok    every opaque pair carries the oracle's build-time ratio
+
+==============================================================
+131 checks in 11 gates: 131 passed, 0 failed
+GATE PASSED. What each gate proved is in its own lines above; what a gate
+looks like when it fails is in receipts/DEVIATIONS.md.
+
+stderr:
+
+
+command=['/opt/homebrew/opt/python@3.13/bin/python3.13', 'scripts/verify_spec.py']
+exit=0
+stdout:
+PASS SPEC_CONTRACT: six ordered tasks, acceptance boundaries, 60 trials, frozen method
+
+stderr:
+
+
+command=['git', 'diff', '--check']
+exit=0
+stdout:
+
+stderr:
+

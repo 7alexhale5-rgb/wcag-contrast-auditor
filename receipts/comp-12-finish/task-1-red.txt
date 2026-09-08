@@ -1,0 +1,64 @@
+test_all_existing_gates_with_windows_default_encoding (test_portability.PortabilityTests.test_all_existing_gates_with_windows_default_encoding) ... FAIL
+test_audit_reads_utf8_input (test_portability.PortabilityTests.test_audit_reads_utf8_input) ... FAIL
+test_both_reference_gates_reject_changed_line_ending_bytes (test_portability.PortabilityTests.test_both_reference_gates_reject_changed_line_ending_bytes) ... FAIL
+test_fetch_writes_utf8_lf_bytes_matching_manifest (test_portability.PortabilityTests.test_fetch_writes_utf8_lf_bytes_matching_manifest) ... ERROR
+test_findings_reads_utf8_report_and_notices (test_portability.PortabilityTests.test_findings_reads_utf8_report_and_notices) ... FAIL
+
+======================================================================
+ERROR: test_fetch_writes_utf8_lf_bytes_matching_manifest (test_portability.PortabilityTests.test_fetch_writes_utf8_lf_bytes_matching_manifest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_portability.py", line 158, in test_fetch_writes_utf8_lf_bytes_matching_manifest
+    self.assertEqual(fetch.main(), 0)
+                     ~~~~~~~~~~^^
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/auditor/reference/fetch-standard.py", line 109, in main
+    out = HERE / f"wcag21-{num}.md"; out.write_text(doc)
+                                     ~~~~~~~~~~~~~~^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py", line 810, in write_text
+    return f.write(data)
+           ~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/encodings/cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 167-169: character maps to <undefined>
+
+======================================================================
+FAIL: test_all_existing_gates_with_windows_default_encoding (test_portability.PortabilityTests.test_all_existing_gates_with_windows_default_encoding)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_portability.py", line 56, in test_all_existing_gates_with_windows_default_encoding
+    self.assertEqual(check.main(["check.py"]), 0)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_audit_reads_utf8_input (test_portability.PortabilityTests.test_audit_reads_utf8_input)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_portability.py", line 81, in test_audit_reads_utf8_input
+    self.assertIn("Copyright © – 日本語", output.getvalue())
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'Copyright © – 日本語' not found in 'WCAG 2.1 Level AA contrast audit\nverdict: PASS\n1 element(s): 1 pass, 0 fail, 0 undecidable, 0 n/a, 0 blocker(s)\n\n[pass] Copyright Â© â€“ æ—¥æœ¬èªž  SC 1.4.3 (AA)\n        21.0:1 against a 4.5:1 minimum for text under 18pt, or under 14pt bold (measured at 16px)\n        provision: reference/wcag21-1.4.3.md\n        quote: "The visual presentation of text and images of text has a contrast ratio of at least 4.5:1"\n        input: fg=#000 bg=#fff font_px=16.0 bold=false kind=text\n'
+
+======================================================================
+FAIL: test_both_reference_gates_reject_changed_line_ending_bytes (test_portability.PortabilityTests.test_both_reference_gates_reject_changed_line_ending_bytes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_portability.py", line 117, in test_both_reference_gates_reject_changed_line_ending_bytes
+    self.assertTrue(check.findings.verify_reference(ref))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: [] is not true
+
+======================================================================
+FAIL: test_findings_reads_utf8_report_and_notices (test_portability.PortabilityTests.test_findings_reads_utf8_report_and_notices)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexhale/Projects/agents-worktrees/wcag-comp-12-finish/tests/test_portability.py", line 105, in test_findings_reads_utf8_report_and_notices
+    self.assertEqual(check.findings.main(), 0)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 0
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.051s
+
+FAILED (failures=4, errors=1)

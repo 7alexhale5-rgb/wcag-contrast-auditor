@@ -161,3 +161,9 @@ After each restore:
 GATE PASSED. What each gate proved is in its own lines above; what a gate
 looks like when it fails is in receipts/DEVIATIONS.md.
 ```
+
+## Finish-plan method revision (2026-09-08)
+
+The approved finish work uses [.planning/comp-12-finish/TEST_ADDENDUM.md](../.planning/comp-12-finish/TEST_ADDENDUM.md). The original TEST_METHOD.md is byte-identical to 0b57525. Portability regressions and the crash-versus-rejection canary, their raw outputs, and independent review are preserved in [comp-12-finish/](comp-12-finish/). All six OS/Python jobs passed at 7310355 in run 34269111360.
+
+Correction to the earlier count: the table above lists eight entries, C-1 through C-8. Its preceding “3” sentence was stale. Those eight historical correction entries are separate from the new finish-plan defects and fixes; they are not a count of independent human runs.

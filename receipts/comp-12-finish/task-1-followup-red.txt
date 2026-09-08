@@ -1,0 +1,11 @@
+Original exit-only rejection assertion with RuntimeError canary
+exit=0
+stdout:
+
+stderr:
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    raise RuntimeError('crash canary')
+RuntimeError: crash canary
+
+DEFECT: crash accepted as successful negative control
