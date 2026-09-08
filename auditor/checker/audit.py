@@ -12,13 +12,16 @@ quote without trusting this file.
 """
 from __future__ import annotations
 import json, sys, argparse
+import math
 from dataclasses import dataclass, asdict
+from decimal import Decimal, InvalidOperation
+from fractions import Fraction
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from contrast import (contrast_ratio, round_ratio, is_large_text, is_bold, parse_color,
                       ColorError, WeightError, AA_NORMAL, AA_LARGE, AA_NONTEXT,
-                      AAA_NORMAL, AAA_LARGE, EXEMPTIONS, PT_TO_PX, Threshold)
+                      AAA_NORMAL, AAA_LARGE, EXEMPTIONS, Threshold)
 
 REF = Path(__file__).resolve().parent.parent / "reference"
 
@@ -44,32 +47,72 @@ def _severity(ratio: float, required: float) -> str:
     return "blocker" if ratio < required * 2 / 3 else "major"
 
 def _num(v, what: str) -> float:
-    """A size is a number or a number with a px/pt suffix. Anything else is refused."""
-    s = str(v).strip().lower()
-    for suffix in ("px", "pt"):
-        if s.endswith(suffix): s = s[:-2]
-    try:
-        return float(s)
-    except ValueError:
+    """Read finite numbers, allowing only the unit belonging to a size field."""
+    if isinstance(v, bool) or not isinstance(v, (str, int, float)):
         raise ColorError(f"cannot read {what} {v!r}")
+    s = str(v).strip().lower()
+    unit = {"font_px": "px", "font_pt": "pt"}.get(what)
+    if unit and s.endswith(unit): s = s[:-2]
+    try:
+        number = float(s)
+    except (ValueError, OverflowError):
+        raise ColorError(f"cannot read {what} {v!r}") from None
+    if not math.isfinite(number):
+        raise ColorError(f"{what} must be finite, got {v!r}")
+    if what in ("font_px", "font_pt") and number <= 0:
+        raise ColorError(f"{what} must be positive, got {v!r}")
+    if what == "opacity":
+        try:
+            exact = Decimal(s)
+        except InvalidOperation:
+            raise ColorError(f"cannot read opacity {v!r}") from None
+        if not 0 <= exact <= 1:
+            raise ColorError(f"opacity must be within 0..1, got {v!r}")
+        if exact != 1 and number == 1:
+            raise ColorError(f"non-opaque opacity {v!r}: composite it before auditing")
+    return number
+
+def _exact_size(value, unit: str) -> Fraction:
+    """Retain a validated size's supplied decimal value for threshold checks."""
+    return Fraction(str(value).strip().lower().removesuffix(unit).strip())
 
 def normalise(el: dict) -> dict:
-    """Turn stylesheet-shaped input into what the thresholds need, in code.
+    """Validate absolute inputs before choosing the contrast threshold.
 
-    font_pt is converted here (never read as px). font_weight decides bold when
-    bold is not given. opacity below 1 is recorded so the colour is refused as
-    non-opaque. The model that extracted the element never does this arithmetic.
+    Convert points without decimal-place rounding; dual declarations must
+    agree. Relative weights and non-opaque colours need missing context.
     """
     out = {"id": el.get("id", "<unnamed>"), "fg": el.get("fg"), "bg": el.get("bg"),
            "kind": el.get("kind", "text")}
     if el.get("exempt") is not None: out["exempt"] = el["exempt"]
-    if el.get("font_px") is not None: out["font_px"] = _num(el["font_px"], "font_px")
-    elif el.get("font_pt") is not None: out["font_px"] = round(_num(el["font_pt"], "font_pt") * PT_TO_PX, 4)
+    if "font_px" in el: out["font_px"] = _num(el["font_px"], "font_px")
+    if "font_pt" in el:
+        # Multiplication before division keeps the exact 14pt and 18pt
+        # boundaries aligned with the pixel thresholds, without rounding up.
+        pt = _num(el["font_pt"], "font_pt")
+        px = pt * 4 / 3
+        if not math.isfinite(px):
+            raise ColorError("font_pt conversion is not finite")
+        if "font_px" in out:
+            exact_pt = _exact_size(el["font_pt"], "pt")
+            exact_px = _exact_size(el["font_px"], "px")
+            # A caller's numeric float can be the rounded result of 14 * 4 / 3.
+            # Accept that equivalent form, but never discard precision in a
+            # supplied decimal string when comparing dual declarations.
+            equivalent_float = (isinstance(el["font_px"], float)
+                                and exact_pt == Fraction(str(pt))
+                                and el["font_px"] == float(exact_pt * 4 / 3))
+            if exact_px != exact_pt * 4 / 3 and not equivalent_float:
+                raise ColorError("font_px and font_pt declarations disagree")
+        out["font_px"] = px
+    if "bold" in el and not isinstance(el["bold"], bool):
+        raise ColorError(f"bold must be a boolean, got {el['bold']!r}")
+    weight_bold = is_bold(el["font_weight"]) if "font_weight" in el else None
+    if "bold" in el and weight_bold is not None and el["bold"] != weight_bold:
+        raise ColorError("bold and font_weight declarations disagree")
     if out["kind"] == "text":
-        if el.get("bold") is not None: out["bold"] = bool(el["bold"])
-        elif el.get("font_weight") is not None: out["bold"] = is_bold(el["font_weight"])
-        else: out["bold"] = False
-    if el.get("opacity") is not None: out["opacity"] = _num(el["opacity"], "opacity")
+        out["bold"] = el.get("bold", weight_bold if weight_bold is not None else False)
+    if "opacity" in el: out["opacity"] = _num(el["opacity"], "opacity")
     if el.get("note"): out["note"] = str(el["note"])
     return out
 
@@ -88,7 +131,7 @@ def check_element(raw: dict) -> list[Finding]:
         base = AA_NONTEXT if kind == "nontext" else AA_NORMAL
         return [Finding("UNDECIDABLE", base.criterion, base.level, "unknown", loc, None, base.ratio,
                         f"cannot read element: {e}", base.provision_file, base.quote,
-                        {"kind": kind if kind in ("text", "nontext") else "text"})]
+                        dict(raw) if isinstance(raw, dict) else {"kind": "text", "raw": raw})]
     loc, kind = el["id"], el["kind"]
     if kind not in ("text", "nontext"):
         return [Finding("UNDECIDABLE", "1.4.3", "AA", "unknown", loc, None, AA_NORMAL.ratio,
@@ -108,7 +151,7 @@ def check_element(raw: dict) -> list[Finding]:
         return [Finding("N/A", base.criterion, base.level, "none", loc, None, base.ratio,
                         f"exempt as {el['exempt']}: {why}", ex[1], ex[0], el)]
 
-    if el.get("opacity", 1.0) < 0.999:
+    if el.get("opacity", 1.0) != 1.0:
         return [Finding("UNDECIDABLE", base.criterion, base.level, "unknown", loc, None, base.ratio,
                         f"cannot measure: opacity {el['opacity']} composites against an unknown backdrop; "
                         f"give the composited colour", base.provision_file, base.quote, el)]
@@ -138,7 +181,12 @@ def check_element(raw: dict) -> list[Finding]:
                            "wcag21-1.4.3.md", AA_NORMAL.quote, el))
         return out
 
-    large = is_large_text(float(font_px), bold)
+    # Decide from the original size, not the rounded presentation float.
+    # Fraction also keeps the repeating 14pt-to-px boundary exact.
+    if "font_pt" in raw:
+        large = _exact_size(raw["font_pt"], "pt") >= (14 if bold else 18)
+    else:
+        large = _exact_size(raw["font_px"], "px") >= (Fraction(56, 3) if bold else 24)
     aa = AA_LARGE if large else AA_NORMAL
     aaa = AAA_LARGE if large else AAA_NORMAL
     out.append(Finding(

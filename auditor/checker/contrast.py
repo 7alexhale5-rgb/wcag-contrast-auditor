@@ -5,7 +5,9 @@ No network. No model. No randomness. Same input, same number, forever.
 If this file ever needs an API key, the auditor has stopped being an auditor.
 """
 from __future__ import annotations
+import math
 import re
+from decimal import Decimal, InvalidOperation
 from dataclasses import dataclass
 
 # --- colour parsing ---------------------------------------------------------
@@ -22,10 +24,12 @@ _NAMED = {  # the handful that show up in real stylesheets; unknown names raise
 class ColorError(ValueError):
     pass
 
-def parse_color(value: str) -> tuple[int, int, int]:
+def parse_color(value: str) -> tuple[float, float, float]:
     """Accept #rgb, #rrggbb, rgb(), rgba() with opaque alpha, or a named colour."""
     if value is None:
         raise ColorError("no colour given")
+    if not isinstance(value, str):
+        raise ColorError(f"colour must be a string, got {type(value).__name__}")
     v = value.strip().lower()
     if v in _NAMED:
         return _NAMED[v]
@@ -38,33 +42,44 @@ def parse_color(value: str) -> tuple[int, int, int]:
         if m.group(2) is not None and int(m.group(2), 16) < 255:
             raise ColorError(f"non-opaque colour {value!r}: composite it before auditing")
         return (int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16))
-    m = re.fullmatch(r"rgba?\(\s*([\d.]+)[\s,]+([\d.]+)[\s,]+([\d.]+)\s*(?:[,/]\s*([\d.%]+)\s*)?\)", v)
+    # Keep comma and space syntax separate: repeated or mixed separators are
+    # malformed. Channels stay fractional through luminance calculation.
+    number = r"[+-]?(?:\d+(?:\.\d+)?|\.\d+)(?:e[+-]?\d+)?"
+    channel = f"({number})"
+    alpha = f"({number}%?)"
+    comma = rf"{channel}\s*,\s*{channel}\s*,\s*{channel}(?:\s*,\s*{alpha})?"
+    space = rf"{channel}\s+{channel}\s+{channel}(?:\s*/\s*{alpha})?"
+    m = (re.fullmatch(rf"rgba?\(\s*{comma}\s*\)", v)
+         or re.fullmatch(rf"rgba?\(\s*{space}\s*\)", v))
     if m:
-        r, g, b = (int(round(float(m.group(i)))) for i in (1, 2, 3))
         a = m.group(4)
+        try:
+            channels = tuple(Decimal(m.group(i)) for i in (1, 2, 3))
+            alpha = Decimal(a.removesuffix("%")) if a is not None else None
+        except InvalidOperation:
+            raise ColorError(f"invalid numeric colour {value!r}") from None
+        if any(not c.is_finite() or not 0 <= c <= 255 for c in channels):
+            raise ColorError(f"channel out of range in {value!r}")
         if a is not None:
-            alpha = float(a[:-1]) / 100 if a.endswith("%") else float(a)
-            if alpha > 1.0:
+            # Compare the original decimal, so even 0.999999999999999999999
+            # cannot round to an opaque alpha in binary floating point.
+            opaque = Decimal(100) if a.endswith("%") else Decimal(1)
+            if not alpha.is_finite() or not 0 <= alpha <= opaque:
                 raise ColorError(f"alpha out of range in {value!r}")
-            if alpha < 0.999:
-                # Compositing against an unknown backdrop is not decidable here.
-                # Refusing beats guessing: a wrong ratio is worse than no ratio.
+            if alpha != opaque:
                 raise ColorError(f"non-opaque colour {value!r}: composite it before auditing")
-        for c in (r, g, b):
-            if not 0 <= c <= 255:
-                raise ColorError(f"channel out of range in {value!r}")
-        return (r, g, b)
+        return tuple(float(c) for c in channels)
     raise ColorError(f"unrecognised colour {value!r}")
 
 # --- WCAG relative luminance and contrast ratio -----------------------------
 # https://www.w3.org/TR/WCAG21/#dfn-relative-luminance
 # https://www.w3.org/TR/WCAG21/#dfn-contrast-ratio
 
-def _channel(c8: int) -> float:
+def _channel(c8: float) -> float:
     c = c8 / 255.0
     return c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4
 
-def relative_luminance(rgb: tuple[int, int, int]) -> float:
+def relative_luminance(rgb: tuple[float, float, float]) -> float:
     r, g, b = (_channel(c) for c in rgb)
     return 0.2126 * r + 0.7152 * g + 0.0722 * b
 
@@ -122,28 +137,32 @@ EXEMPTIONS["text"]["decorative"] = EXEMPTIONS["text"]["incidental"]
 # WCAG defines large text in points. CSS px to pt is 1pt = 4/3 px at the
 # reference resolution the spec assumes, so 18pt = 24px and 14pt = 18.6667px.
 PT_TO_PX = 4 / 3
-LARGE_PX = 18 * PT_TO_PX          # 24.0
-LARGE_BOLD_PX = 14 * PT_TO_PX     # 18.666...
+LARGE_PX = 18 * 4 / 3          # 24.0
+LARGE_BOLD_PX = 14 * 4 / 3     # 18.666...
 
 class WeightError(ValueError):
     pass
 
 def is_bold(weight) -> bool:
-    """CSS font-weight 700 and up is bold. WCAG's large-text definition says bold,
-    not semibold, so 600 is normal weight here and the fixture notes say so.
-    The keywords bold and bolder count as bold; normal and lighter do not."""
-    w = str(weight).strip().lower()
-    if w in ("bold", "bolder"): return True
-    if w in ("normal", "lighter"): return False
-    try:
-        return float(w) >= 700
-    except ValueError:
+    """Absolute CSS weights 700..1000 are bold; relative names need context."""
+    if isinstance(weight, bool) or not isinstance(weight, (str, int, float)):
         raise WeightError(f"unrecognised font weight {weight!r}")
+    w = str(weight).strip().lower()
+    if w == "bold": return True
+    if w == "normal": return False
+    if w in ("bolder", "lighter"):
+        raise WeightError(f"relative font weight {weight!r} needs inherited context")
+    try:
+        number = Decimal(w)
+    except InvalidOperation:
+        raise WeightError(f"unrecognised font weight {weight!r}") from None
+    if not number.is_finite() or not 1 <= number <= 1000:
+        raise WeightError(f"font weight must be finite and within 1..1000, got {weight!r}")
+    return number >= 700
 
 def is_large_text(font_px: float, bold: bool) -> bool:
     return font_px >= (LARGE_BOLD_PX if bold else LARGE_PX)
 
 def round_ratio(x: float) -> float:
     """One decimal, rounded DOWN, so a 4.4999 never reports as a passing 4.5."""
-    import math
     return math.floor(x * 10) / 10
