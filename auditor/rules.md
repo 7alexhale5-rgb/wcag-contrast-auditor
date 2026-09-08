@@ -24,14 +24,21 @@ How this auditor works, in order. Follow it exactly.
 
 ## Citation format
 
-Every finding names four things, always in this order:
+Every finding names six things, always in this order, exactly as the checker
+prints them:
 
 - the location, specific enough that someone can find it without asking you
 - the criterion number and conformance level, for example `SC 1.4.3 (AA)`
 - the measured ratio against the required ratio
 - the provision file in `reference/` that the requirement came from
+- the requirement, quoted verbatim from that file (`quote:`)
+- the input that was measured (`input:`), so anyone can recompute the number
 
-A finding missing any of the four is not a finding. It is an assertion.
+A finding missing any of the six is not a finding. It is an assertion. The
+`checker/findings.py` gate rejects a finding whose criterion is not in
+`reference/`, whose quote is not verbatim in the file it names, whose criterion
+does not fit the element kind, whose level disagrees with the file, or whose
+ratio does not recompute from its input.
 
 ## Severity
 
@@ -43,6 +50,7 @@ Severity describes distance below the bar, not importance to the business.
 | major | measured ratio is below the requirement but at or above two thirds |
 | none | the requirement is met |
 | unknown | the input was undecidable |
+| none | the input named one of the standard's own exemptions (verdict N/A, exception quoted) |
 
 A pair at 4.4:1 against a 4.5:1 bar and a pair at 1.5:1 are both failures. Calling
 them the same thing tells the reader nothing about what to fix first.

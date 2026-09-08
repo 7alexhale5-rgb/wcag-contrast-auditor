@@ -1,0 +1,10 @@
+[
+  {
+    "id": "wordmark in header",
+    "fg": "#e6e6e6",
+    "bg": "#ffffff",
+    "font_px": 22,
+    "kind": "text",
+    "exempt": "logotype"
+  }
+]

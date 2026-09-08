@@ -80,20 +80,47 @@ class Threshold:
     level: str          # "AA" or "AAA"
     ratio: float
     applies_to: str
+    quote: str          # the requirement, verbatim from the provision file in reference/
+    provision_file: str
 
-# 1.4.3 sets 4.5:1, and 3:1 for large text. 1.4.11 sets 3:1 for non-text.
-# 1.4.6 is AAA and is reported as headroom, never as a failure at AA.
-AA_NORMAL   = Threshold("1.4.3",  "AA",  4.5, "text under 18pt, or under 14pt bold")
-AA_LARGE    = Threshold("1.4.3",  "AA",  3.0, "large text: 18pt+, or 14pt+ bold")
-AA_NONTEXT  = Threshold("1.4.11", "AA",  3.0, "user interface components and graphical objects")
-AAA_NORMAL  = Threshold("1.4.6",  "AAA", 7.0, "text under 18pt, or under 14pt bold")
-AAA_LARGE   = Threshold("1.4.6",  "AAA", 4.5, "large text: 18pt+, or 14pt+ bold")
+# Quotes are lifted verbatim from reference/. check.py verifies each one is a
+# substring of its file, so a refreshed standard that changes wording goes red here.
+AA_NORMAL   = Threshold("1.4.3",  "AA",  4.5, "text under 18pt, or under 14pt bold",
+    "The visual presentation of text and images of text has a contrast ratio of at least 4.5:1", "wcag21-1.4.3.md")
+AA_LARGE    = Threshold("1.4.3",  "AA",  3.0, "large text: 18pt+, or 14pt+ bold",
+    "Large-scale text and images of large-scale text have a contrast ratio of at least 3:1", "wcag21-1.4.3.md")
+AA_NONTEXT  = Threshold("1.4.11", "AA",  3.0, "user interface components and graphical objects",
+    "The visual presentation of the following have a contrast ratio of at least 3:1 against adjacent color(s)", "wcag21-1.4.11.md")
+AAA_NORMAL  = Threshold("1.4.6",  "AAA", 7.0, "text under 18pt, or under 14pt bold",
+    "The visual presentation of text and images of text has a contrast ratio of at least 7:1", "wcag21-1.4.6.md")
+AAA_LARGE   = Threshold("1.4.6",  "AAA", 4.5, "large text: 18pt+, or 14pt+ bold",
+    "Large-scale text and images of large-scale text have a contrast ratio of at least 4.5:1", "wcag21-1.4.6.md")
+
+# The standard's own exceptions. An element is exempt only when the input says so
+# by name; the auditor never infers that text is a logo. Each maps to the clause
+# it quotes, so an N/A verdict is as checkable as a FAIL.
+EXEMPTIONS = {
+    "text": {
+        "logotype":   ("Text that is part of a logo or brand name has no contrast requirement.", "wcag21-1.4.3.md"),
+        "incidental": ("Text or images of text that are part of an inactive user interface component, that are pure decoration, that are not visible to anyone, or that are part of a picture that contains significant other visual content, have no contrast requirement.", "wcag21-1.4.3.md"),
+    },
+    "nontext": {
+        "inactive":   ("except for inactive components or where the appearance of the component is determined by the user agent and not modified by the author", "wcag21-1.4.11.md"),
+    },
+}
+EXEMPTIONS["text"]["inactive"] = EXEMPTIONS["text"]["incidental"]
+EXEMPTIONS["text"]["decorative"] = EXEMPTIONS["text"]["incidental"]
 
 # WCAG defines large text in points. CSS px to pt is 1pt = 4/3 px at the
 # reference resolution the spec assumes, so 18pt = 24px and 14pt = 18.6667px.
 PT_TO_PX = 4 / 3
 LARGE_PX = 18 * PT_TO_PX          # 24.0
 LARGE_BOLD_PX = 14 * PT_TO_PX     # 18.666...
+
+def is_bold(weight) -> bool:
+    """CSS font-weight 700 and up is bold. WCAG's large-text definition says bold,
+    not semibold, so 600 is normal weight here and the fixture notes say so."""
+    return float(weight) >= 700
 
 def is_large_text(font_px: float, bold: bool) -> bool:
     return font_px >= (LARGE_BOLD_PX if bold else LARGE_PX)
